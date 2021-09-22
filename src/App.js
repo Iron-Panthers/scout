@@ -17,16 +17,20 @@ function App() {
   }
 
   const [data, setData] = useState({})
+  const panelProps = {
+    data,
+    setData,
+    nextMode
+  }
   let panel
   if (mode === "Configure") {
-    panel = <Configure data={data} setData={setData}></Configure>
+    panel = <Configure {...panelProps}></Configure>
   }
   return (
     <div className="App">
       {
         panel
       }
-      <button onClick={nextMode}>{mode}</button>
     </div>
   );
 }
