@@ -1,38 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './App.css';
+import { Panels } from './components/Panels';
 
-import Configure from './components/Configure';
-
-
-
-
+import { Provider, Context } from "./state.jsx"
 
 function App() {
-  const [mode, setMode] = useState("Configure")
-  const nextMode = () => {
-    const modes = ["Configure", "Scout", "Review", "Scan"]
-    if (mode !== "Scan") setMode(
-      modes[modes.indexOf(mode) + 1]
-    )
-  }
 
-  const [data, setData] = useState({})
-  const panelProps = {
-    data,
-    setData,
-    nextMode
-  }
-  let panel
-  if (mode === "Configure") {
-    panel = <Configure {...panelProps}></Configure>
-  }
   return (
     <div className="App">
-      {
-        panel
-      }
+      <Provider>
+        <Panels></Panels>
+      </Provider>
     </div>
-  );
+  )
 }
 
 export default App;

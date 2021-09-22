@@ -1,8 +1,18 @@
-import React from "react"
+import React, { useContext } from "react"
+
+import { Context } from "../state"
 
 
-const Configure = ({nextMode, ...props}) => {
-  return <div><button onClick={nextMode}>button</button></div>
+const Configure = () => {
+
+  const [ state, dispatch ] = useContext(Context)
+
+  return <div>
+    <button onClick={() => {
+      console.log(state)
+      dispatch({ type: "set_team", val: 10})
+    }}>NEXT</button>
+  </div>
 }
 
 export default Configure
