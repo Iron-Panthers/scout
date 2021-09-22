@@ -1,9 +1,16 @@
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "set_team":
+    case "next_mode":
+      const modes = [ "Configure", "Scout", "Review", "Scan" ]
       return {
         ...state,
-        team: action.val
+        mode: modes[modes.indexOf(state.mode) + 1]
+      }
+    // base reducer, no special behavior
+    case "set":
+      return {
+        ...state,
+        [action.prop]: action.val
       }
     default:
       return state

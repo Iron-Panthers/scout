@@ -5,7 +5,8 @@ import Configure from './Configure'
 
 export const Panels = props => {
   const [ state, dispatch ] = useContext(Context)
-  let panel
+  // an empty but safe return
+  let panel = <></>
   if(state.mode === "Configure") {
     panel = <Configure></Configure>
   }

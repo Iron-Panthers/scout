@@ -10,7 +10,7 @@ const Configure = () => {
   return <div>
     <button onClick={() => {
       console.log(state)
-      dispatch({ type: "set_team", val: 10})
+      dispatch({ type: "next_mode"})
     }}>NEXT</button>
   </div>
 }
