@@ -1,7 +1,6 @@
 import React, { useContext } from "react"
 
-import { Context } from "../state"
-import Count from "./inputs/Count"
+import { Context } from "../state" 
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
@@ -16,7 +15,7 @@ const Configure = () => {
     <Dropdown stateProp="matchType"
       options={["Test", "Practice", "Qualification", "Quarterfinal", "Semifinal", "Final"]}
     ></Dropdown>
-    <Count label="test label" stateProp="team"></Count>
+    <Numbers label="Match #" stateProp="matchNum"></Numbers>
     <Next></Next>
   </>
 }
