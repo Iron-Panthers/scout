@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+import Configure from './components/Configure';
+
+
+
+
+
 function App() {
+  const [mode, setMode] = useState("Configure")
+  const nextMode = () => {
+    const modes = ["Configure", "Scout", "Review", "Scan"]
+    if (mode !== "Scan") setMode(
+      modes[modes.indexOf(mode) + 1]
+    )
+  }
+
+  const [data, setData] = useState({})
+  let panel
+  if (mode === "Configure") {
+    panel = <Configure data={data} setData={setData}></Configure>
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        panel
+      }
+      <button onClick={nextMode}>{mode}</button>
     </div>
   );
 }
