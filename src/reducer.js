@@ -13,6 +13,16 @@ export const reducer = (state, action) => {
         ...state,
         [action.prop]: action.val
       }
+    // base reducer for phases, spaghetti
+    case "setInPhase":
+      console.log(action.val)
+      return {
+        ...state,
+        [state.phase]: {
+          ...state[state.phase],
+          [action.prop]: action.val
+        }
+      }
     default:
       return state
   }
@@ -33,7 +43,7 @@ export const initialState = {
   timeLeft: 150, //seconds
   phase: "auto", //auto, teleop, endgame
   auto: {
-    pathType: undefined,
+    pathType: "NONE",
     ...shooting
   },
   tele: {
