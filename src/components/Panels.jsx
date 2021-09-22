@@ -10,5 +10,5 @@ export const Panels = props => {
   if(state.mode === "Configure") {
     panel = <Configure></Configure>
   }
-  return panel
+  return <div className="panel">{panel}</div>
 }

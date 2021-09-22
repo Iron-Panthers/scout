@@ -8,6 +8,7 @@ export const reducer = (state, action) => {
       }
     // base reducer, no special behavior
     case "set":
+      console.log(action.val)
       return {
         ...state,
         [action.prop]: action.val
