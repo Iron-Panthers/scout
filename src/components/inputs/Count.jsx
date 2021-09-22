@@ -6,7 +6,7 @@ const Count = ({label, stateProp, ...props}) => {
   return <button
   onClick={
     () => {
-      dispatch({type: "set", prop: stateProp, val: state[stateProp] + 1})
+      dispatch({type: "set", prop: stateProp, val: state[stateProp] ?? 0 + 1})
     }
   }
   >{`${label} ${state[stateProp]}`}</button>
