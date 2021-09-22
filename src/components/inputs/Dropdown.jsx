@@ -8,7 +8,7 @@ const Dropdown = ({ options, prop, phase, ...props }) => {
     onChange={event => {
       dispatch({type: `set${phase ? "InPhase" : ""}`, prop, val: event.target.value})
     }}
-    value={state[prop]}
+    value={phase ? state[state.phase][prop] : state[prop]}
   >
     {optionsElems}
   </select>

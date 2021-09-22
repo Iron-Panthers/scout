@@ -4,6 +4,7 @@ import { Context } from "../state"
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
+import Shoot from "./inputs/Shoot"
 
 
 const Scout = () => {
@@ -27,6 +28,7 @@ const Scout = () => {
                 "OTHER"
               ]}
             ></Dropdown>
+            <Shoot></Shoot>
           </>
         )
       case "teleop":

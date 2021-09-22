@@ -15,7 +15,7 @@ export const reducer = (state, action) => {
       }
     // base reducer for phases, spaghetti
     case "setInPhase":
-      console.log(action.val)
+      console.log(action.val, state.phase)
       return {
         ...state,
         [state.phase]: {
