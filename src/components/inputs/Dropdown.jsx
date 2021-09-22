@@ -1,14 +1,14 @@
 import React, { useContext, useMemo } from "react"
 import { Context } from "../../state"
 
-const Dropdown = ({ options, stateProp, ...props }) => {
+const Dropdown = ({ options, prop, ...props }) => {
   const [state, dispatch] = useContext(Context)
   const optionsElems = useMemo(() => options.map(value => <option value={value} key={value}>{value}</option>), [options])
   return <select
     onChange={event => {
-      dispatch({type: "set", prop: stateProp, val: event.target.value})
+      dispatch({type: "set", prop, val: event.target.value})
     }}
-    value={state[stateProp]}
+    value={state[prop]}
   >
     {optionsElems}
   </select>

@@ -11,7 +11,7 @@ const Scout = () => {
   const [state, dispatch] = useContext(Context)
 
   return <>
-    <div>scout</div>
+    <Dropdown prop=""></Dropdown>
   </>
 }
 

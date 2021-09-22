@@ -1,16 +1,16 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
 
-const Numbers = ({ label, stateProp, ...props }) => {
+const Numbers = ({ label, prop, ...props }) => {
   const [state, dispatch] = useContext(Context)
   return <input type="number" placeholder={label} autoComplete="off"
     onChange={event => {
       dispatch({
-        type: "set", prop: stateProp,
+        type: "set", prop,
         val: !(event.target.value === undefined || event.target.value === "") ? parseInt(event.target.value) : undefined
       })
     }}
-    value={state[stateProp] ?? ""}
+    value={state[prop] ?? ""}
   ></input>
 }
 

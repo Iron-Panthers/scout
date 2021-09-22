@@ -11,11 +11,11 @@ const Configure = () => {
   const [state, dispatch] = useContext(Context)
 
   return <>
-    <Numbers label="Robot Team #" stateProp="team"></Numbers>
-    <Dropdown stateProp="matchType"
+    <Numbers label="Robot Team #" prop="team"></Numbers>
+    <Dropdown prop="matchType"
       options={["Test", "Practice", "Qualification", "Quarterfinal", "Semifinal", "Final"]}
     ></Dropdown>
-    <Numbers label="Match #" stateProp="matchNum"></Numbers>
+    <Numbers label="Match #" prop="matchNum"></Numbers>
     <Next></Next>
   </>
 }

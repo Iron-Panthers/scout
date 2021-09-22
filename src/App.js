@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './App.css';
 import { Panels } from './components/Panels';
 
-import { Provider, Context } from "./state.jsx"
+import { Provider } from "./state.jsx"
 
 function App() {
 

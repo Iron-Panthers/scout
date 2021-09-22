@@ -1,15 +1,15 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
 
-const Count = ({label, stateProp, ...props}) => {
+const Count = ({label, prop, ...props}) => {
   const [ state, dispatch ] = useContext(Context)
   return <button
   onClick={
     () => {
-      dispatch({type: "set", prop: stateProp, val: state[stateProp] ?? 0 + 1})
+      dispatch({type: "set", prop, val: state[prop] ?? 0 + 1})
     }
   }
-  >{`${label} ${state[stateProp]}`}</button>
+  >{`${label} ${state[prop]}`}</button>
 }
 
 export default Count
