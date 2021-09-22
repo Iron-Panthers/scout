@@ -1,6 +1,8 @@
 import React, { useContext } from "react"
 
 import { Context } from "../state"
+import Count from "./inputs/Count"
+import Next from "./inputs/Next"
 
 
 const Configure = () => {
@@ -8,10 +10,8 @@ const Configure = () => {
   const [ state, dispatch ] = useContext(Context)
 
   return <div>
-    <button onClick={() => {
-      console.log(state)
-      dispatch({ type: "next_mode"})
-    }}>NEXT</button>
+    <Count label="test label" stateProp="timeLeft"></Count>
+    <Next></Next>
   </div>
 }
 

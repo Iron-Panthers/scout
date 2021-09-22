@@ -42,7 +42,7 @@ export const initialState = {
     climb: false,
     park: false,
     level: false, //level vs not level, not level is false
-    levelTime: undefined //value of timeleft when level is set
+    levelTime: undefined //value of timeLeft when level is set
   },
   underTrench: false,
   defense: false,
