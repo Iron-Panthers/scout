@@ -17,7 +17,35 @@ export const reducer = (state, action) => {
   }
 }
 
+const shooting = {
+  innerOuterSucc: 0,
+  innerOuterFail: 0,
+  lowerSucc: 0,
+  outerSucc: 0
+}
+
 export const initialState = {
   mode: "Configure",
-  team: undefined
+  team: undefined,
+  matchType: "Test",
+  matchNum: undefined,
+  timeLeft: 150, //seconds
+  phase: "auto", //auto, teleop, endgame
+  auto: {
+    pathType: undefined,
+    ...shooting
+  },
+  tele: {
+    ...shooting
+  },
+  end: {
+    climb: false,
+    park: false,
+    level: false, //level vs not level, not level is false
+    levelTime: undefined //value of timeleft when level is set
+  },
+  underTrench: false,
+  defense: false,
+  problems: false,
+  comments: "",
 }
