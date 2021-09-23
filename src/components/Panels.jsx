@@ -4,6 +4,7 @@ import { Context } from '../state'
 import Configure from './Configure'
 import Review from './Review'
 import Scout from './Scout'
+import Scan from './Scan'
 
 import "./Panels.scss"
 
@@ -18,6 +19,8 @@ export const Panels = props => {
         return <Scout></Scout>
       case "Review":
         return <Review></Review>
+      case "Scan":
+        return <Scan></Scan>
       default:
         return <>
           <div>unspeakable horrors have occurred.</div>
