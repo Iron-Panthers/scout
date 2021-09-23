@@ -16,8 +16,9 @@ const Scan = () => {
     }),
     [state]
   )
+  const size = window.innerWidth - 100
   return <>
-    <div className="qr"><QRCode value={JSON.stringify(state)} size={350}></QRCode></div>
+    <div className="qr"><QRCode value={JSON.stringify(state)} size={size}></QRCode></div>
     <Reset></Reset>
   </>
 }
