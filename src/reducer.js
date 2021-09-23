@@ -17,14 +17,14 @@ export const reducer = (state, action) => {
       } : state
     // base reducer, no special behavior
     case "set":
-      console.log(action.val)
+      console.log(action.prop, "=", action.val)
       return {
         ...state,
         [action.prop]: action.val
       }
     // base reducer for phases, spaghetti
     case "setInPhase":
-      console.log(action.val, state.phase)
+      console.log(action.prop, "=", action.val, "in", state.phase)
       return {
         ...state,
         [state.phase]: {

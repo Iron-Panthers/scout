@@ -9,7 +9,7 @@ import Numbers from "./inputs/Numbers"
 const Review = () => {
   return <>
     <Checkbox
-    label="Went under trench"></Checkbox>
+    label="Went under trench" prop="underTrench"></Checkbox>
     <Next></Next>
   </>
 }
