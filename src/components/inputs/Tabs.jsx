@@ -1,6 +1,8 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
 
+import "./inputs.scss"
+
 const Tabs = () => {
   const [state, dispatch] = useContext(Context)
 
@@ -15,7 +17,7 @@ const Tabs = () => {
     >{label}</button>
   )
 
-  return <div className="Tabs">{TabArray}</div>
+  return <div className="Tabs wide evenFlex">{TabArray}</div>
 }
 
 export default Tabs

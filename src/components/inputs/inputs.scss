@@ -3,5 +3,21 @@ textarea {
 }
 
 .wide {
-  grid-column: 1 / 3;
+  grid-column: span 2;
+}
+
+.evenFlex {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.evenFlex > * {
+  flex-grow: 1;
+  width: 0;
+}
+
+.Tabs {
+  max-height: 10vh;
 }
