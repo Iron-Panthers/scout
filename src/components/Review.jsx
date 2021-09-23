@@ -11,7 +11,7 @@ const Review = () => {
     <Checkbox label="Player defence" prop="defence"></Checkbox>
     <Checkbox label="Accidents / Problems?" prop="problems"></Checkbox>
     <Freetext label="Comments?" prop="comments"></Freetext>
-    <Next></Next>
+    <Next wide></Next>
   </>
 }
 
