@@ -11,7 +11,7 @@ const Checkbox = ({ label, prop, ...props }) => {
 
   return <label
     htmlFor={id}
-    className="wide"
+    className="wide Checkbox"
   >
     <input
       id={id}

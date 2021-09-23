@@ -6,6 +6,10 @@ textarea {
   grid-column: span 2;
 }
 
+.tall {
+  grid-row: span 2;
+}
+
 .evenFlex {
   display: flex;
   flex-direction: row;
@@ -18,7 +22,7 @@ textarea {
   width: 0;
 }
 
-select, input[type=number] {
+select, input[type=number], textarea {
   padding: 2vw;
 }
 
@@ -26,4 +30,12 @@ p, label {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+label.Checkbox {
+  justify-content: flex-start;
+  & > input {
+    margin-right: 10vw;
+    margin-left: 5vw;
+  }
 }
