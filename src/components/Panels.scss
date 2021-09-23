@@ -3,3 +3,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.panel > * {
+  min-height: 0px;
+  margin: 0px;
+}

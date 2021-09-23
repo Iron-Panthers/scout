@@ -17,3 +17,13 @@ textarea {
   flex-grow: 1;
   width: 0;
 }
+
+select, input[type=number] {
+  padding: 2vw;
+}
+
+p, label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
