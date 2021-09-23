@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 
 import { Context } from "../state"
+import Bool from "./inputs/Bool"
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
@@ -48,6 +49,8 @@ const Scout = () => {
             "Double Climb",
             "Triple Climb"
           ]}></Dropdown>
+          <Bool phase label="Climb" prop="climb"></Bool>
+          <Bool phase label="Park" prop="park"></Bool>
           </>
         )
       default:
