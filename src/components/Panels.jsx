@@ -5,6 +5,8 @@ import Configure from './Configure'
 import Review from './Review'
 import Scout from './Scout'
 
+import "./Panels.scss"
+
 export const Panels = props => {
   const [state, ] = useContext(Context)
   //IIFE for clean code lol
