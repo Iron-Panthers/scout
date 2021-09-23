@@ -2,10 +2,9 @@
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
-
-.panel > * {
-  min-height: 0px;
-  margin: 0px;
-  font-size: 5vw;
+  & > *, & > .Tabs > .Tab {
+    min-height: 0px;
+    margin: 0px;
+    font-size: 1rem
+  }
 }
