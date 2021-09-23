@@ -13,7 +13,6 @@ const Timer = ({ timeRef }) => {
       const time = prevTime - 1
       timeRef.current = time
       setTimeLeft(time)
-      console.log(time)
 
       // handle ending
       if (time <= 0) {

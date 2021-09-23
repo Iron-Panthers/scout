@@ -7,11 +7,12 @@ export const reducer = (state, action) => {
         mode: modes[modes.indexOf(state.mode) + 1]
       }
     case "leveled":
+      console.log(action.time)
       return state.endgame.levelTime === undefined ? {
         ...state,
         endgame: {
           ...state.endgame,
-          levelTime: state.timeLeft
+          levelTime: action.time
         }
       } : state
     // base reducer, no special behavior
@@ -48,7 +49,6 @@ export const initialState = {
   team: undefined,
   matchType: "Test",
   matchNum: undefined,
-  timeLeft: 150, //seconds
   phase: "auto", //auto, teleop, endgame
   auto: {
     pathType: "NONE",

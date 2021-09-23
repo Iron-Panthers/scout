@@ -41,7 +41,7 @@ const Scout = () => {
           </>
         )
       case "endgame":
-        const storeLevelTime = () => dispatch({type: "leveled"})
+        const storeLevelTime = () => dispatch({type: "leveled", time: time.current})
         return (
           <>
           <Dropdown phase prop="levelQuality" options={[
