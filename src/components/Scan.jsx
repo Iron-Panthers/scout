@@ -9,7 +9,11 @@ import "./inputs/QRCode.scss";
 const Scan = () => {
   const [state, dispatch] = useContext(Context)
   const value = useMemo(
-    () => JSON.stringify(state),
+    () => JSON.stringify({
+      ...state,
+      mode: undefined,
+      phase: undefined,
+    }),
     [state]
   )
   return <>
