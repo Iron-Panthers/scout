@@ -6,7 +6,7 @@ import { Context } from "../state";
 
 import "./inputs/QRCode.scss";
 
-const Scan = () => {
+const ScanData = () => {
   const [state, dispatch] = useContext(Context)
   const value = useMemo(
     () => JSON.stringify({
@@ -23,4 +23,4 @@ const Scan = () => {
   </>
 }
 
-export default Scan
+export default ScanData

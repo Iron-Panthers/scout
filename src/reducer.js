@@ -6,7 +6,7 @@ const shooting = {
 }
 
 export const initialState = {
-  mode: "Configure", // Configure, Scout, Review, Scan
+  mode: "Configure", // Configure, Scout, Review, ScanData
   team: undefined,
   matchType: "Test",
   matchNum: undefined,
@@ -37,7 +37,7 @@ export const reducer = (state, action) => {
     case "reset": 
       return initialState
     case "next_mode":
-      const modes = [ "Configure", "Scout", "Review", "Scan" ]
+      const modes = [ "Configure", "Scout", "Review", "ScanData" ]
       return {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
