@@ -1,5 +1,10 @@
 textarea {
   resize: none;
+  outline: black 1px solid;
+}
+
+textarea:focus {
+  outline: blue 1px solid;
 }
 
 .wide {
