@@ -6,7 +6,7 @@ import "./inputs.scss"
 const Freetext = ({ label, prop, ...props }) => {
   const [state, dispatch] = useContext(Context)
 
-  return <textarea type="text" placeholder={label} autoComplete="on" className="wide"
+  return <textarea type="text" placeholder={label} autoComplete="on" className="wide tall"
     onChange={event => {
       dispatch({
         type: "set", prop,
