@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useRef } from "react"
 
 import { Context } from "../state"
 import Bool from "./inputs/Bool"
@@ -6,11 +6,13 @@ import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Shoot from "./inputs/Shoot"
 import Tabs from "./inputs/Tabs"
+import Timer from "./inputs/Timer"
 
 
 const Scout = () => {
 
   const [state, dispatch] = useContext(Context)
+  const time = useRef(150)
 
   const phaseTabContent = (() => {
     switch (state.phase) {
@@ -63,7 +65,7 @@ const Scout = () => {
   return <>
   <Tabs></Tabs>
   {phaseTabContent}
-  <Next></Next>
+  <Timer timeRef={time}></Timer><Next></Next>
   </>
 }
 
