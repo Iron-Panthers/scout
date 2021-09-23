@@ -1,8 +1,4 @@
 .QrWrapper {
   max-height: 80vmin;
   max-width: 80vmin;
-  & > {
-    max-width: 80vmin;
-    max-height: 80vmin;
-  }
 }
