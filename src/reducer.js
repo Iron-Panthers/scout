@@ -2,7 +2,7 @@ const shooting = {
   innerOuterSucc: 0,
   innerOuterFail: 0,
   lowerSucc: 0,
-  outerSucc: 0
+  lowerFail: 0
 }
 
 export const initialState = {
