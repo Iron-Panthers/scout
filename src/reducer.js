@@ -54,7 +54,7 @@ export const initialState = {
     pathType: "NONE",
     ...shooting
   },
-  tele: {
+  teleop: {
     ...shooting
   },
   endgame: {
