@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 
 import { Context } from '../state'
 import Configure from './Configure'
+import Review from './Review'
 import Scout from './Scout'
 
 export const Panels = props => {
@@ -13,6 +14,8 @@ export const Panels = props => {
         return <Configure></Configure>
       case "Scout":
         return <Scout></Scout>
+      case "Review":
+        return <Review></Review>
       default:
         return <>
           <div>unspeakable horrors have occurred.</div>

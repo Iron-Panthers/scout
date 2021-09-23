@@ -45,7 +45,7 @@ const shooting = {
 }
 
 export const initialState = {
-  mode: "Configure",
+  mode: "Configure", // Configure, Scout, Review, Scan
   team: undefined,
   matchType: "Test",
   matchNum: undefined,

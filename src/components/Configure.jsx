@@ -1,14 +1,11 @@
-import React, { useContext } from "react"
+import React from "react"
 
-import { Context } from "../state" 
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
 
 
 const Configure = () => {
-
-  const [state, dispatch] = useContext(Context)
 
   return <>
     <Numbers label="Robot Team #" prop="team"></Numbers>
