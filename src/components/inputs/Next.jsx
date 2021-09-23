@@ -1,10 +1,12 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
 
-const Next = () => {
+import "./inputs.scss"
+
+const Next = ({ wide }) => {
   const [, dispatch] = useContext(Context)
 
-  return <button onClick={
+  return <button className={wide ? "wide" : ""} onClick={
     () => {
       dispatch({ type: "next_mode" })
     }
