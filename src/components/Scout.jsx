@@ -41,6 +41,13 @@ const Scout = () => {
       case "endgame":
         return (
           <>
+          <Dropdown phase prop="levelQuality" options={[
+            "None",
+            "Fail",
+            "Single Climb",
+            "Double Climb",
+            "Triple Climb"
+          ]}></Dropdown>
           </>
         )
       default:
