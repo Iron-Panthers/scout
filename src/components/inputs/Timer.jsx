@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react"
 import { Context } from "../../state"
 
 const Timer = ({ timeRef }) => {
-  const [state, dispatch] = useContext(Context)
+  const [, dispatch] = useContext(Context)
 
   const [timeLeft, setTimeLeft] = useState(150)
   const [started, setStarted] = useState(false)

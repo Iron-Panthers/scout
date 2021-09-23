@@ -6,7 +6,7 @@ import Review from './Review'
 import Scout from './Scout'
 
 export const Panels = props => {
-  const [state, dispatch] = useContext(Context)
+  const [state, ] = useContext(Context)
   //IIFE for clean code lol
   const panel = (() => {
     switch (state.mode) {

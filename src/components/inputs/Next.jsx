@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { Context } from "../../state"
 
 const Next = () => {
-  const [state, dispatch] = useContext(Context)
+  const [, dispatch] = useContext(Context)
 
   return <button onClick={
     () => {

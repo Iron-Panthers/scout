@@ -1,10 +1,8 @@
 import React from "react"
 
 import Checkbox from "./inputs/Checkbox"
-import Dropdown from "./inputs/Dropdown"
 import Freetext from "./inputs/Freetext"
 import Next from "./inputs/Next"
-import Numbers from "./inputs/Numbers"
 
 
 const Review = () => {
