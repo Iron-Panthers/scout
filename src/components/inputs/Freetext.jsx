@@ -1,12 +1,12 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
 
-import "./inputs.css"
+import "./inputs.scss"
 
 const Freetext = ({ label, prop, ...props }) => {
   const [state, dispatch] = useContext(Context)
 
-  return <textarea type="text" placeholder={label} autoComplete="on"
+  return <textarea type="text" placeholder={label} autoComplete="on" className="wide"
     onChange={event => {
       dispatch({
         type: "set", prop,
