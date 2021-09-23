@@ -6,6 +6,14 @@ export const reducer = (state, action) => {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
       }
+    case "leveled":
+      return state.endgame.levelTime === undefined ? {
+        ...state,
+        endgame: {
+          ...state.endgame,
+          levelTime: state.timeLeft
+        }
+      } : state
     // base reducer, no special behavior
     case "set":
       console.log(action.val)
@@ -52,7 +60,8 @@ export const initialState = {
   endgame: {
     climb: false,
     park: false,
-    level: false, //level vs not level, not level is false
+    level: false,
+    notLevel: false,
     levelTime: undefined, //value of timeLeft when level is set
     levelQuality: "None",
   },

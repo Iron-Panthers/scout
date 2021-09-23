@@ -4,7 +4,6 @@ import { Context } from "../state"
 import Bool from "./inputs/Bool"
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
-import Numbers from "./inputs/Numbers"
 import Shoot from "./inputs/Shoot"
 import Tabs from "./inputs/Tabs"
 
@@ -40,6 +39,7 @@ const Scout = () => {
           </>
         )
       case "endgame":
+        const storeLevelTime = () => dispatch({type: "leveled"})
         return (
           <>
           <Dropdown phase prop="levelQuality" options={[
@@ -51,6 +51,8 @@ const Scout = () => {
           ]}></Dropdown>
           <Bool phase label="Climb" prop="climb"></Bool>
           <Bool phase label="Park" prop="park"></Bool>
+          <Bool phase label="Level" prop="level" onFirst={storeLevelTime}></Bool>
+          <Bool phase label="Not Level" prop="notLevel" onFirst={storeLevelTime}></Bool>
           </>
         )
       default:
@@ -61,6 +63,7 @@ const Scout = () => {
   return <>
   <Tabs></Tabs>
   {phaseTabContent}
+  <Next></Next>
   </>
 }
 
