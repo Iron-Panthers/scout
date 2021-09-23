@@ -3,6 +3,7 @@ import React from "react"
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
+import SetPanel from "./inputs/SetPanel"
 
 
 const Configure = () => {
@@ -13,7 +14,7 @@ const Configure = () => {
       options={["Test", "Practice", "Qualification", "Quarterfinal", "Semifinal", "Final"]}
     ></Dropdown>
     <Numbers label="Match #" prop="matchNum"></Numbers>
-    <Next wide></Next>
+    <SetPanel label="Scanner" panelName="Scanner"></SetPanel><Next></Next>
   </>
 }
 
