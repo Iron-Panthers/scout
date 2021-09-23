@@ -4,6 +4,7 @@ import Reset from "./inputs/Reset"
 import QrReader from "react-qr-reader"
 
 import "./Scanner.scss"
+import "./inputs/inputs.scss"
 
 const Review = () => {
   const [error, setError] = useState(false)
@@ -18,9 +19,11 @@ const Review = () => {
         }}
         onError={err => {
           console.error(err)
+          setError(err)
         }}
       ></QrReader>
     </div>
+    {error && <div className="wide Center">{error}</div>}
     <Reset></Reset>
   </>
 }
