@@ -4,7 +4,7 @@ import { Context } from "../../state"
 const Count = ({label, prop, phase, ...props}) => {
   const [ state, dispatch ] = useContext(Context)
 
-  const current = phase ? state[state.phase][prop] : state[prop]
+  const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
 
   return <button
   onClick={

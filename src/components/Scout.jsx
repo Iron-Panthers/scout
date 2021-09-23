@@ -5,6 +5,7 @@ import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
 import Shoot from "./inputs/Shoot"
+import Tabs from "./inputs/Tabs"
 
 
 const Scout = () => {
@@ -34,6 +35,7 @@ const Scout = () => {
       case "teleop":
         return (
           <>
+            <Shoot></Shoot>
           </>
         )
       case "endgame":
@@ -46,7 +48,10 @@ const Scout = () => {
     }
   })()
 
-  return <>{phaseTabContent}</>
+  return <>
+  <Tabs></Tabs>
+  {phaseTabContent}
+  </>
 }
 
 export default Scout
