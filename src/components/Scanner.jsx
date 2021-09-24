@@ -2,8 +2,7 @@ import React, { useRef, useState } from "react"
 
 import Reset from "./inputs/Reset"
 import QrReader from "react-qr-reader"
-
-import xlsx from "xlsx"
+import SetPanel from "./inputs/SetPanel"
 
 import "./Scanner.scss"
 import "./inputs/inputs.scss"
@@ -32,6 +31,7 @@ const Review = () => {
     </div>
     <div className="Center">{`Scanned ${scanCount}`}</div>
     {error && <div className="wide Center">{error}</div>}
+    <SetPanel label="Export" panelName="Export"></SetPanel>
     <Reset></Reset>
   </>
 }

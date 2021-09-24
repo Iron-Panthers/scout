@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react"
 import { Context } from "../../state"
 
-const Reset = ({ label, prop, ...props }) => {
+const Reset = ({ label, prop, wide, ...props }) => {
   const [state, dispatch] = useContext(Context)
   const [confirm, setConfirm] = useState(false)
 
   return <button
-    className="Reset wide"
+    className={`Reset ${wide ? "wide" : ""}`}
     onClick={
       () => {
         if (!confirm) {

@@ -8,6 +8,7 @@ import ScanData from './ScanData'
 import Scanner from "./Scanner"
 
 import "./Panels.scss"
+import Export from './Export'
 
 export const Panels = props => {
   const [state, ] = useContext(Context)
@@ -24,6 +25,8 @@ export const Panels = props => {
         return <ScanData></ScanData>
       case "Scanner":
         return <Scanner></Scanner>
+      case "Export":
+        return <Export></Export>
       default:
         return <>
           <div>unspeakable horrors have occurred.</div>
