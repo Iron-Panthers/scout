@@ -3,13 +3,15 @@ import React, { useRef, useState } from "react"
 import Reset from "./inputs/Reset"
 import QrReader from "react-qr-reader"
 
+import xlsx from "xlsx"
+
 import "./Scanner.scss"
 import "./inputs/inputs.scss"
 
 const Review = () => {
   const [error, setError] = useState(false)
-  const scans = useRef(new Set())
-  const [scanCount, setScanCount] = useState(0)
+  const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? '[]')))
+  const [scanCount, setScanCount] = useState(scans.current.size)
 
   return <>
     <div className="QrWrapper">
@@ -19,6 +21,7 @@ const Review = () => {
           if (!scans.current.has(val)) {
             scans.current.add(val)
             setScanCount(scanCount + 1)
+            localStorage.scanSet = JSON.stringify(Array.from(scans.current))
           }
         }}
         onError={err => {
