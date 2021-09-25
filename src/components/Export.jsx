@@ -1,6 +1,7 @@
 import React, { useRef, useState, useContext } from "react"
 
 import { Context } from "../state";
+import { header } from "../csv";
 
 import Reset from "./inputs/Reset"
 
@@ -17,7 +18,14 @@ const Export = () => {
     <button className="wide"
       disabled={scans.length === 0}
       onClick={() => {
-        console.log(scans)
+        const csv = `${header}\r\n${scans.join("\r\n")}`
+        const blob = new Blob([csv], {type: 'text/csv'})
+        const elem = window.document.createElement('a')
+        elem.href = window.URL.createObjectURL(blob)
+        elem.download = `Scout_${new Date().toDateString().replaceAll(" ", "_")}_${new Date().toTimeString().replaceAll(" ", "_")}.csv`// filename     
+        document.body.appendChild(elem)
+        elem.click()        
+        document.body.removeChild(elem)
       }}
     >Export and download as csv</button>
 
