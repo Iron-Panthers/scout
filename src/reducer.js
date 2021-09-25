@@ -47,9 +47,23 @@ const addAction = (state, action) => {
   })
   return state
 }
+const popAction = (state) => {
+  const action = state.history.pop()
+  if (action === undefined) return state
+  if (action.type === "set") return {
+    ...state,
+    [action.prop]: action.val
+  }
+  return {
+    ...state,
+    [action.phase]: {
+      ...state[action.phase],
+      [action.prop]: action.val
+    }
+  }
+}
 
 export const reducer = (state, action) => {
-  console.log(state.history)
   switch (action.type) {
     case "reset":
       return initialState
@@ -61,7 +75,7 @@ export const reducer = (state, action) => {
       })
     case "undo":
       console.log(state.history)
-      return state
+      return popAction(state)
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
@@ -74,7 +88,7 @@ export const reducer = (state, action) => {
       console.log(action.prop, "=", action.val, "in", state.phase)
       return {
         ...addAction(state, action),
-        [action.phase ?? state.phase]: {
+        [state.phase]: {
           ...state[state.phase],
           [action.prop]: action.val
         }
