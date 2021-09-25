@@ -30,37 +30,6 @@ export const initialState = {
   defense: false,
   problems: false,
   comments: "",
-  history: [],
-}
-
-const clearActions = (state) => {
-  state.history.length = 0
-  return state
-}
-const addAction = (state, action) => {
-  if (state.history.length >= 15) state.history.shift()
-  state.history.push({
-    type: action.type,
-    prop: action.prop,
-    val: action.type === "set" ? state[action.prop] : state[state.phase][action.prop],
-    phase: state.phase
-  })
-  return state
-}
-const popAction = (state) => {
-  const action = state.history.pop()
-  if (action === undefined) return state
-  if (action.type === "set") return {
-    ...state,
-    [action.prop]: action.val
-  }
-  return {
-    ...state,
-    [action.phase]: {
-      ...state[action.phase],
-      [action.prop]: action.val
-    }
-  }
 }
 
 export const reducer = (state, action) => {
@@ -69,25 +38,22 @@ export const reducer = (state, action) => {
       return initialState
     case "next_mode":
       const modes = ["Configure", "Scout", "Review", "ScanData"]
-      return clearActions({
+      return {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
-      })
-    case "undo":
-      console.log(state.history)
-      return popAction(state)
+      }
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
       return {
-        ...addAction(state, action),
+        ...state,
         [action.prop]: action.val
       }
     // base reducer for phases, spaghetti
     case "setInPhase":
       console.log(action.prop, "=", action.val, "in", state.phase)
       return {
-        ...addAction(state, action),
+        ...state,
         [state.phase]: {
           ...state[state.phase],
           [action.prop]: action.val

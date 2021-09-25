@@ -7,7 +7,6 @@ import Next from "./inputs/Next"
 import Shoot from "./inputs/Shoot"
 import Tabs from "./inputs/Tabs"
 import Timer from "./inputs/Timer"
-import Undo from "./inputs/Undo"
 
 
 const Scout = () => {
@@ -66,7 +65,6 @@ const Scout = () => {
   return <>
   <Tabs></Tabs>
   {phaseTabContent}
-  <Undo wide></Undo>
   <Timer timeRef={time}></Timer><Next></Next>
   </>
 }
