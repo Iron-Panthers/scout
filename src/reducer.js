@@ -32,42 +32,59 @@ export const initialState = {
   comments: "",
 }
 
+const history = []
+// think of a frame like a discrete state - I think I made up the term!
+const addFrame = (state) => {
+  if (history.length >= 10) history.shift()
+  history.push({ ...state })
+  return state
+}
+const modFrame = (state) => {
+  history[history.length] = { ...state }
+  return state
+}
+const popFrame = (state) => history.length > 0 ? history.pop() : state
+const clearFrames = (state) => {
+  history.length = 0
+  return state
+}
+
 export const reducer = (state, action) => {
+  console.log([...history])
   switch (action.type) {
     case "reset":
-      return initialState
+      return clearFrames(initialState)
     case "next_mode":
       const modes = ["Configure", "Scout", "Review", "ScanData"]
-      return {
+      return clearFrames({
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
-      }
+      })
     case "leveled":
-      console.log(action.time)
-      return state.endgame.levelTime === undefined ? {
+      return modFrame(state.endgame.levelTime === undefined ? {
         ...state,
         endgame: {
           ...state.endgame,
           levelTime: action.time
         }
-      } : state
+      } : state)
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
-      return {
+      return addFrame({
         ...state,
         [action.prop]: action.val
-      }
+      })
     // base reducer for phases, spaghetti
     case "setInPhase":
       console.log(action.prop, "=", action.val, "in", state.phase)
-      return {
+      return addFrame({
         ...state,
         [state.phase]: {
           ...state[state.phase],
           [action.prop]: action.val
         }
-      }
+      })
     default:
       return state
   }
