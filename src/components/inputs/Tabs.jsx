@@ -9,7 +9,7 @@ const Tabs = () => {
 
   const TabArray = ["auto", "teleop", "endgame"].map(
     label => <button
-      className="Tab yellow"
+      className="Tab"
       disabled={label === state.phase}
       onClick={() => {
         dispatch({ type: "set", prop: "phase", val: label })
