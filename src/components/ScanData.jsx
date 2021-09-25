@@ -15,7 +15,7 @@ const ScanData = () => {
     [state]
   )
   console.log(value)
-  const size = window.innerWidth - 100
+  const size = Math.min(window.innerWidth, window.innerHeight) - 100
   return <>
     <div className="qr"><QRCode value={value} size={size}></QRCode></div>
     <Reset wide></Reset>
