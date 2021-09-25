@@ -1,0 +1,50 @@
+textarea {
+  resize: none;
+  outline: black 1px solid;
+}
+
+textarea:focus {
+  outline: blue 1px solid;
+}
+
+.wide {
+  grid-column: span 2;
+}
+
+.tall {
+  grid-row: span 2;
+}
+
+.evenFlex {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.evenFlex > * {
+  flex-grow: 1;
+  width: 0;
+}
+
+select, input[type=number], textarea {
+  padding: 2vw;
+}
+
+p, label, div.Center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+label.Checkbox {
+  justify-content: flex-start;
+  & > input {
+    margin-right: 10vw;
+    margin-left: 5vw;
+  }
+}
+
+button {
+  user-select: none;
+}

@@ -1,0 +1,10 @@
+svg {
+  display: inline-block;
+  margin: auto;
+}
+
+.qr {
+  grid-row: span 2;
+  grid-column: span 2;
+  display: flex;
+}
