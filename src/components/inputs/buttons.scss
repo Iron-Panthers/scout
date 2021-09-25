@@ -32,3 +32,12 @@ button.blue {
 button.blue:active {
   background-color: hsl(206, 100%, 66%);
 }
+
+button.yellow {
+  background-color: 	hsl(60, 100%, 86%);
+  border: 2px solid 	hsl(60, 100%, 26%);
+}
+
+button.yellow:active {
+  background-color: 	hsl(60, 100%, 66%);
+}
