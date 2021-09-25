@@ -5,6 +5,7 @@
     "IIFE",
     "Succ",
     "tele",
-    "teleop"
+    "teleop",
+    "unparse"
   ]
 }

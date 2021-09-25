@@ -16,6 +16,11 @@ export const cleanState = state => (Object.entries({
   return obj
 }, {}))
 
-export const fields = Object.entries(cleanState(initialState)).map(([key, ]) => key)
+export const fields = Object.entries(cleanState(initialState)).map(([key,]) => key)
 
-// export const header = 
+export const header = unparse({ fields })
+
+export const stateToCsv = state => unparse({
+  fields,
+  data: Object.entries(cleanState(state)).map(([, val]) => val)
+}, { header: false })
