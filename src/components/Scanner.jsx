@@ -7,7 +7,7 @@ import SetPanel from "./inputs/SetPanel"
 import "./Scanner.scss"
 import "./inputs/inputs.scss"
 
-const Review = () => {
+const Scanner = () => {
   const [error, setError] = useState(false)
   const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? '[]')))
   const [scanCount, setScanCount] = useState(scans.current.size)
@@ -54,11 +54,11 @@ const Review = () => {
         }}
       ></QrReader>
     </div>
-    <div className="Center">{`Scanned ${scanCount}`}</div>
+    <div className="Center wide">{`Scanned ${scanCount}`}</div>
     {error && <div className="wide Center">{error}</div>}
     <SetPanel label="Export" panelName="Export"></SetPanel>
     <Reset></Reset>
   </>
 }
 
-export default Review
+export default Scanner
