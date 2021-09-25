@@ -1,5 +1,10 @@
 .panel {
   height: 100%;
+  width: 100vw;
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
   & > *, & > .Tabs > .Tab {
