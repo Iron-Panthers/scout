@@ -13,7 +13,7 @@ const ScanData = () => {
   const [state, dispatch] = useContext(Context)
 
   const win = useWindowSize()
-  const size = Math.min(win.width, win.height) - 100
+  const size = Math.min(512, Math.min(win.width, win.height) - 100)
 
   const value = useMemo(
     () => stateToCsv(state),
