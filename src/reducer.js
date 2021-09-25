@@ -30,61 +30,55 @@ export const initialState = {
   defense: false,
   problems: false,
   comments: "",
+  history: [],
 }
 
-const history = []
-// think of a frame like a discrete state - I think I made up the term!
-const addFrame = (state) => {
-  if (history.length >= 10) history.shift()
-  history.push({ ...state })
+const clearActions = (state) => {
+  state.history.length = 0
   return state
 }
-const modFrame = (state) => {
-  history[history.length] = { ...state }
-  return state
-}
-const popFrame = (state) => history.length > 0 ? history.pop() : state
-const clearFrames = (state) => {
-  history.length = 0
+const addAction = (state, action) => {
+  if (state.history.length >= 15) state.history.shift()
+  state.history.push({
+    type: action.type,
+    prop: action.prop,
+    val: action.type === "set" ? state[action.prop] : state[state.phase][action.prop],
+    phase: state.phase
+  })
   return state
 }
 
 export const reducer = (state, action) => {
-  console.log([...history])
+  console.log(state.history)
   switch (action.type) {
     case "reset":
-      return clearFrames(initialState)
+      return initialState
     case "next_mode":
       const modes = ["Configure", "Scout", "Review", "ScanData"]
-      return clearFrames({
+      return clearActions({
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
       })
-    case "leveled":
-      return modFrame(state.endgame.levelTime === undefined ? {
-        ...state,
-        endgame: {
-          ...state.endgame,
-          levelTime: action.time
-        }
-      } : state)
+    case "undo":
+      console.log(state.history)
+      return state
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
-      return addFrame({
-        ...state,
+      return {
+        ...addAction(state, action),
         [action.prop]: action.val
-      })
+      }
     // base reducer for phases, spaghetti
     case "setInPhase":
       console.log(action.prop, "=", action.val, "in", state.phase)
-      return addFrame({
-        ...state,
-        [state.phase]: {
+      return {
+        ...addAction(state, action),
+        [action.phase ?? state.phase]: {
           ...state[state.phase],
           [action.prop]: action.val
         }
-      })
+      }
     default:
       return state
   }
