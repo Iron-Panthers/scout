@@ -6,7 +6,7 @@ import "./inputs.scss"
 const Next = ({ wide }) => {
   const [, dispatch] = useContext(Context)
 
-  return <button className={wide ? "wide" : ""} onClick={
+  return <button className={`blue ${wide ? "wide" : ""}`} onClick={
     () => {
       dispatch({ type: "next_mode" })
     }

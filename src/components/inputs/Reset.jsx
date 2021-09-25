@@ -11,7 +11,7 @@ const Reset = ({ label, prop, wide, ...props }) => {
   }, [confirm])
 
   return <button
-    className={`Reset ${wide ? "wide" : ""}`}
+    className={`Reset red ${wide ? "wide" : ""}`}
     onClick={
       () => {
         if (!confirm) {

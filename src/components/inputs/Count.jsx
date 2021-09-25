@@ -1,12 +1,15 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
 
-const Count = ({label, prop, phase, ...props}) => {
+import "./buttons.scss"
+
+const Count = ({label, prop, phase, color, ...props}) => {
   const [ state, dispatch ] = useContext(Context)
 
   const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
 
   return <button
+  className={color}
   onClick={
     () => {
       dispatch({type: `set${phase ? "InPhase" : ""}`, prop, val: (current ?? 0) + 1})
