@@ -9,7 +9,7 @@ const Bool = ({ label, prop, onFirst, phase, ...props }) => {
   return <button
     onClick={
       () => {
-        if (!current) onFirst()
+        if (!current && onFirst) onFirst()
         dispatch({ type: `set${phase ? "InPhase" : ""}`, prop, val: true })
       }
     }
