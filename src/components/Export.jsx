@@ -13,18 +13,26 @@ const Export = () => {
 
   return <>
     <div className="Center wide">{`Scanned and Stored ${scans.length} QR${scans.length > 1 ? "s" : ""}`}</div>
-    <button
-    disabled={scans.length === 0}
-    onClick={() => {
-      if(window.confirm("Are you very, very sure? All scanned QR code data will be lost forever.")) {
-        delete localStorage.scanSet
-        alert("Cleared, resetting app state.")
-        dispatch({type: "reset"})
 
-      } else {
-        alert("No data was cleared.")
-      }
-    }}
+    <button className="wide"
+      disabled={scans.length === 0}
+      onClick={() => {
+        console.log('wip')
+      }}
+    >Export and download as csv</button>
+
+    <button
+      disabled={scans.length === 0}
+      onClick={() => {
+        if (window.confirm("Are you very, very sure? All scanned QR code data will be lost forever.")) {
+          delete localStorage.scanSet
+          alert("Cleared, resetting app state.")
+          dispatch({ type: "reset" })
+
+        } else {
+          alert("No data was cleared.")
+        }
+      }}
     >Tap to CLEAR ALL {scans.length} STORED QR CODES PERMANENTLY</button>
     <Reset></Reset>
   </>
