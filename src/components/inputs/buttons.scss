@@ -1,0 +1,26 @@
+button.red {
+  background-color: 	hsl(354, 100%, 85%);
+  border: 2px solid hsl(354, 100%, 25%);
+}
+
+button.red:active {
+  background-color: 	hsl(354, 100%, 65%);
+}
+
+button.green {
+  background-color: hsl(133, 100%, 86%);
+  border: 2px solid hsl(133, 100%, 26%);
+}
+
+button.green:active {
+  background-color: hsl(133, 100%, 66%);
+}
+
+button.blue {
+  background-color: hsl(206, 100%, 86%);
+  border: 2px solid hsl(206, 100%, 26%);
+}
+
+button.blue:active {
+  background-color: hsl(206, 100%, 66%);
+}
