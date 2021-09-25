@@ -42,6 +42,7 @@ const Timer = ({ timeRef }) => {
 
 
   return started ? <p>{`Time: ${timeLeft}`}</p> : <button
+    className="green"
     onClick={
       () => {
         setStarted(true)
