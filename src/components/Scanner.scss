@@ -1,4 +1,12 @@
 .QrWrapper {
-  max-height: 80vmin;
-  max-width: 80vmin;
+  grid-row: span 2;
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > section {
+    flex-grow: 1;
+    max-height: 80vh;
+    max-width: 80vmin;
+  }
 }

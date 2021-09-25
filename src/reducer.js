@@ -42,15 +42,6 @@ export const reducer = (state, action) => {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
       }
-    case "leveled":
-      console.log(action.time)
-      return state.endgame.levelTime === undefined ? {
-        ...state,
-        endgame: {
-          ...state.endgame,
-          levelTime: action.time
-        }
-      } : state
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
