@@ -1,0 +1,17 @@
+.Tab {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.Tab:disabled {
+  color: black;
+  background-color: hsl(0, 0%, 83%);
+}
+
+.Tab:not(:disabled) {
+  background-color: hsl(0, 0%, 63%);
+}
+
+.Tab:active {
+  background-color: hsl(0, 0%, 90%);
+}

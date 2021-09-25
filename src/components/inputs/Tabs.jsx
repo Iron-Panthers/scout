@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { Context } from "../../state"
 
 import "./inputs.scss"
+import "./Tabs.scss"
 
 const Tabs = () => {
   const [state, dispatch] = useContext(Context)
