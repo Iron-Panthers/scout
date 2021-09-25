@@ -34,10 +34,10 @@ export const initialState = {
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "reset": 
+    case "reset":
       return initialState
     case "next_mode":
-      const modes = [ "Configure", "Scout", "Review", "ScanData" ]
+      const modes = ["Configure", "Scout", "Review", "ScanData"]
       return {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
