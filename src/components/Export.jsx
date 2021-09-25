@@ -9,7 +9,7 @@ import "./inputs/inputs.scss"
 const Export = () => {
   const [state, dispatch] = useContext(Context)
 
-  const scans = JSON.parse(localStorage.scanSet ?? '[]').map(str => JSON.parse(str))
+  const scans = JSON.parse(localStorage.scanSet ?? '[]')
 
   return <>
     <div className="Center wide">{`Scanned and Stored ${scans.length} QR${scans.length > 1 ? "s" : ""}`}</div>
@@ -17,7 +17,7 @@ const Export = () => {
     <button className="wide"
       disabled={scans.length === 0}
       onClick={() => {
-        console.log('wip')
+        console.log(scans)
       }}
     >Export and download as csv</button>
 

@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from "react"
 import Reset from "./inputs/Reset"
 import QRCode from "react-qr-code";
-import Papa from "papaparse";
 
 import { Context } from "../state";
 import { stateToCsv } from "../csv";

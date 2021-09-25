@@ -2,4 +2,5 @@ body, #root, .App {
   margin: 0;
   padding: 0;
   height: 100vh;
+  touch-action: manipulation;
 }
