@@ -45,20 +45,47 @@ const addUndo = (state, action) => {
     :
     state[action.prop]
 
-  undoStack.push({ ...action, val })
+  undoStack.push({ ...action, val, phase: state.phase })
   console.log(undoStack)
+}
+
+const popUndo = (state) => {
+  // do not be worried about the circular logic
+  // javascript run, so no issues
+  if (undoStack.length < 1) return state
+  const action = undoStack.pop()
+  console.log(undoStack)
+  if (action.type === "set") return {
+    ...state,
+    [action.prop]: action.val
+  }
+  return {
+    ...state,
+    [action.phase]: {
+      ...state[action.phase],
+      [action.prop]: action.val
+    }
+  }
+}
+
+const clearUndo = () => {
+  undoStack.length = 0
 }
 
 export const reducer = (state, action) => {
   switch (action.type) {
     case "reset":
+      clearUndo()
       return initialState
     case "next_mode":
+      clearUndo()
       const modes = ["Configure", "Scout", "Review", "ScanData"]
       return {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
       }
+    case "undo":
+      return popUndo(state)
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
