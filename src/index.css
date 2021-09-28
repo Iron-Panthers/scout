@@ -4,3 +4,8 @@ body, html, #root, .App {
   height: 100%;
   touch-action: manipulation;
 }
+
+input, textarea, button, select {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
