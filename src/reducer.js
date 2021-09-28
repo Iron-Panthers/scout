@@ -84,6 +84,11 @@ export const reducer = (state, action) => {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
       }
+    case "set_phase":
+      return {
+        ...state,
+        phase: action.phase
+      }
     case "undo":
       return popUndo(state)
     // base reducer, no special behavior

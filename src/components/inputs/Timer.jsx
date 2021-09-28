@@ -26,9 +26,9 @@ const Timer = ({ timeRef }) => {
   // handle tab switching
   useEffect(() => {
     if (timeLeft === 135) {
-      dispatch({ type: "set", prop: "phase", val: "teleop" })
+      dispatch({ type: "set_phase", phase: "teleop" })
     } else if (timeLeft === 30) {
-      dispatch({ type: "set", prop: "phase", val: "endgame" })
+      dispatch({ type: "set_phase", phase: "endgame" })
     }
   }, [timeLeft, dispatch])
 
