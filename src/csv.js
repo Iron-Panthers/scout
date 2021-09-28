@@ -2,8 +2,7 @@ import { unparse } from "papaparse"
 import { initialState } from "./reducer"
 
 export const cleanState = ({
-  mode: remove1,
-  phase: remove2,
+  mode, phase,
   ...state }) => Object.entries(state)
     .reduce((obj, [key, val]) => {
       if (typeof val === "object") {

@@ -32,6 +32,23 @@ export const initialState = {
   comments: "",
 }
 
+const undoStack = []
+
+const addUndo = (state, action) => {
+  // FIXME: *2 is because reducer is double called
+  if (undoStack.length >= 15 * 2) {
+    undoStack.shift()
+  }
+
+  const val = action.type === "setInPhase" ?
+    state[state.phase][action.prop]
+    :
+    state[action.prop]
+
+  undoStack.push({ ...action, val })
+  console.log(undoStack)
+}
+
 export const reducer = (state, action) => {
   switch (action.type) {
     case "reset":
@@ -45,6 +62,7 @@ export const reducer = (state, action) => {
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
+      addUndo(state, action)
       return {
         ...state,
         [action.prop]: action.val
@@ -52,6 +70,7 @@ export const reducer = (state, action) => {
     // base reducer for phases, spaghetti
     case "setInPhase":
       console.log(action.prop, "=", action.val, "in", state.phase)
+      addUndo(state, action)
       return {
         ...state,
         [state.phase]: {
