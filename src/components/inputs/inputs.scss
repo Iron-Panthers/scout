@@ -48,3 +48,11 @@ label.Checkbox {
 button {
   user-select: none;
 }
+
+select {
+  -webkit-appearance: menulist;
+}
+
+input[type=checkbox] {
+  -webkit-appearance: checkbox;
+}

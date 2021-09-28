@@ -5,7 +5,7 @@ import "./inputs.scss"
 
 const Numbers = ({ label, prop, ...props }) => {
   const [state, dispatch] = useContext(Context)
-  return <input type="number" placeholder={label} autoComplete="off" className="wide"
+  return <input type="number" pattern="[0-9]*" placeholder={label} autoComplete="off" className="wide"
     onChange={event => {
       dispatch({
         type: "set", prop,
