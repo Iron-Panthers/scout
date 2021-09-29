@@ -32,12 +32,18 @@ export const initialState = {
   comments: "",
 }
 
-const undoStack = []
+const undoStack = {
+  auto: [],
+  teleop: [],
+  endgame: [],
+}
 
 const addUndo = (state, action) => {
+  // only add an undo in Scout mode
+  if (state.mode !== "Scout") return
   // FIXME: *2 is because reducer is double called
-  if (undoStack.length >= 15 * 2) {
-    undoStack.shift()
+  if (undoStack[state.phase].length >= 15 * 2) {
+    undoStack[state.phase].shift()
   }
 
   const val = action.type === "setInPhase" ?
@@ -45,16 +51,16 @@ const addUndo = (state, action) => {
     :
     state[action.prop]
 
-  undoStack.push({ ...action, val, phase: state.phase })
-  console.log(undoStack)
+  undoStack[state.phase].push({ ...action, val, phase: state.phase })
+  console.log(undoStack[state.phase])
 }
 
 const popUndo = (state) => {
   // do not be worried about the circular logic
   // javascript run, so no issues
-  if (undoStack.length < 1) return state
-  const action = undoStack.pop()
-  console.log(undoStack)
+  if (undoStack[state.phase].length < 1) return state
+  const action = undoStack[state.phase].pop()
+  console.log(undoStack[state.phase])
   if (action.type === "set") return {
     ...state,
     [action.prop]: action.val
@@ -69,7 +75,9 @@ const popUndo = (state) => {
 }
 
 const clearUndo = () => {
-  undoStack.length = 0
+  undoStack.auto.length = 0
+  undoStack.teleop.length = 0
+  undoStack.endgame.length = 0
 }
 
 export const reducer = (state, action) => {
