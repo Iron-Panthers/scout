@@ -12,7 +12,7 @@ const Tabs = () => {
       className="Tab"
       disabled={label === state.phase}
       onClick={() => {
-        dispatch({ type: "set", prop: "phase", val: label })
+        dispatch({ type: "set_phase", phase: label })
       }}
       key={label}
     >{label}</button>
