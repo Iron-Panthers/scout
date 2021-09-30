@@ -8,7 +8,7 @@ import Next from "./inputs/Next"
 const Review = () => {
   return <>
     <Checkbox label="Went under trench" prop="underTrench"></Checkbox>
-    <Checkbox label="Player defence" prop="defence"></Checkbox>
+    <Checkbox label="Played defence" prop="defence"></Checkbox>
     <Checkbox label="Accidents / Problems?" prop="problems"></Checkbox>
     <Freetext label="Comments?" prop="comments"></Freetext>
     <Next wide></Next>
