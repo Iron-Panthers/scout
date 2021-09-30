@@ -56,3 +56,10 @@ select {
 input[type=checkbox] {
   -webkit-appearance: checkbox;
 }
+
+.timer {
+  border: 2px solid hsl(133, 100%, 26%);
+  // makes padding the same as buttons
+  padding-top: 1px;
+  padding-bottom: 1px;
+}

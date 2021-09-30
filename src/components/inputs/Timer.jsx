@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
 import { Context } from "../../state"
 
+import "./inputs.scss"
+
 const Timer = ({ timeRef, wide }) => {
   const [, dispatch] = useContext(Context)
 
@@ -41,7 +43,7 @@ const Timer = ({ timeRef, wide }) => {
   }, [])
 
 
-  return started ? <p className={wide ? "wide" : ""}>{`Time: ${timeLeft}`}</p> : <button
+  return started ? <p className={`timer ${wide ? "wide" : ""}`}>{`Time: ${timeLeft}`}</p> : <button
     className={`green ${wide ? "wide" : ""}`}
     onClick={
       () => {
