@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
 import { Context } from "../../state"
 
-const Timer = ({ timeRef }) => {
+const Timer = ({ timeRef, wide }) => {
   const [, dispatch] = useContext(Context)
 
   const [timeLeft, setTimeLeft] = useState(150)
@@ -41,8 +41,8 @@ const Timer = ({ timeRef }) => {
   }, [])
 
 
-  return started ? <p>{`Time: ${timeLeft}`}</p> : <button
-    className="green"
+  return started ? <p className={wide ? "wide" : ""}>{`Time: ${timeLeft}`}</p> : <button
+    className={`green ${wide ? "wide" : ""}`}
     onClick={
       () => {
         setStarted(true)

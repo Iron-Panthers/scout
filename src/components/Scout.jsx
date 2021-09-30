@@ -42,20 +42,20 @@ const Scout = () => {
           </>
         )
       case "endgame":
-        const storeLevelTime = () => dispatch({type: "leveled", time: time.current})
+        const storeLevelTime = () => dispatch({ type: "leveled", time: time.current })
         return (
           <>
-          <Bool phase label="Climb" prop="climb" color="green"></Bool>
-          <Bool phase label="Park" prop="park" color="red"></Bool>
-          <Bool phase label="Level" prop="level" onFirst={storeLevelTime} color="green"></Bool>
-          <Bool phase label="Not Level" prop="notLevel" onFirst={storeLevelTime} color="red"></Bool>
-          <Dropdown wide phase prop="levelQuality" options={[
-            "None",
-            "Fail",
-            "Single Climb",
-            "Double Climb",
-            "Triple Climb"
-          ]}></Dropdown>
+            <Bool phase label="Climb" prop="climb" color="green"></Bool>
+            <Bool phase label="Park" prop="park" color="red"></Bool>
+            <Bool phase label="Level" prop="level" onFirst={storeLevelTime} color="green"></Bool>
+            <Bool phase label="Not Level" prop="notLevel" onFirst={storeLevelTime} color="red"></Bool>
+            <Dropdown wide phase prop="levelQuality" options={[
+              "None",
+              "Fail",
+              "Single Climb",
+              "Double Climb",
+              "Triple Climb"
+            ]}></Dropdown>
           </>
         )
       default:
@@ -64,10 +64,10 @@ const Scout = () => {
   })()
 
   return <>
-  <Tabs></Tabs>
-  {phaseTabContent}
-  <Undo wide></Undo>
-  <Timer timeRef={time}></Timer><Next></Next>
+    <Tabs></Tabs>
+    {phaseTabContent}
+    <Undo wide></Undo>
+    <Timer timeRef={time}></Timer><Next></Next>
   </>
 }
 
