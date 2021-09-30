@@ -24,13 +24,13 @@ const Timer = ({ timeRef, wide }) => {
   }
 
   // handle tab switching
-  useEffect(() => {
-    if (timeLeft === 135) {
-      dispatch({ type: "set_phase", phase: "teleop" })
-    } else if (timeLeft === 30) {
-      dispatch({ type: "set_phase", phase: "endgame" })
-    }
-  }, [timeLeft, dispatch])
+  // useEffect(() => {
+  //   if (timeLeft === 135) {
+  //     dispatch({ type: "set_phase", phase: "teleop" })
+  //   } else if (timeLeft === 30) {
+  //     dispatch({ type: "set_phase", phase: "endgame" })
+  //   }
+  // }, [timeLeft, dispatch])
 
   // handle timer cleanup
   useEffect(() => () => {
