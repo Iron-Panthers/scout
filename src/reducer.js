@@ -8,7 +8,7 @@ const shooting = {
 export const initialState = {
   mode: "Configure", // Configure, Scout, Review, ScanData
   team: undefined,
-  matchType: "Test",
+  matchType: "Qualification", //Test, Practice, Qualification, Quarterfinal, Semifinal, Final
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
