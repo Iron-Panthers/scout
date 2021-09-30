@@ -63,11 +63,14 @@ const Scout = () => {
     }
   })()
 
+  const showNext = state.phase === "endgame"
+
   return <>
     <Tabs></Tabs>
     {phaseTabContent}
     <Undo wide></Undo>
-    <Timer timeRef={time}></Timer><Next></Next>
+    <Timer timeRef={time} wide={!showNext}></Timer>
+    {showNext && <Next></Next>}
   </>
 }
 
