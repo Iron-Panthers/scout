@@ -8,13 +8,24 @@ import SetPanel from "./inputs/SetPanel"
 
 const Configure = () => {
 
+  const isIOS = [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+
   return <>
     <Numbers label="Robot Team #" prop="team"></Numbers>
     <Dropdown wide prop="matchType"
       options={["Test", "Practice", "Qualification", "Quarterfinal", "Semifinal", "Final"]}
     ></Dropdown>
     <Numbers label="Match #" prop="matchNum"></Numbers>
-    <SetPanel label="Scanner" panelName="Scanner"></SetPanel><Next></Next>
+    {!isIOS && <SetPanel label="Scanner" panelName="Scanner"></SetPanel>}
+    <Next wide={isIOS}></Next>
   </>
 }
 
