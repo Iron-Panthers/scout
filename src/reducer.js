@@ -30,68 +30,85 @@ export const initialState = {
   defense: false,
   problems: false,
   comments: "",
-}
-
-const undoStack = {
-  auto: [],
-  teleop: [],
-  endgame: [],
+  undoStack: {
+    auto: [],
+    teleop: [],
+    endgame: [],
+  }
 }
 
 const addUndo = (state, action) => {
   // only add an undo in Scout mode
   if (state.mode !== "Scout") return
-  // FIXME: *2 is because reducer is double called
-  if (undoStack[state.phase].length >= 15 * 2) {
-    undoStack[state.phase].shift()
+  console.log(state.undoStack[state.phase])
+  const undoStack = [...state.undoStack[state.phase]]
+  if (state.undoStack[state.phase].length >= 15) {
+    undoStack.shift()
   }
 
-  const val = action.type === "setInPhase" ?
-    state[state.phase][action.prop]
-    :
-    state[action.prop]
+  undoStack.push({
+    type: action.type,
+    phase: state.phase,
+    prop: action.prop,
+    val: action.type === "setInPhase" ?
+      state[state.phase][action.prop]
+      :
+      state[action.prop],
+  })
 
-  undoStack[state.phase].push({ ...action, val, phase: state.phase })
-  console.log(undoStack[state.phase])
+  return {
+    ...state.undoStack,
+    [state.phase]: undoStack
+  }
 }
 
 const popUndo = (state) => {
-  // do not be worried about the circular logic
-  // javascript run, so no issues
-  if (undoStack[state.phase].length < 1) return state
-  const action = undoStack[state.phase].pop()
-  console.log(undoStack[state.phase])
+  if (state.undoStack[state.phase].length < 1) return state
+  const newStack = [...state.undoStack[state.phase]]
+  const action = newStack.pop()
+
+  console.log(action)
+
   if (action.type === "set") return {
     ...state,
-    [action.prop]: action.val
+    [action.prop]: action.val,
+    undoStack: {
+      ...state.undoStack,
+      [state.phase]: newStack
+    }
   }
   return {
     ...state,
     [action.phase]: {
       ...state[action.phase],
       [action.prop]: action.val
+    },
+    undoStack: {
+      ...state.undoStack,
+      [state.phase]: newStack
     }
   }
 }
 
-const clearUndo = () => {
-  undoStack.auto.length = 0
-  undoStack.teleop.length = 0
-  undoStack.endgame.length = 0
+const clearUndo = (state) => {
+  state.undoStack = {
+    auto: [],
+    teleop: [],
+    endgame: [],
+  }
+  return state
 }
 
 export const reducer = (state, action) => {
   switch (action.type) {
     case "reset":
-      clearUndo()
       return initialState
     case "next_mode":
-      clearUndo()
       const modes = ["Configure", "Scout", "Review", "ScanData"]
-      return {
+      return clearUndo({
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1]
-      }
+      })
     case "set_phase":
       return {
         ...state,
@@ -102,21 +119,22 @@ export const reducer = (state, action) => {
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
-      addUndo(state, action)
+
       return {
         ...state,
-        [action.prop]: action.val
+        [action.prop]: action.val,
+        undoStack: addUndo(state, action)
       }
     // base reducer for phases, spaghetti
     case "setInPhase":
       console.log(action.prop, "=", action.val, "in", state.phase)
-      addUndo(state, action)
       return {
         ...state,
         [state.phase]: {
           ...state[state.phase],
           [action.prop]: action.val
-        }
+        },
+        undoStack: addUndo(state, action)
       }
     default:
       return state
