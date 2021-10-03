@@ -42,7 +42,7 @@ const Scout = () => {
           </>
         )
       case "endgame":
-        const storeLevelTime = () => dispatch({ type: "leveled", time: time.current })
+        const storeLevelTime = (undo) => dispatch({ type: "level", time: time.current, undo })
         return (
           <>
             <Bool phase label="Climb" prop="climb" color="green"></Bool>

@@ -106,6 +106,14 @@ export const reducer = (state, action) => {
       }
     case "undo":
       return popUndo(state)
+    case "level":
+      return {
+        ...state,
+        endgame: {
+          ...state.endgame,
+          levelTime: action.undo ? undefined : action.time
+        }
+      }
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
