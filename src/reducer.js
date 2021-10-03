@@ -39,7 +39,7 @@ export const initialState = {
 
 const addUndo = (state, action) => {
   // only add an undo in Scout mode
-  if (state.mode !== "Scout") return
+  if (state.mode !== "Scout" || action.undo === true) return state.undoStack
   console.log(state.undoStack[state.phase])
   const undoStack = [...state.undoStack[state.phase]]
   if (state.undoStack[state.phase].length >= 15) {
@@ -50,6 +50,7 @@ const addUndo = (state, action) => {
     type: action.type,
     phase: state.phase,
     prop: action.prop,
+    prior: action.prior,
     val: action.type === "setInPhase" ?
       state[state.phase][action.prop]
       :
@@ -65,24 +66,12 @@ const addUndo = (state, action) => {
 const popUndo = (state) => {
   if (state.undoStack[state.phase].length < 1) return state
   const newStack = [...state.undoStack[state.phase]]
-  const action = newStack.pop()
+  const action = { undo: true, ...newStack.pop() }
 
   console.log(action)
 
-  if (action.type === "set") return {
-    ...state,
-    [action.prop]: action.val,
-    undoStack: {
-      ...state.undoStack,
-      [state.phase]: newStack
-    }
-  }
   return {
-    ...state,
-    [action.phase]: {
-      ...state[action.phase],
-      [action.prop]: action.val
-    },
+    ...reducer(state, action),
     undoStack: {
       ...state.undoStack,
       [state.phase]: newStack
@@ -100,6 +89,7 @@ const clearUndo = (state) => {
 }
 
 export const reducer = (state, action) => {
+  if (action.prior !== undefined) action.prior(action.undo ?? false)
   switch (action.type) {
     case "reset":
       return initialState
@@ -116,6 +106,14 @@ export const reducer = (state, action) => {
       }
     case "undo":
       return popUndo(state)
+    case "level":
+      return {
+        ...state,
+        endgame: {
+          ...state.endgame,
+          levelTime: action.undo ? undefined : action.time
+        }
+      }
     // base reducer, no special behavior
     case "set":
       console.log(action.prop, "=", action.val)
