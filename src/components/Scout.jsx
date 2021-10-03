@@ -5,6 +5,7 @@ import Bool from "./inputs/Bool"
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Shoot from "./inputs/Shoot"
+import Switch from "./inputs/Switch"
 import Tabs from "./inputs/Tabs"
 import Timer from "./inputs/Timer"
 import Undo from "./inputs/Undo"
@@ -45,10 +46,14 @@ const Scout = () => {
         const storeLevelTime = (undo) => dispatch({ type: "level", time: time.current, undo })
         return (
           <>
-            <Bool phase label="Climb" prop="climb" color="green"></Bool>
-            <Bool phase label="Park" prop="park" color="red"></Bool>
-            <Bool phase label="Level" prop="level" onFlip={storeLevelTime} color="green"></Bool>
-            <Bool phase label="Not Level" prop="notLevel" onFlip={storeLevelTime} color="red"></Bool>
+            <Switch phase options={{
+              opA: { label: "Climb", prop: "climb", color: "green" },
+              opB: { label: "Park", prop: "park", color: "red" }
+            }}></Switch>
+            <Switch phase options={{
+              opA: { label: "Level", prop: "level", color: "green" },
+              opB: { label: "Not Level", prop: "notLevel", color: "red" }
+            }} onFlip={storeLevelTime}></Switch>
             <Dropdown wide phase prop="levelQuality" options={[
               "None",
               "Fail",
