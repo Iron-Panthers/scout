@@ -8,20 +8,21 @@ const Switch = ({ options: {
 }, onFlip, phase, ...props }) => {
   const [state, dispatch] = useContext(Context)
 
+  // closure abuse for fun and profit
+  const onFlipFn = option => undo => {
+    // get the current position of the other bool in the switch
+    const otherVal = phase ? (state[state.phase] ?? {})[option.prop] : state[option.prop]
+    // if we are undoing the prior, return the other bool to its state at closure time
+    dispatch({ type: `set${phase ? "InPhase" : ""}`, prop: option.prop, val: !undo ? false : otherVal, undo: true })
+    if (onFlip !== undefined) onFlip(undo)
+  }
+
   return <>
     <Bool {...{
-      phase, onFlip: undo => {
-        const otherVal = phase ? (state[state.phase] ?? {})[opB.prop] : state[opB.prop]
-        dispatch({ type: `set${phase ? "InPhase" : ""}`, prop: opB.prop, val: !undo ? false : otherVal, undo: true })
-        if (onFlip !== undefined) onFlip(undo)
-      }, ...opA
+      phase, onFlip: onFlipFn(opB), ...opA
     }}></Bool>
     <Bool {...{
-      phase, onFlip: undo => {
-        const otherVal = phase ? (state[state.phase] ?? {})[opB.prop] : state[opB.prop]
-        dispatch({ type: `set${phase ? "InPhase" : ""}`, prop: opA.prop, val: !undo ? false : otherVal, undo: true })
-        if (onFlip !== undefined) onFlip(undo)
-      }, ...opB
+      phase, onFlip: onFlipFn(opA), ...opB
     }}></Bool>
   </>
 }
