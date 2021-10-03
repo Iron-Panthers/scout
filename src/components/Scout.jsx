@@ -47,8 +47,8 @@ const Scout = () => {
           <>
             <Bool phase label="Climb" prop="climb" color="green"></Bool>
             <Bool phase label="Park" prop="park" color="red"></Bool>
-            <Bool phase label="Level" prop="level" onFirst={storeLevelTime} color="green"></Bool>
-            <Bool phase label="Not Level" prop="notLevel" onFirst={storeLevelTime} color="red"></Bool>
+            <Bool phase label="Level" prop="level" onFlip={storeLevelTime} color="green"></Bool>
+            <Bool phase label="Not Level" prop="notLevel" onFlip={storeLevelTime} color="red"></Bool>
             <Dropdown wide phase prop="levelQuality" options={[
               "None",
               "Fail",
