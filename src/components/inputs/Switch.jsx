@@ -2,6 +2,8 @@ import React, { useContext } from "react"
 import { Context } from "../../state"
 import Bool from "./Bool"
 
+const getVal = (option, phase, state) => phase ? (state[state.phase] ?? {})[option.prop] : state[option.prop]
+
 const Switch = ({ options: {
   opA,
   opB
@@ -11,7 +13,7 @@ const Switch = ({ options: {
   // closure abuse for fun and profit
   const onFlipFn = option => undo => {
     // get the current position of the other bool in the switch
-    const otherVal = phase ? (state[state.phase] ?? {})[option.prop] : state[option.prop]
+    const otherVal = getVal(option, phase, state)
     // if we are undoing the prior, return the other bool to its state at closure time
     dispatch({ type: `set${phase ? "InPhase" : ""}`, prop: option.prop, val: !undo ? false : otherVal, undo: true })
     if (onFlip !== undefined) onFlip(undo)
@@ -19,10 +21,10 @@ const Switch = ({ options: {
 
   return <>
     <Bool {...{
-      phase, onFlip: onFlipFn(opB), ...opA
+      phase, onFlip: onFlipFn(opB), disabled: getVal(opA, phase, state),...opA
     }}></Bool>
     <Bool {...{
-      phase, onFlip: onFlipFn(opA), ...opB
+      phase, onFlip: onFlipFn(opA), disabled: getVal(opB, phase, state), ...opB
     }}></Bool>
   </>
 }
