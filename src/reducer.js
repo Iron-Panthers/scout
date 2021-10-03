@@ -89,7 +89,7 @@ const clearUndo = (state) => {
 }
 
 export const reducer = (state, action) => {
-  if (action.prior !== undefined) action.prior(false)
+  if (action.prior !== undefined) action.prior(action.undo ?? false)
   switch (action.type) {
     case "reset":
       return initialState
