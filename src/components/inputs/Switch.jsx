@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
 import Bool from "./Bool"
+import PropTypes from "prop-types"
 
 const getVal = (option, phase, state) => phase ? (state[state.phase] ?? {})[option.prop] : state[option.prop]
 
@@ -21,12 +22,27 @@ const Switch = ({ options: {
 
   return <>
     <Bool {...{
-      phase, onFlip: onFlipFn(opB), disabled: getVal(opA, phase, state),...opA
+      ...opA, phase, onFlip: onFlipFn(opB), disabled: getVal(opA, phase, state)
     }}></Bool>
     <Bool {...{
-      phase, onFlip: onFlipFn(opA), disabled: getVal(opB, phase, state), ...opB
+      ...opB, phase, onFlip: onFlipFn(opA), disabled: getVal(opB, phase, state)
     }}></Bool>
   </>
+}
+
+Switch.propTypes = {
+  options: PropTypes.shape({
+    opA: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      prop: PropTypes.string.isRequired,
+      color: PropTypes.oneOf(["red", "green", "blue"]),
+    }),
+    opB: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      prop: PropTypes.string.isRequired,
+      color: PropTypes.oneOf(["red", "green", "blue"]),
+    })
+  })
 }
 
 export default Switch
