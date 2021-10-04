@@ -1,9 +1,10 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
+import PropTypes from "prop-types"
 
 import "./buttons.scss"
 
-const Undo = ({ wide, ...props }) => {
+const Undo = ({ wide }) => {
   const [state, dispatch] = useContext(Context)
 
   return <button
@@ -15,6 +16,10 @@ const Undo = ({ wide, ...props }) => {
       }
     }
   >UNDO</button>
+}
+
+Undo.propTypes = {
+  wide: PropTypes.bool
 }
 
 export default Undo

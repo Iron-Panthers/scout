@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
 import { Context } from "../../state"
+import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
@@ -52,6 +53,11 @@ const Timer = ({ timeRef, wide }) => {
       }
     }
   >START</button>
+}
+
+Timer.propTypes = {
+  timeRef: PropTypes.shape({ current: PropTypes.number }).isRequired,
+  wide: PropTypes.bool
 }
 
 export default Timer

@@ -36,13 +36,13 @@ Switch.propTypes = {
       label: PropTypes.string.isRequired,
       prop: PropTypes.string.isRequired,
       color: PropTypes.oneOf(["red", "green", "blue"]),
-    }),
+    }).isRequired,
     opB: PropTypes.shape({
       label: PropTypes.string.isRequired,
       prop: PropTypes.string.isRequired,
       color: PropTypes.oneOf(["red", "green", "blue"]),
-    })
-  })
+    }).isRequired
+  }).isRequired
 }
 
 export default Switch
