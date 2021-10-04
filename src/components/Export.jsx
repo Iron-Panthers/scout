@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react"
+import React, { useContext } from "react"
 
 import { Context } from "../state"
 import { header } from "../csv"
@@ -8,7 +8,7 @@ import Reset from "./inputs/Reset"
 import "./inputs/inputs.scss"
 
 const Export = () => {
-  const [state, dispatch] = useContext(Context)
+  const [, dispatch] = useContext(Context)
 
   const scans = JSON.parse(localStorage.scanSet ?? "[]")
 

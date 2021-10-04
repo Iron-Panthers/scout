@@ -3,7 +3,7 @@ import { Context } from "../../state"
 import PropTypes from "prop-types"
 
 const Reset = ({ wide }) => {
-  const [state, dispatch] = useContext(Context)
+  const [, dispatch] = useContext(Context)
   const [confirm, setConfirm] = useState(false)
 
   useEffect(() => {
