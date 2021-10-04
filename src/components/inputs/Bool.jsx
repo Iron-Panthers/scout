@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { Context } from "../../state"
+import PropTypes from "prop-types"
 
 const Bool = ({ label, prop, onFlip, phase, color, disabled, ...props }) => {
   const [state, dispatch] = useContext(Context)
@@ -15,6 +16,15 @@ const Bool = ({ label, prop, onFlip, phase, color, disabled, ...props }) => {
       }
     }
   >{`${label}${current ? "ed" : ""}`}</button>
+}
+
+Bool.propTypes = {
+  label: PropTypes.string.isRequired,
+  prop: PropTypes.string.isRequired,
+  onFlip: PropTypes.func,
+  phase: PropTypes.bool,
+  color: PropTypes.oneOf(["red", "green", "blue"]),
+  disabled: PropTypes.bool,
 }
 
 export default Bool
