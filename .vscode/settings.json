@@ -11,5 +11,7 @@
     "tele",
     "teleop",
     "unparse"
-  ]
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }
