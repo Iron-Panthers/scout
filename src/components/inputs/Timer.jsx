@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect, useRef } from "react"
-import { Context } from "../../state"
+import React, { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
 const Timer = ({ timeRef, wide }) => {
-  const [, dispatch] = useContext(Context)
 
   const [timeLeft, setTimeLeft] = useState(150)
   const [started, setStarted] = useState(false)
@@ -46,11 +44,13 @@ const Timer = ({ timeRef, wide }) => {
     []
   )
 
+  const wideStr = wide ? "wide" : ""
+
   return started ? (
-    <p className={`timer ${wide ? "wide" : ""}`}>{`Time: ${timeLeft}`}</p>
+    <p className={`timer ${wideStr}`}>{`Time: ${timeLeft}`}</p>
   ) : (
     <button
-      className={`green ${wide ? "wide" : ""}`}
+      className={`green ${wideStr}`}
       onClick={() => {
         setStarted(true)
         interval.current = setInterval(tickTimer, 1000)

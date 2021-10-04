@@ -1,7 +1,6 @@
 import React, { useContext, useRef } from "react"
 
 import { Context } from "../state"
-import Bool from "./inputs/Bool"
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Shoot from "./inputs/Shoot"
