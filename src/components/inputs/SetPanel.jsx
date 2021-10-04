@@ -17,7 +17,7 @@ const SetPanel = ({ wide, label, panelName }) => {
 SetPanel.propTypes = {
   wide: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  panelName: PropTypes.string
+  panelName: PropTypes.string.isRequired
 }
 
 export default SetPanel

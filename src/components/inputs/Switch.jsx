@@ -8,7 +8,7 @@ const getVal = (option, phase, state) => phase ? (state[state.phase] ?? {})[opti
 const Switch = ({ options: {
   opA,
   opB
-}, onFlip, phase, ...props }) => {
+}, onFlip, phase }) => {
   const [state, dispatch] = useContext(Context)
 
   // closure abuse for fun and profit
@@ -42,7 +42,9 @@ Switch.propTypes = {
       prop: PropTypes.string.isRequired,
       color: PropTypes.oneOf(["red", "green", "blue"]),
     }).isRequired
-  }).isRequired
+  }).isRequired,
+  onFlip: PropTypes.func,
+  phase: PropTypes.bool,
 }
 
 export default Switch
