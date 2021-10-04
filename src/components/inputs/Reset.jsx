@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Context } from "../../state"
+import PropTypes from "prop-types"
 
-const Reset = ({ label, prop, wide, ...props }) => {
+const Reset = ({ wide }) => {
   const [state, dispatch] = useContext(Context)
   const [confirm, setConfirm] = useState(false)
 
@@ -22,6 +23,10 @@ const Reset = ({ label, prop, wide, ...props }) => {
       }
     }
   >{`Tap${confirm ? " Again " : " "}to ${confirm ? "Confirm" : "Reset"}`}</button>
+}
+
+Reset.propTypes = {
+  wide: PropTypes.bool
 }
 
 export default Reset
