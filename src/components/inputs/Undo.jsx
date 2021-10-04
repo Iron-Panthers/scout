@@ -7,19 +7,21 @@ import "./buttons.scss"
 const Undo = ({ wide }) => {
   const [state, dispatch] = useContext(Context)
 
-  return <button
-    className={`${wide ? "wide" : ""} blue`}
-    disabled={state.undoStack[state.phase].length === 0}
-    onClick={
-      () => {
+  return (
+    <button
+      className={`${wide ? "wide" : ""} blue`}
+      disabled={state.undoStack[state.phase].length === 0}
+      onClick={() => {
         dispatch({ type: "undo" })
-      }
-    }
-  >UNDO</button>
+      }}
+    >
+      UNDO
+    </button>
+  )
 }
 
 Undo.propTypes = {
-  wide: PropTypes.bool
+  wide: PropTypes.bool,
 }
 
 export default Undo

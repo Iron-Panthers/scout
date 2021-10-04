@@ -7,15 +7,20 @@ import "./inputs.scss"
 const Next = ({ wide }) => {
   const [, dispatch] = useContext(Context)
 
-  return <button className={`blue ${wide ? "wide" : ""}`} onClick={
-    () => {
-      dispatch({ type: "next_mode" })
-    }
-  }>NEXT</button>
+  return (
+    <button
+      className={`blue ${wide ? "wide" : ""}`}
+      onClick={() => {
+        dispatch({ type: "next_mode" })
+      }}
+    >
+      NEXT
+    </button>
+  )
 }
 
 Next.propTypes = {
-  wide: PropTypes.bool
+  wide: PropTypes.bool,
 }
 
 export default Next

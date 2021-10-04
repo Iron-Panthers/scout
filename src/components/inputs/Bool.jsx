@@ -7,15 +7,20 @@ const Bool = ({ label, prop, onFlip, phase, color, disabled }) => {
 
   const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
 
-  return <button
-    className={color}
-    disabled={disabled}
-    onClick={
-      () => {
-        dispatch({ type: `set${phase ? "InPhase" : ""}`, prop, val: true, prior: onFlip })
-      }
-    }
-  >{`${label}${current ? "ed" : ""}`}</button>
+  return (
+    <button
+      className={color}
+      disabled={disabled}
+      onClick={() => {
+        dispatch({
+          type: `set${phase ? "InPhase" : ""}`,
+          prop,
+          val: true,
+          prior: onFlip,
+        })
+      }}
+    >{`${label}${current ? "ed" : ""}`}</button>
+  )
 }
 
 Bool.propTypes = {

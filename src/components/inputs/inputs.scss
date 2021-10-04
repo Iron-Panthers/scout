@@ -27,11 +27,15 @@ textarea:focus {
   width: 0;
 }
 
-select, input[type=number], textarea {
+select,
+input[type="number"],
+textarea {
   padding: 2vw;
 }
 
-p, label, div.Center {
+p,
+label,
+div.Center {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +57,7 @@ select {
   -webkit-appearance: menulist;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   -webkit-appearance: checkbox;
 }
 

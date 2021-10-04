@@ -10,24 +10,24 @@ const Checkbox = ({ label, prop }) => {
   const id = `${prop}-checkbox`
   const value = state[prop]
 
-  return <label
-    htmlFor={id}
-    className="wide Checkbox"
-  >
-    <input
-      id={id}
-      type="checkbox"
-      onClick={event => {
-        dispatch({ type: "set", prop, val: !value })
-      }}
-      value={value}
-    ></input> {label}
-  </label>
+  return (
+    <label htmlFor={id} className="wide Checkbox">
+      <input
+        id={id}
+        type="checkbox"
+        onClick={(event) => {
+          dispatch({ type: "set", prop, val: !value })
+        }}
+        value={value}
+      ></input>{" "}
+      {label}
+    </label>
+  )
 }
 
 Checkbox.propTypes = {
   label: PropTypes.string.isRequired,
-  prop: PropTypes.string.isRequired
+  prop: PropTypes.string.isRequired,
 }
 
 export default Checkbox

@@ -7,26 +7,30 @@ const Reset = ({ wide }) => {
   const [confirm, setConfirm] = useState(false)
 
   useEffect(() => {
-    const timer = confirm ? setTimeout(() => setConfirm(false), 5000) : undefined
+    const timer = confirm
+      ? setTimeout(() => setConfirm(false), 5000)
+      : undefined
     return () => clearTimeout(timer)
   }, [confirm])
 
-  return <button
-    className={`Reset red ${wide ? "wide" : ""}`}
-    onClick={
-      () => {
+  return (
+    <button
+      className={`Reset red ${wide ? "wide" : ""}`}
+      onClick={() => {
         if (!confirm) {
           setConfirm(true)
         } else {
           dispatch({ type: "reset" })
         }
-      }
-    }
-  >{`Tap${confirm ? " Again " : " "}to ${confirm ? "Confirm" : "Reset"}`}</button>
+      }}
+    >{`Tap${confirm ? " Again " : " "}to ${
+      confirm ? "Confirm" : "Reset"
+    }`}</button>
+  )
 }
 
 Reset.propTypes = {
-  wide: PropTypes.bool
+  wide: PropTypes.bool,
 }
 
 export default Reset

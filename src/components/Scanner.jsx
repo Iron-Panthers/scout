@@ -9,7 +9,7 @@ import "./inputs/inputs.scss"
 
 const Scanner = () => {
   const [error, setError] = useState(false)
-  const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? '[]')))
+  const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
   const [scanCount, setScanCount] = useState(scans.current.size)
   const ctx = useRef({})
   const beep = () => {
@@ -28,7 +28,7 @@ const Scanner = () => {
     osc.type = "sine"
     osc.frequency.value = 550
     osc.start(time)
-    osc.stop(time + .1)
+    osc.stop(time + 0.1)
   }
 
   useEffect(() => {
@@ -36,29 +36,31 @@ const Scanner = () => {
     return () => ctx.current.close()
   }, [ctx])
 
-  return <>
-    <div className="QrWrapper">
-      <QrReader
-        onScan={val => {
-          if (val === null) return
-          if (!scans.current.has(val)) {
-            scans.current.add(val)
-            setScanCount(scanCount + 1)
-            localStorage.scanSet = JSON.stringify(Array.from(scans.current))
-            beep()
-          }
-        }}
-        onError={err => {
-          console.error(err)
-          setError(err)
-        }}
-      ></QrReader>
-    </div>
-    <div className="Center wide">{`Scanned ${scanCount}`}</div>
-    {error && <div className="wide Center">{error}</div>}
-    <SetPanel label="Export" panelName="Export"></SetPanel>
-    <Reset></Reset>
-  </>
+  return (
+    <>
+      <div className="QrWrapper">
+        <QrReader
+          onScan={(val) => {
+            if (val === null) return
+            if (!scans.current.has(val)) {
+              scans.current.add(val)
+              setScanCount(scanCount + 1)
+              localStorage.scanSet = JSON.stringify(Array.from(scans.current))
+              beep()
+            }
+          }}
+          onError={(err) => {
+            console.error(err)
+            setError(err)
+          }}
+        ></QrReader>
+      </div>
+      <div className="Center wide">{`Scanned ${scanCount}`}</div>
+      {error && <div className="wide Center">{error}</div>}
+      <SetPanel label="Export" panelName="Export"></SetPanel>
+      <Reset></Reset>
+    </>
+  )
 }
 
 export default Scanner

@@ -9,14 +9,18 @@ const Count = ({ label, prop, phase, color }) => {
 
   const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
 
-  return <button
-    className={color}
-    onClick={
-      () => {
-        dispatch({ type: `set${phase ? "InPhase" : ""}`, prop, val: (current ?? 0) + 1 })
-      }
-    }
-  >{`${label} ${current}`}</button>
+  return (
+    <button
+      className={color}
+      onClick={() => {
+        dispatch({
+          type: `set${phase ? "InPhase" : ""}`,
+          prop,
+          val: (current ?? 0) + 1,
+        })
+      }}
+    >{`${label} ${current}`}</button>
+  )
 }
 
 Count.propTypes = {
