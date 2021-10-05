@@ -4,7 +4,6 @@ import PropTypes from "prop-types"
 import "./inputs.scss"
 
 const Timer = ({ timeRef, wide }) => {
-
   const [timeLeft, setTimeLeft] = useState(150)
   const [started, setStarted] = useState(false)
   const interval = useRef()

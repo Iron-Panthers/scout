@@ -10,7 +10,7 @@ import useWindowSize from "../hooks/useWindowSize"
 import "./inputs/QRCode.scss"
 
 const ScanData = () => {
-  const [state, ] = useContext(Context)
+  const [state] = useContext(Context)
 
   const win = useWindowSize()
   const size = Math.min(512, Math.min(win.width, win.height) - 100)
