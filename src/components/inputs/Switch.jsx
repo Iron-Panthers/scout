@@ -10,17 +10,19 @@ const Switch = ({ options: { opA, opB }, onFlip, phase }) => {
   const [state, dispatch] = useContext(Context)
 
   // closure abuse for fun and profit
-  const onFlipFn = (option) => (undo) => {
+  const onFlipFn = (option) => (action, undo) => {
     // get the current position of the other bool in the switch
     const otherVal = getVal(option, phase, state)
     // if we are undoing the prior, return the other bool to its state at closure time
-    dispatch({
+    // a dispatch with fresh state ect is passed in at priortime to prevent a stale fn
+    action({
       type: `set${phase ? "InPhase" : ""}`,
       prop: option.prop,
       val: !undo ? false : otherVal,
       undo: true,
     })
-    if (onFlip !== undefined) onFlip(undo)
+    // we need to pass in the fresh action/reducer here also
+    if (onFlip !== undefined) onFlip(action, undo)
   }
 
   return (

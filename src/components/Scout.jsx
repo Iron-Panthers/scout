@@ -43,8 +43,9 @@ const Scout = () => {
           </>
         )
       case "endgame":
-        const storeLevelTime = (undo) =>
-          dispatch({ type: "level", time: time.current, undo })
+        const storeLevelTime = (action, undo) => {
+          action({ type: "level", time: time.current, undo })
+        }
         return (
           <>
             <Switch
