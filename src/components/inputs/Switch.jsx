@@ -30,7 +30,6 @@ const Switch = ({ options: { opA, opB }, onFlip, phase }) => {
           ...opA,
           phase,
           onFlip: onFlipFn(opB),
-          disabled: getVal(opA, phase, state),
         }}
       ></Bool>
       <Bool
@@ -38,7 +37,6 @@ const Switch = ({ options: { opA, opB }, onFlip, phase }) => {
           ...opB,
           phase,
           onFlip: onFlipFn(opA),
-          disabled: getVal(opB, phase, state),
         }}
       ></Bool>
     </>

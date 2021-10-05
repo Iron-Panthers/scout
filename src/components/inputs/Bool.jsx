@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 
-const Bool = ({ label, prop, onFlip, phase, color, disabled }) => {
+const Bool = ({ label, prop, onFlip, phase, color }) => {
   const [state, dispatch] = useContext(Context)
 
   const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
@@ -10,7 +10,7 @@ const Bool = ({ label, prop, onFlip, phase, color, disabled }) => {
   return (
     <button
       className={color}
-      disabled={disabled}
+      disabled={current}
       onClick={() => {
         dispatch({
           type: `set${phase ? "InPhase" : ""}`,
@@ -29,7 +29,6 @@ Bool.propTypes = {
   onFlip: PropTypes.func,
   phase: PropTypes.bool,
   color: PropTypes.oneOf(["red", "green", "blue"]),
-  disabled: PropTypes.bool,
 }
 
 export default Bool
