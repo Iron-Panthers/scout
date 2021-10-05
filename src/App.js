@@ -1,11 +1,10 @@
-import React from 'react';
-import './App.css';
-import { Panels } from './components/Panels';
+import React from "react"
+import "./App.css"
+import Panels from "./components/Panels"
 
 import { Provider } from "./state.jsx"
 
 function App() {
-
   return (
     <div className="App">
       <Provider>
@@ -15,4 +14,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

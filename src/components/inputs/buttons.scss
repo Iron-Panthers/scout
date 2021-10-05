@@ -1,7 +1,7 @@
 button {
-  transition: background-color .5s cubic-bezier(.37,1.14,.53,.91);
+  transition: background-color 0.5s cubic-bezier(0.37, 1.14, 0.53, 0.91);
   &:active {
-    transition: background-color .1s cubic-bezier(.17,.67,.11,1.38);
+    transition: background-color 0.1s cubic-bezier(0.17, 0.67, 0.11, 1.38);
   }
 
   @mixin disabledColor {
@@ -12,29 +12,29 @@ button {
   }
 
   &.red {
-    background-color: 	hsl(354, 100%, 85%);
+    background-color: hsl(354, 100%, 85%);
     border: 2px solid hsl(354, 100%, 25%);
     &:active {
-      background-color: 	hsl(354, 100%, 65%);
+      background-color: hsl(354, 100%, 65%);
     }
-    @include disabledColor()
+    @include disabledColor();
   }
-  
+
   &.green {
     background-color: hsl(133, 100%, 86%);
     border: 2px solid hsl(133, 100%, 26%);
     &:active {
       background-color: hsl(133, 100%, 66%);
     }
-    @include disabledColor()
+    @include disabledColor();
   }
-  
+
   &.blue {
     background-color: hsl(206, 100%, 86%);
     border: 2px solid hsl(206, 100%, 26%);
     &:active {
       background-color: hsl(206, 100%, 66%);
     }
-    @include disabledColor()
+    @include disabledColor();
   }
 }

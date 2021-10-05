@@ -2,7 +2,7 @@ const shooting = {
   innerOuterSucc: 0,
   innerOuterFail: 0,
   lowerSucc: 0,
-  lowerFail: 0
+  lowerFail: 0,
 }
 
 export const initialState = {
@@ -13,10 +13,10 @@ export const initialState = {
   phase: "auto", //auto, teleop, endgame
   auto: {
     pathType: "NONE",
-    ...shooting
+    ...shooting,
   },
   teleop: {
-    ...shooting
+    ...shooting,
   },
   endgame: {
     climb: false,
@@ -34,13 +34,13 @@ export const initialState = {
     auto: [],
     teleop: [],
     endgame: [],
-  }
+  },
 }
 
 const addUndo = (state, action) => {
   // only add an undo in Scout mode
   if (state.mode !== "Scout" || action.undo === true) return state.undoStack
-  console.log(state.undoStack[state.phase])
+  // console.log(state.undoStack[state.phase])
   const undoStack = [...state.undoStack[state.phase]]
   if (state.undoStack[state.phase].length >= 15) {
     undoStack.shift()
@@ -51,15 +51,15 @@ const addUndo = (state, action) => {
     phase: state.phase,
     prop: action.prop,
     prior: action.prior,
-    val: action.type === "setInPhase" ?
-      state[state.phase][action.prop]
-      :
-      state[action.prop],
+    val:
+      action.type === "setInPhase"
+        ? state[state.phase][action.prop]
+        : state[action.prop],
   })
 
   return {
     ...state.undoStack,
-    [state.phase]: undoStack
+    [state.phase]: undoStack,
   }
 }
 
@@ -68,14 +68,14 @@ const popUndo = (state) => {
   const newStack = [...state.undoStack[state.phase]]
   const action = { undo: true, ...newStack.pop() }
 
-  console.log(action)
+  // console.log(action)
 
   return {
     ...reducer(state, action),
     undoStack: {
       ...state.undoStack,
-      [state.phase]: newStack
-    }
+      [state.phase]: newStack,
+    },
   }
 }
 
@@ -89,7 +89,12 @@ const clearUndo = (state) => {
 }
 
 export const reducer = (state, action) => {
-  if (action.prior !== undefined) action.prior(action.undo ?? false)
+  // when we have a prior, call it and pass in a fresh reducer
+  if (action.prior !== undefined) {
+    action.prior((priorAction) => {
+      state = reducer(state, priorAction)
+    }, action.undo ?? false)
+  }
   switch (action.type) {
     case "reset":
       return initialState
@@ -97,12 +102,12 @@ export const reducer = (state, action) => {
       const modes = ["Configure", "Scout", "Review", "ScanData"]
       return clearUndo({
         ...state,
-        mode: modes[modes.indexOf(state.mode) + 1]
+        mode: modes[modes.indexOf(state.mode) + 1],
       })
     case "set_phase":
       return {
         ...state,
-        phase: action.phase
+        phase: action.phase,
       }
     case "undo":
       return popUndo(state)
@@ -111,28 +116,28 @@ export const reducer = (state, action) => {
         ...state,
         endgame: {
           ...state.endgame,
-          levelTime: action.undo ? undefined : action.time
-        }
+          levelTime: action.undo ? undefined : action.time,
+        },
       }
     // base reducer, no special behavior
     case "set":
-      console.log(action.prop, "=", action.val)
+      // console.log(action.prop, "=", action.val)
 
       return {
         ...state,
         [action.prop]: action.val,
-        undoStack: addUndo(state, action)
+        undoStack: addUndo(state, action),
       }
     // base reducer for phases, spaghetti
     case "setInPhase":
-      console.log(action.prop, "=", action.val, "in", state.phase)
+      // console.log(action.prop, "=", action.val, "in", state.phase)
       return {
         ...state,
         [state.phase]: {
           ...state[state.phase],
-          [action.prop]: action.val
+          [action.prop]: action.val,
         },
-        undoStack: addUndo(state, action)
+        undoStack: addUndo(state, action),
       }
     default:
       return state

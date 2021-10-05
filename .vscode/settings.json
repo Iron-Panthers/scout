@@ -1,11 +1,18 @@
 {
   "cSpell.words": [
+    "browserslist",
+    "cacheable",
     "Elems",
     "Freetext",
     "IIFE",
+    "papaparse",
+    "precaching",
     "Succ",
     "tele",
     "teleop",
+    "testid",
     "unparse"
-  ]
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }

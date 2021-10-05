@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react"
 
-import { Context } from '../state'
-import Configure from './Configure'
-import Review from './Review'
-import Scout from './Scout'
-import ScanData from './ScanData'
+import { Context } from "../state"
+import Configure from "./Configure"
+import Review from "./Review"
+import Scout from "./Scout"
+import ScanData from "./ScanData"
 import Scanner from "./Scanner"
 
 import "./Panels.scss"
-import Export from './Export'
+import Export from "./Export"
 
-export const Panels = props => {
-  const [state, ] = useContext(Context)
+const Panels = (props) => {
+  const [state] = useContext(Context)
   //IIFE for clean code lol
   const panel = (() => {
     switch (state.mode) {
@@ -28,11 +28,19 @@ export const Panels = props => {
       case "Export":
         return <Export></Export>
       default:
-        return <>
-          <div>unspeakable horrors have occurred.</div>
-          <div>pray.</div>
-        </>
+        return (
+          <>
+            <div>unspeakable horrors have occurred.</div>
+            <div>pray.</div>
+          </>
+        )
     }
   })()
-  return <div className="panel">{panel}</div>
+  return (
+    <div className="panel" data-testid="panels">
+      {panel}
+    </div>
+  )
 }
+
+export default Panels

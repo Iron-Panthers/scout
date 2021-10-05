@@ -7,16 +7,18 @@ import "./Tabs.scss"
 const Tabs = () => {
   const [state, dispatch] = useContext(Context)
 
-  const TabArray = ["auto", "teleop", "endgame"].map(
-    label => <button
+  const TabArray = ["auto", "teleop", "endgame"].map((label) => (
+    <button
       className="Tab"
       disabled={label === state.phase}
       onClick={() => {
         dispatch({ type: "set_phase", phase: label })
       }}
       key={label}
-    >{label}</button>
-  )
+    >
+      {label}
+    </button>
+  ))
 
   return <div className="Tabs wide evenFlex">{TabArray}</div>
 }
