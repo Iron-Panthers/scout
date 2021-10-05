@@ -10,6 +10,7 @@
     "Succ",
     "tele",
     "teleop",
+    "testid",
     "unparse"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",

@@ -36,5 +36,9 @@ export const Panels = (props) => {
         )
     }
   })()
-  return <div className="panel">{panel}</div>
+  return (
+    <div className="panel" data-testid="panels">
+      {panel}
+    </div>
+  )
 }
