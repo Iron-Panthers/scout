@@ -41,7 +41,10 @@
       "react-app",
       "react-app/jest",
       "prettier"
-    ]
+    ],
+    "globals": {
+      "renderContext": "readonly"
+    }
   },
   "browserslist": {
     "production": [
