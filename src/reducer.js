@@ -40,7 +40,7 @@ export const initialState = {
 const addUndo = (state, action) => {
   // only add an undo in Scout mode
   if (state.mode !== "Scout" || action.undo === true) return state.undoStack
-  console.log(state.undoStack[state.phase])
+  // console.log(state.undoStack[state.phase])
   const undoStack = [...state.undoStack[state.phase]]
   if (state.undoStack[state.phase].length >= 15) {
     undoStack.shift()
@@ -68,7 +68,7 @@ const popUndo = (state) => {
   const newStack = [...state.undoStack[state.phase]]
   const action = { undo: true, ...newStack.pop() }
 
-  console.log(action)
+  // console.log(action)
 
   return {
     ...reducer(state, action),
@@ -121,7 +121,7 @@ export const reducer = (state, action) => {
       }
     // base reducer, no special behavior
     case "set":
-      console.log(action.prop, "=", action.val)
+      // console.log(action.prop, "=", action.val)
 
       return {
         ...state,
@@ -130,7 +130,7 @@ export const reducer = (state, action) => {
       }
     // base reducer for phases, spaghetti
     case "setInPhase":
-      console.log(action.prop, "=", action.val, "in", state.phase)
+      // console.log(action.prop, "=", action.val, "in", state.phase)
       return {
         ...state,
         [state.phase]: {
