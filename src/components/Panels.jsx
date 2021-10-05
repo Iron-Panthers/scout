@@ -10,7 +10,7 @@ import Scanner from "./Scanner"
 import "./Panels.scss"
 import Export from "./Export"
 
-export const Panels = (props) => {
+const Panels = (props) => {
   const [state] = useContext(Context)
   //IIFE for clean code lol
   const panel = (() => {
@@ -42,3 +42,5 @@ export const Panels = (props) => {
     </div>
   )
 }
+
+export default Panels

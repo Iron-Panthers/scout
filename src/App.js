@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-import { Panels } from "./components/Panels"
+import Panels from "./components/Panels"
 
 import { Provider } from "./state.jsx"
 
