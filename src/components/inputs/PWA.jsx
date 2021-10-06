@@ -7,12 +7,17 @@ import "./buttons.scss"
 
 const PWA = ({ modes }) => {
   const [state, dispatch] = useContext(Context)
-  const [status, setStatus] = useState("not ready for offline use")
+  const [status, setStatus] = useState(
+    "serviceWorker" in navigator
+      ? navigator.serviceWorker.ready
+        ? "ready for offline use"
+        : "not ready for offline use"
+      : "no offline support"
+  )
 
   useEffect(() => {
     serviceWorkerRegistration.register({
-      onSuccess: () => setStatus("ready for offline use"),
-      onOffline: () => setStatus("serving from offline cache"),
+      onSuccess: () => setStatus("installed for offline use"),
       onUpdate: () => {
         setStatus("tap to apply update")
       },
