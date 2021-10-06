@@ -3,7 +3,6 @@ import React from "react"
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
-import PWA from "./inputs/PWA"
 import SetPanel from "./inputs/SetPanel"
 
 const Configure = () => {
@@ -20,7 +19,6 @@ const Configure = () => {
 
   return (
     <>
-      <PWA></PWA>
       <Numbers label="Robot Team #" prop="team"></Numbers>
       <Dropdown
         wide
