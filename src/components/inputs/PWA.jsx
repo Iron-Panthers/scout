@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
+import useAnim from "../../hooks/useAnim"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 import * as serviceWorkerRegistration from "../../serviceWorkerRegistration"
 import { antiUnload } from "../.."
 
 import "./buttons.scss"
+import "./PWA.scss"
 
 const PWA = ({ modes }) => {
   const [state, dispatch] = useContext(Context)
@@ -12,6 +14,13 @@ const PWA = ({ modes }) => {
     "serviceWorker" in navigator ? false : "no offline support"
   )
   const [swStatus, setSwStatus] = useState("determining offline support")
+
+  console.log("b!!!")
+
+  const [anim, onAnimEnd] = useAnim(
+    status !== false ? status : swStatus,
+    status === "tap to apply update"
+  )
 
   const waiting = useRef(null)
 
@@ -48,7 +57,9 @@ const PWA = ({ modes }) => {
 
   return (
     <button
-      className="wide blue"
+      className="wide blue PWA"
+      animate={anim}
+      onAnimationEnd={onAnimEnd}
       hidden={!(modes ?? []).includes(state.mode)}
       disabled={status !== "tap to apply update"}
       onClick={() => {

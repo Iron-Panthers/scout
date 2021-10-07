@@ -1,0 +1,24 @@
+@keyframes pwachange {
+  from {
+    background-color: hsl(206, 60%, 90%);
+  }
+  10% {
+    background-color: hsl(206, 100%, 80%);
+  }
+  to {
+    background-color: hsl(206, 60%, 90%);
+  }
+}
+
+button.PWA.blue {
+  &[animate="1"] {
+    animation: pwachange 1.3s cubic-bezier(0.23, 1.06, 0.48, 0.7);
+  }
+  background-color: hsl(206, 100%, 76%);
+  &:disabled {
+    background-color: hsl(206, 60%, 90%);
+  }
+  &:active {
+    background-color: hsl(206, 100%, 56%);
+  }
+}
