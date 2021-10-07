@@ -14,7 +14,6 @@ const PWA = ({ modes }) => {
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
-      console.log(navigator.serviceWorker.ready)
       navigator.serviceWorker.ready.then((ready) => {
         setSwStatus(
           ready ? "ready for offline use" : "not ready for offline use"
@@ -29,6 +28,9 @@ const PWA = ({ modes }) => {
       onUpdate: () => {
         setStatus("tap to apply update")
       },
+      onWaiting: () => {
+        setStatus("tap to apply update")
+      },
       onError: () => setStatus("serviceworker error"),
     })
   }, [])
@@ -37,7 +39,7 @@ const PWA = ({ modes }) => {
     <button
       className="wide blue"
       hidden={!(modes ?? []).includes(state.mode)}
-      disabled={true}
+      disabled={status !== "tap to apply update"}
       onClick={() => {
         // lol
       }}
