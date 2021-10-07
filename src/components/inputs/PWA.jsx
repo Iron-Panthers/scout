@@ -15,11 +15,9 @@ const PWA = ({ modes }) => {
   )
   const [swStatus, setSwStatus] = useState("determining offline support")
 
-  console.log("b!!!")
-
   const [anim, onAnimEnd] = useAnim(
     status !== false ? status : swStatus,
-    status === "tap to apply update"
+    ["updating...", "tap to apply update"].includes(status)
   )
 
   const waiting = useRef(null)
@@ -68,6 +66,7 @@ const PWA = ({ modes }) => {
         })
         window.removeEventListener("beforeunload", antiUnload)
         waiting.current.postMessage({ type: "SKIP_WAITING" })
+        setStatus("updating...")
       }}
     >
       {status !== false ? status : swStatus}
