@@ -6,21 +6,30 @@ import * as serviceWorkerRegistration from "../../serviceWorkerRegistration"
 import "./buttons.scss"
 
 const PWA = ({ modes }) => {
-  const [state, dispatch] = useContext(Context)
+  const [state] = useContext(Context)
   const [status, setStatus] = useState(
-    "serviceWorker" in navigator
-      ? navigator.serviceWorker.ready
-        ? "ready for offline use"
-        : "not ready for offline use"
-      : "no offline support"
+    "serviceWorker" in navigator ? false : "no offline support"
   )
+  const [swStatus, setSwStatus] = useState("determining offline support")
+
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      console.log(navigator.serviceWorker.ready)
+      navigator.serviceWorker.ready.then((ready) => {
+        setSwStatus(
+          ready ? "ready for offline use" : "not ready for offline use"
+        )
+      })
+    }
+  }, [])
 
   useEffect(() => {
     serviceWorkerRegistration.register({
-      onSuccess: () => setStatus("installed for offline use"),
+      onSuccess: () => setStatus("now ready for offline use"),
       onUpdate: () => {
         setStatus("tap to apply update")
       },
+      onError: () => setStatus("serviceworker error"),
     })
   }, [])
 
@@ -33,7 +42,7 @@ const PWA = ({ modes }) => {
         // lol
       }}
     >
-      {status}
+      {status !== false ? status : swStatus}
     </button>
   )
 }
