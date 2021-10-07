@@ -23,6 +23,14 @@ const PWA = ({ modes }) => {
         )
       })
     }
+    const timeout = setTimeout(() => {
+      setSwStatus((swStatus) => {
+        if (swStatus === "determining offline support") {
+          setSwStatus("no offline support")
+        }
+      })
+    }, 2000)
+    return () => clearTimeout(timeout)
   }, [])
 
   useEffect(() => {
