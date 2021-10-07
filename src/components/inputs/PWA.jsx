@@ -49,7 +49,7 @@ const PWA = ({ modes }) => {
       onSuccess: () => setStatus("now ready for offline use"),
       onUpdate: updatable,
       onWaiting: updatable,
-      onError: () => setStatus("serviceworker error"),
+      onError: () => setStatus("serviceworker error!"),
     })
   }, [])
 
