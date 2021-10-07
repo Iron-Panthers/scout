@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 import * as serviceWorkerRegistration from "../../serviceWorkerRegistration"
@@ -12,6 +12,8 @@ const PWA = ({ modes }) => {
   )
   const [swStatus, setSwStatus] = useState("determining offline support")
 
+  const waiting = useRef(null)
+
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.ready.then((ready) => {
@@ -23,14 +25,14 @@ const PWA = ({ modes }) => {
   }, [])
 
   useEffect(() => {
+    const updatable = (reg) => {
+      waiting.current = reg.waiting
+      setStatus("tap to apply update")
+    }
     serviceWorkerRegistration.register({
       onSuccess: () => setStatus("now ready for offline use"),
-      onUpdate: () => {
-        setStatus("tap to apply update")
-      },
-      onWaiting: () => {
-        setStatus("tap to apply update")
-      },
+      onUpdate: updatable,
+      onWaiting: updatable,
       onError: () => setStatus("serviceworker error"),
     })
   }, [])
@@ -41,7 +43,10 @@ const PWA = ({ modes }) => {
       hidden={!(modes ?? []).includes(state.mode)}
       disabled={status !== "tap to apply update"}
       onClick={() => {
-        // lol
+        waiting.current.addEventListener("statechange", (e) => {
+          if (e.target.state === "activated") window.location.reload()
+        })
+        waiting.current.postMessage({ type: "SKIP_WAITING" })
       }}
     >
       {status !== false ? status : swStatus}
