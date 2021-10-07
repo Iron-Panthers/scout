@@ -11,13 +11,15 @@ ReactDOM.render(
   document.getElementById("root")
 )
 
-// prevent reload
-window.addEventListener("beforeunload", function (e) {
+export function antiUnload(e) {
   // Cancel the event
   e.preventDefault() // If you prevent default behavior in Mozilla Firefox prompt will always be shown
   // Chrome requires returnValue to be set
   e.returnValue = ""
-})
+}
+
+// prevent reload
+window.addEventListener("beforeunload", antiUnload)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

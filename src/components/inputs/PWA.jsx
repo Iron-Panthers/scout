@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useRef, useState } from "react"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 import * as serviceWorkerRegistration from "../../serviceWorkerRegistration"
+import { antiUnload } from "../.."
 
 import "./buttons.scss"
 
 const PWA = ({ modes }) => {
-  const [state] = useContext(Context)
+  const [state, dispatch] = useContext(Context)
   const [status, setStatus] = useState(
     "serviceWorker" in navigator ? false : "no offline support"
   )
@@ -46,6 +47,7 @@ const PWA = ({ modes }) => {
         waiting.current.addEventListener("statechange", (e) => {
           if (e.target.state === "activated") window.location.reload()
         })
+        window.removeEventListener("beforeunload", antiUnload)
         waiting.current.postMessage({ type: "SKIP_WAITING" })
       }}
     >
