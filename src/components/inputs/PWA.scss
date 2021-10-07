@@ -11,14 +11,14 @@
 }
 
 button.PWA.blue {
-  &[animate="1"] {
-    animation: pwachange 1.3s cubic-bezier(0.23, 1.06, 0.48, 0.7);
+  &:disabled {
+    background-color: hsl(206, 60%, 90%);
+    &[animate="1"] {
+      animation: pwachange 1.3s cubic-bezier(0.23, 1.06, 0.48, 0.7);
+    }
   }
   background-color: hsl(206, 100%, 76%);
   &:active:enabled {
     background-color: hsl(206, 100%, 56%);
-  }
-  &:disabled {
-    background-color: hsl(206, 60%, 90%);
   }
 }
