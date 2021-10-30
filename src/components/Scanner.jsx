@@ -6,11 +6,13 @@ import SetPanel from "./inputs/SetPanel"
 
 import "./Scanner.scss"
 import "./inputs/inputs.scss"
+import "./inputs/buttons.scss"
 
 const Scanner = () => {
   const [error, setError] = useState(false)
   const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
   const [scanCount, setScanCount] = useState(scans.current.size)
+  const [scan, setScan] = useState(true)
   const ctx = useRef({})
   const beep = () => {
     const time = ctx.current.currentTime
@@ -38,23 +40,31 @@ const Scanner = () => {
 
   return (
     <>
-      <div className="QrWrapper">
-        <QrReader
-          onScan={(val) => {
-            if (val === null) return
-            if (!scans.current.has(val)) {
-              scans.current.add(val)
-              setScanCount(scanCount + 1)
-              localStorage.scanSet = JSON.stringify(Array.from(scans.current))
-              beep()
-            }
-          }}
-          onError={(err) => {
-            console.error(err)
-            setError(err)
-          }}
-        ></QrReader>
-      </div>
+      {scan && (
+        <div className="QrWrapper">
+          <QrReader
+            onScan={(val) => {
+              if (val === null) return
+              if (!scans.current.has(val)) {
+                scans.current.add(val)
+                setScanCount(scanCount + 1)
+                localStorage.scanSet = JSON.stringify(Array.from(scans.current))
+                beep()
+              }
+            }}
+            onError={(err) => {
+              console.error(err)
+              setError(err)
+            }}
+          ></QrReader>
+        </div>
+      )}
+      <button
+        className={`wide ${scan ? "red" : "green"}`}
+        onClick={() => setScan(!scan)}
+      >
+        {scan ? "Stop" : "Start"}
+      </button>
       <div className="Center wide">{`Scanned ${scanCount}`}</div>
       {error && <div className="wide Center">{error}</div>}
       <SetPanel label="Export" panelName="Export"></SetPanel>
