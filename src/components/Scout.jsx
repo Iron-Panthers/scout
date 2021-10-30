@@ -10,6 +10,8 @@ import Timer from "./inputs/Timer"
 import Undo from "./inputs/Undo"
 import Info from "./inputs/Info"
 
+import "./Scout.scss"
+
 const Scout = () => {
   const [state, dispatch] = useContext(Context)
   const time = useRef(150)
@@ -87,8 +89,10 @@ const Scout = () => {
 
   return (
     <>
-      <Info></Info>
-      <Tabs></Tabs>
+      <div className="scoutHead">
+        <Info></Info>
+        <Tabs></Tabs>
+      </div>
       {phaseTabContent}
       <Undo wide></Undo>
       <Timer timeRef={time} wide={!showNext}></Timer>
