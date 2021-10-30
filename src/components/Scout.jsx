@@ -8,6 +8,7 @@ import Switch from "./inputs/Switch"
 import Tabs from "./inputs/Tabs"
 import Timer from "./inputs/Timer"
 import Undo from "./inputs/Undo"
+import Info from "./inputs/Info"
 
 const Scout = () => {
   const [state, dispatch] = useContext(Context)
@@ -86,6 +87,7 @@ const Scout = () => {
 
   return (
     <>
+      <Info></Info>
       <Tabs></Tabs>
       {phaseTabContent}
       <Undo wide></Undo>

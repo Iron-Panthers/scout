@@ -1,0 +1,10 @@
+div.Info {
+  display: flex;
+  grid-column: span 2;
+  justify-content: space-around;
+  & > {
+    flex-grow: 1;
+    max-width: max-content;
+    flex-basis: 100%;
+  }
+}
