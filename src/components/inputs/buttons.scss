@@ -4,9 +4,10 @@ button {
     transition: background-color 0.1s cubic-bezier(0.17, 0.67, 0.11, 1.38);
   }
 
+  color: black;
+
   @mixin disabledColor {
     &:disabled {
-      color: black;
       background-color: hsl(0, 0%, 90%);
     }
   }
