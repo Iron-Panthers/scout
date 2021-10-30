@@ -31,10 +31,7 @@ export function register(config) {
       return
     }
 
-    let loading = false
     const doOnLoad = () => {
-      if (loading) return
-      loading = true
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
 
       if (isLocalhost) {
@@ -54,9 +51,11 @@ export function register(config) {
         registerValidSW(swUrl, config)
       }
     }
-
-    window.addEventListener("load", doOnLoad)
-    window.setTimeout(doOnLoad, 2_500)
+    if (document.readyState === "complete") {
+      doOnLoad()
+    } else {
+      window.addEventListener("load", doOnLoad)
+    }
   }
 }
 
