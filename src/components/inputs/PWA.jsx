@@ -36,7 +36,7 @@ const PWA = ({ modes }) => {
           ? swStatus
           : "no offline support (swStatus)"
       )
-    }, 1500)
+    }, 10_000)
     return () => clearTimeout(timeout)
   }, [])
 
