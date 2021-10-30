@@ -11,7 +11,7 @@ import "./PWA.scss"
 const PWA = ({ modes }) => {
   const [state, dispatch] = useContext(Context)
   const [status, setStatus] = useState(
-    "serviceWorker" in navigator ? false : "no offline support"
+    "serviceWorker" in navigator ? false : "no offline support (swNav)"
   )
   const [swStatus, setSwStatus] = useState("determining offline support")
 
@@ -34,7 +34,7 @@ const PWA = ({ modes }) => {
       setSwStatus((swStatus) =>
         swStatus !== "determining offline support"
           ? swStatus
-          : "no offline support"
+          : "no offline support (swStatus)"
       )
     }, 1500)
     return () => clearTimeout(timeout)
