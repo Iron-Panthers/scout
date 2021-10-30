@@ -12,6 +12,7 @@ const Scanner = () => {
   const [error, setError] = useState(false)
   const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
   const [scanCount, setScanCount] = useState(scans.current.size)
+  const [scanHint, setScanHint] = useState("")
   const [scan, setScan] = useState(true)
   const ctx = useRef({})
   const beep = () => {
@@ -44,12 +45,18 @@ const Scanner = () => {
         <div className="QrWrapper">
           <QrReader
             onScan={(val) => {
-              if (val === null) return
+              if (val === null) {
+                if (scanHint !== "") setScanHint("")
+                return
+              }
               if (!scans.current.has(val)) {
                 scans.current.add(val)
                 setScanCount(scanCount + 1)
                 localStorage.scanSet = JSON.stringify(Array.from(scans.current))
                 beep()
+                setScanHint("stored")
+              } else {
+                setScanHint("already scanned")
               }
             }}
             onError={(err) => {
@@ -65,7 +72,9 @@ const Scanner = () => {
       >
         {scan ? "Stop" : "Start"}
       </button>
-      <div className="Center wide">{`Scanned ${scanCount}`}</div>
+      <div className="Center wide">{`Scanned ${scanCount} ${
+        scanHint !== "" ? " - " : ""
+      }${scanHint.toUpperCase()}`}</div>
       {error && <div className="wide Center">{error}</div>}
       <SetPanel label="Export" panelName="Export"></SetPanel>
       <Reset></Reset>
