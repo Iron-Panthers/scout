@@ -1,6 +1,7 @@
 .Tab {
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
+  flex-grow: 1;
 }
 
 .Tab:disabled {
@@ -14,4 +15,8 @@
 
 .Tab:active {
   background-color: hsl(0, 0%, 90%);
+}
+
+.Tabs {
+  flex-basis: 100%;
 }

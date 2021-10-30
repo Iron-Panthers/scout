@@ -1,5 +1,10 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx pretty-quick --staged
-CI=true npm test
+if [ -f "./node_modules/pretty-quick/bin/pretty-quick.js" ]; then
+  node ./node_modules/pretty-quick/bin/pretty-quick.js --staged
+else
+  npx pretty-quick --staged
+fi
+
+# CI=true npm test

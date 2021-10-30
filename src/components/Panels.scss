@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   & > *,
-  & > .Tabs > .Tab {
+  & .Tabs > .Tab {
     min-height: 0px;
     margin: 0px;
     font-size: 1rem;

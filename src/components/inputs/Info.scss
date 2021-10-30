@@ -1,0 +1,17 @@
+div.Info {
+  display: flex;
+  grid-column: span 2;
+  justify-content: space-around;
+  flex-grow: 0;
+  flex-basis: 0px;
+  &,
+  & > {
+    max-height: min-content;
+    height: min-content;
+  }
+  & > {
+    flex-grow: 1;
+    max-width: max-content;
+    flex-basis: 100%;
+  }
+}

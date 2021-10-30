@@ -9,6 +9,7 @@ import Scanner from "./Scanner"
 
 import "./Panels.scss"
 import Export from "./Export"
+import PWA from "./inputs/PWA"
 
 const Panels = (props) => {
   const [state] = useContext(Context)
@@ -38,6 +39,7 @@ const Panels = (props) => {
   })()
   return (
     <div className="panel" data-testid="panels">
+      <PWA modes={["Configure"]} />
       {panel}
     </div>
   )
