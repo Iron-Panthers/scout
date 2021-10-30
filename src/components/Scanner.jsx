@@ -4,6 +4,8 @@ import Reset from "./inputs/Reset"
 import QrReader from "react-qr-reader"
 import SetPanel from "./inputs/SetPanel"
 
+import useAnim from "../hooks/useAnim"
+
 import "./Scanner.scss"
 import "./inputs/inputs.scss"
 import "./inputs/buttons.scss"
@@ -12,6 +14,7 @@ const Scanner = () => {
   const [error, setError] = useState(false)
   const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
   const [scanCount, setScanCount] = useState(scans.current.size)
+  const [anim, onAnimEnd] = useAnim(scanCount)
   const [scanHint, setScanHint] = useState("")
   const [scan, setScan] = useState(true)
   const ctx = useRef({})
@@ -42,7 +45,7 @@ const Scanner = () => {
   return (
     <>
       {scan && (
-        <div className="QrWrapper">
+        <div className="QrWrapper" animate={anim} onAnimationEnd={onAnimEnd}>
           <QrReader
             onScan={(val) => {
               if (val === null) {
