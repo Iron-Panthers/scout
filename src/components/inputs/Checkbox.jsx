@@ -18,8 +18,8 @@ const Checkbox = ({ label, prop }) => {
         onClick={(event) => {
           dispatch({ type: "set", prop, val: !value })
         }}
-        value={value}
-      ></input>{" "}
+        checked={value}
+      ></input>
       {label}
     </label>
   )
