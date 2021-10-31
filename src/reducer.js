@@ -97,7 +97,13 @@ export const reducer = (state, action) => {
   }
   switch (action.type) {
     case "reset":
-      return initialState
+      return {
+        ...initialState,
+        matchNum:
+          typeof state.matchNum === "number"
+            ? state.matchNum + 1
+            : initialState.matchNum,
+      }
     case "next_mode":
       const modes = ["Configure", "Scout", "Review", "ScanData"]
       return clearUndo({
