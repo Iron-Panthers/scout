@@ -6,6 +6,7 @@ import Review from "./Review"
 import Scout from "./Scout"
 import ScanData from "./ScanData"
 import Scanner from "./Scanner"
+import Settings from "./Settings"
 
 import "./Panels.scss"
 import Export from "./Export"
@@ -28,6 +29,8 @@ const Panels = (props) => {
         return <Scanner></Scanner>
       case "Export":
         return <Export></Export>
+      case "Settings":
+        return <Settings></Settings>
       default:
         return (
           <>
