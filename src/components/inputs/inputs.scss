@@ -68,3 +68,19 @@ input[type="checkbox"] {
   padding-top: 1px;
   padding-bottom: 1px;
 }
+
+div.Numbers {
+  grid-column: span 2;
+  display: flex;
+  gap: 1vw;
+  padding-left: 3vw;
+  & > input {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0px;
+    width: 0px;
+  }
+  & > label {
+    white-space: nowrap;
+  }
+}

@@ -32,7 +32,7 @@ const Configure = () => {
           "Final",
         ]}
       ></Dropdown>
-      <Numbers label="Match #" prop="matchNum"></Numbers>
+      <Numbers label="Match #" prop="matchNum" idealLength={2}></Numbers>
       {!isIOS && <SetPanel label="Scanner" panelName="Scanner"></SetPanel>}
       <Next wide={isIOS}></Next>
     </>
