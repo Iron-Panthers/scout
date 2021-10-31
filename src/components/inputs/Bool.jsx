@@ -2,13 +2,11 @@ import React, { useContext } from "react"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 
-const Bool = ({ label, prop, onFlip, phase, color, wide }) => {
+const Bool = ({ label, trueLabel, prop, onFlip, phase, color, wide }) => {
   const [state, dispatch] = useContext(Context)
 
   const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
-  const suffix = current
-    ? `${label[label.length - 1].toLowerCase() === "e" ? "" : "e"}d`
-    : ""
+  trueLabel = trueLabel ?? `${label}ed`
 
   return (
     <button
@@ -22,12 +20,15 @@ const Bool = ({ label, prop, onFlip, phase, color, wide }) => {
           prior: onFlip,
         })
       }}
-    >{`${label}${suffix}`}</button>
+    >
+      {current ? trueLabel : label}
+    </button>
   )
 }
 
 Bool.propTypes = {
   label: PropTypes.string.isRequired,
+  trueLabel: PropTypes.string,
   prop: PropTypes.string.isRequired,
   onFlip: PropTypes.func,
   phase: PropTypes.bool,

@@ -44,9 +44,15 @@ const Scout = () => {
         return (
           <>
             <Bool
-              wide
               prop="underTrench"
               label="Trench Use"
+              trueLabel="Used Trench"
+              color="green"
+            ></Bool>
+            <Bool
+              prop="defense"
+              label="Defense"
+              trueLabel="Defended"
               color="green"
             ></Bool>
             <Shoot></Shoot>
