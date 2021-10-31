@@ -6,7 +6,7 @@ const shooting = {
 }
 
 export const initialState = {
-  mode: "Configure", // Configure, Scout, Review, ScanData
+  mode: "Configure", // Configure, Scout, Review, ScanData, Settings
   team: undefined,
   matchType: "Qualification", //Test, Practice, Qualification, Quarterfinal, Semifinal, Final
   matchNum: undefined,

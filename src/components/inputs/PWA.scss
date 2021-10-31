@@ -21,4 +21,15 @@ button.PWA.blue {
   &:active:enabled {
     background-color: hsl(206, 100%, 56%);
   }
+  & > button#Settings {
+    position: absolute;
+    top: 1vmin;
+    right: 1vmin;
+    width: 10vmin;
+    height: 10vmin;
+    font-size: 10vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

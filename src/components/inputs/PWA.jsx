@@ -70,6 +70,20 @@ const PWA = ({ modes }) => {
       }}
     >
       {status !== false ? status : swStatus}
+      {/* use a better settings icon eventually */}
+      <button
+        className="green"
+        id="Settings"
+        onClick={() => {
+          dispatch({
+            type: "set",
+            prop: "mode",
+            val: "Settings",
+          })
+        }}
+      >
+        ⚙
+      </button>
     </button>
   )
 }
