@@ -103,6 +103,7 @@ export const reducer = (state, action) => {
           typeof state.matchNum === "number"
             ? state.matchNum + 1
             : initialState.matchNum,
+        matchType: state.matchType,
       }
     case "next_mode":
       const modes = ["Configure", "Scout", "Review", "ScanData"]
