@@ -10,16 +10,18 @@ const initialSettings = {
 
 // this is a function so that it remains reflective of localStorage if its reset
 // this could also be used to get a read only copy of settings outside a component
-export const persistentSettings = () => ({
+export const getSettings = () => ({
   ...JSON.parse(localStorage.settings ?? "{}"),
   ...initialSettings,
 })
+
+export const initialLocalSettings = getSettings()
 
 export const reducer = (settings, action) => {
   switch (action.type) {
     case "reset":
       delete localStorage.settings
-      return persistentSettings()
+      return getSettings()
     case "set":
       return {
         ...settings,
