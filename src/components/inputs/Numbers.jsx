@@ -6,10 +6,12 @@ import "./inputs.scss"
 
 const Numbers = ({ label, prop, idealLength = 4 }) => {
   const [state, dispatch] = useContext(Context)
-  const id = `Numbers-${label}-${prop}`
+  const id = `Numbers-${label}-${prop}`.replaceAll(" ", "_")
   return (
     <div className="Numbers">
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className="AlignRight">
+        {label}
+      </label>
       <input
         id={id}
         type="number"
