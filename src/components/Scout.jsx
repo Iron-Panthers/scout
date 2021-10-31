@@ -9,6 +9,7 @@ import Tabs from "./inputs/Tabs"
 import Timer from "./inputs/Timer"
 import Undo from "./inputs/Undo"
 import Info from "./inputs/Info"
+import Bool from "./inputs/Bool"
 
 import "./Scout.scss"
 
@@ -42,6 +43,12 @@ const Scout = () => {
       case "teleop":
         return (
           <>
+            <Bool
+              wide
+              prop="underTrench"
+              label="Trench Use"
+              color="green"
+            ></Bool>
             <Shoot></Shoot>
           </>
         )
