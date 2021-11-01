@@ -6,6 +6,8 @@ const initialSettings = {
     minor: 1,
     patch: 0,
   },
+  autoIncMatch: true, // increase match number by 1 on reset
+  bypassIOSCheck: false,
 }
 
 // this is a function so that it remains reflective of localStorage if its reset

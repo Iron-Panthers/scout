@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { reducer, initialState } from "./reducer"
 import { reducer as settingsReducer, initialLocalSettings } from "./settings"
 
@@ -7,10 +7,14 @@ export const Context = React.createContext({
   dispatch: () => null,
 })
 
+export const useAppState = () => useContext(Context)
+
 export const Settings = React.createContext({
   state: initialLocalSettings,
   dispatch: () => null,
 })
+
+export const useSettings = () => useContext(Settings)
 
 export const Provider = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState)

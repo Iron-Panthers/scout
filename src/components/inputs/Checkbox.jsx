@@ -1,11 +1,11 @@
-import React, { useContext } from "react"
-import { Context } from "../../state"
+import React from "react"
+import { useAppState } from "../../state"
 import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const Checkbox = ({ label, prop }) => {
-  const [state, dispatch] = useContext(Context)
+const Checkbox = ({ label, prop, useCtx = useAppState }) => {
+  const [state, dispatch] = useCtx()
 
   const id = `${prop}-checkbox`
   const value = state[prop]
@@ -28,6 +28,7 @@ const Checkbox = ({ label, prop }) => {
 Checkbox.propTypes = {
   label: PropTypes.string.isRequired,
   prop: PropTypes.string.isRequired,
+  useCtx: PropTypes.func,
 }
 
 export default Checkbox
