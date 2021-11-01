@@ -1,3 +1,5 @@
+import { getSettings } from "./settings"
+
 const shooting = {
   innerOuterSucc: 0,
   innerOuterFail: 0,
@@ -100,7 +102,7 @@ export const reducer = (state, action) => {
       return {
         ...initialState,
         matchNum:
-          typeof state.matchNum === "number"
+          typeof state.matchNum === "number" && getSettings().autoIncMatch
             ? state.matchNum + 1
             : initialState.matchNum,
         matchType: state.matchType,
