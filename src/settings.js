@@ -19,7 +19,7 @@ export const getSettings = () => ({
 
 export const initialLocalSettings = getSettings()
 
-export const reducer = (settings, action) => {
+const internalReducer = (settings, action) => {
   switch (action.type) {
     case "reset":
       delete localStorage.settings
@@ -32,4 +32,10 @@ export const reducer = (settings, action) => {
     default:
       return settings
   }
+}
+
+export const reducer = (settings, action) => {
+  const newSettings = internalReducer(settings, action)
+  localStorage.settings = JSON.stringify(newSettings)
+  return newSettings
 }
