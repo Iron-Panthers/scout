@@ -15,7 +15,7 @@ const Checkbox = ({ label, prop, useCtx = useAppState }) => {
       <input
         id={id}
         type="checkbox"
-        onClick={(event) => {
+        onChange={() => {
           dispatch({ type: "set", prop, val: !value })
         }}
         checked={value}
