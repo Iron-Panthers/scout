@@ -20,6 +20,11 @@ const Settings = () => {
         label="disable userAgent parsing to detect iOS"
         prop="bypassIOSCheck"
       />
+      <Checkbox
+        useCtx={useSettings}
+        label="enable beep feedback on successful scan"
+        prop="scannerBeep"
+      />
       <Reset wide></Reset>
     </>
   )

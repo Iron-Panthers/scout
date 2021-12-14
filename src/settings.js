@@ -8,6 +8,7 @@ const initialSettings = {
   },
   autoIncMatch: true, // increase match number by 1 on reset
   bypassIOSCheck: false,
+  scannerBeep: true,
 }
 
 // this is a function so that it remains reflective of localStorage if its reset

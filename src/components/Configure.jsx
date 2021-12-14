@@ -1,6 +1,6 @@
 import React from "react"
 
-import { getSettings } from "../settings"
+import { useSettings } from "../state"
 
 import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
@@ -8,6 +8,7 @@ import Numbers from "./inputs/Numbers"
 import SetPanel from "./inputs/SetPanel"
 
 const Configure = () => {
+  const [settings] = useSettings()
   const isIOS =
     ([
       "iPad Simulator",
@@ -18,7 +19,7 @@ const Configure = () => {
       "iPod",
     ].includes(navigator.platform) ||
       (navigator.userAgent.includes("Mac") && "ontouchend" in document)) &&
-    !getSettings().bypassIOSCheck
+    !settings.bypassIOSCheck
 
   return (
     <>
