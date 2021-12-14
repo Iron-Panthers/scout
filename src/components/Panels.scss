@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   & > *,
+  & > div.PWA > *,
   & .Tabs > .Tab {
     min-height: 0px;
     margin: 0px;
