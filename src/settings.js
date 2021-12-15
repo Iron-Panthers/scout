@@ -7,13 +7,13 @@ export const initialSettings = {
     patch: 0,
   },
   autoIncMatch: true, // increase match number by 1 on reset
-  bypassIOSCheck: false,
+  IOSCheck: true,
   scannerBeep: true,
 }
 
 export const settingsLabels = {
   autoIncMatch: "automatically increase match number by one when reset",
-  bypassIOSCheck: "disable userAgent parsing to detect iOS",
+  IOSCheck: "userAgent parsing to detect iOS",
   scannerBeep: "beep feedback on successful scan",
 }
 

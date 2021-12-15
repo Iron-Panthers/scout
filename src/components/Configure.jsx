@@ -19,7 +19,7 @@ const Configure = () => {
       "iPod",
     ].includes(navigator.platform) ||
       (navigator.userAgent.includes("Mac") && "ontouchend" in document)) &&
-    !settings.bypassIOSCheck
+    settings.IOSCheck
 
   return (
     <>
