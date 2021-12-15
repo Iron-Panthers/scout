@@ -52,6 +52,9 @@ label.Checkbox {
     margin-right: 10vw;
     margin-left: 5vw;
   }
+  &[warn="1"] {
+    background-color: hsl(354, 100%, 95%);
+  }
 }
 
 button {

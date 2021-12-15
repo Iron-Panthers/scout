@@ -1,5 +1,5 @@
 import React, { useMemo } from "react"
-import { settingsLabels } from "../settings"
+import { initialSettings, settingsLabels } from "../settings"
 import { useSettings } from "../state"
 import Checkbox from "./inputs/Checkbox"
 import Reset from "./inputs/Reset"
@@ -8,13 +8,14 @@ const Settings = () => {
   const [settings, dispatch] = useSettings()
   const version = settings.version
   const checkboxes = useMemo(() => {
-    const { version, ...settingsIter } = { ...settings }
+    const { version: _version, ...settingsIter } = { ...settings }
     return Object.entries(settingsIter).map(([key, val]) => (
       <Checkbox
         useCtx={useSettings}
         label={settingsLabels[key] ?? key}
         prop={key}
         key={key}
+        warn={initialSettings[key] !== val}
       />
     ))
   }, [settings])
