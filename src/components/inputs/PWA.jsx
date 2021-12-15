@@ -3,7 +3,7 @@ import useAnim from "../../hooks/useAnim"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 import * as serviceWorkerRegistration from "../../serviceWorkerRegistration"
-import { antiUnload } from "../.."
+import antiUnload from "../../antiUnload"
 import { FaCog } from "react-icons/fa"
 
 import "./buttons.scss"
