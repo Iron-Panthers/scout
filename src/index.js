@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
+import antiUnload from "./antiUnload"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,13 +11,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 )
-
-export function antiUnload(e) {
-  // Cancel the event
-  e.preventDefault() // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-  // Chrome requires returnValue to be set
-  e.returnValue = ""
-}
 
 // prevent reload
 window.addEventListener("beforeunload", antiUnload)
