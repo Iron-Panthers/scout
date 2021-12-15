@@ -1,4 +1,4 @@
-const initialSettings = {
+export const initialSettings = {
   // semver.org
   version: {
     // 0.1.0
@@ -9,6 +9,12 @@ const initialSettings = {
   autoIncMatch: true, // increase match number by 1 on reset
   bypassIOSCheck: false,
   scannerBeep: true,
+}
+
+export const settingsLabels = {
+  autoIncMatch: "automatically increase match number by one when reset",
+  bypassIOSCheck: "disable userAgent parsing to detect iOS",
+  scannerBeep: "beep feedback on successful scan",
 }
 
 // this is a function so that it remains reflective of localStorage if its reset
