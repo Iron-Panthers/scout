@@ -30,7 +30,7 @@ textarea:focus {
 select,
 input[type="number"],
 textarea {
-  padding: 2vw;
+  padding: 2px 2vw;
 }
 
 p,
@@ -41,11 +41,19 @@ div.Center {
   justify-content: center;
 }
 
+label.AlignRight {
+  justify-content: right;
+}
+
 label.Checkbox {
   justify-content: flex-start;
+  user-select: none;
   & > input {
     margin-right: 10vw;
     margin-left: 5vw;
+  }
+  &[warn="1"] {
+    background-color: hsl(354, 100%, 95%);
   }
 }
 
@@ -67,4 +75,22 @@ input[type="checkbox"] {
   // makes padding the same as buttons
   padding-top: 1px;
   padding-bottom: 1px;
+}
+
+div.Numbers {
+  grid-column: span 2;
+  display: flex;
+  gap: 1vw;
+  padding-left: 3vw;
+  & > input {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0px;
+    width: 0px;
+  }
+  & > label {
+    white-space: nowrap;
+    // scss thinks we want pre-compile min so we need to bypass it
+    flex-basis: unquote("min(25vw, 150px)");
+  }
 }

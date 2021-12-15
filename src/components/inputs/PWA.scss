@@ -10,15 +10,33 @@
   }
 }
 
-button.PWA.blue {
-  &:disabled {
-    background-color: hsl(206, 60%, 90%);
-    &[animate="1"] {
-      animation: pwachange 1.3s cubic-bezier(0.23, 1.06, 0.48, 0.7);
-    }
+div.PWA {
+  &.hidden {
+    display: none;
   }
-  background-color: hsl(206, 100%, 76%);
-  &:active:enabled {
-    background-color: hsl(206, 100%, 56%);
+  display: flex;
+  & > button#Settings {
+    position: absolute;
+    top: 1vmin;
+    right: 1vmin;
+    width: 11vmin;
+    height: 11vmin;
+    font-size: 10vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & > button.blue {
+    flex-grow: 1;
+    &:disabled {
+      background-color: hsl(206, 60%, 90%);
+      &[animate="1"] {
+        animation: pwachange 1.3s cubic-bezier(0.23, 1.06, 0.48, 0.7);
+      }
+    }
+    background-color: hsl(206, 100%, 76%);
+    &:active:enabled {
+      background-color: hsl(206, 100%, 56%);
+    }
   }
 }

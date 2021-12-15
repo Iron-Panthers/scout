@@ -4,6 +4,7 @@ import { Context } from "../../state"
 import PropTypes from "prop-types"
 import * as serviceWorkerRegistration from "../../serviceWorkerRegistration"
 import { antiUnload } from "../.."
+import { FaCog } from "react-icons/fa"
 
 import "./buttons.scss"
 import "./PWA.scss"
@@ -54,23 +55,41 @@ const PWA = ({ modes }) => {
   }, [])
 
   return (
-    <button
-      className="wide blue PWA"
-      animate={anim}
-      onAnimationEnd={onAnimEnd}
-      hidden={!(modes ?? []).includes(state.mode)}
-      disabled={status !== "tap to apply update"}
-      onClick={() => {
-        waiting.current.addEventListener("statechange", (e) => {
-          if (e.target.state === "activated") window.location.reload()
-        })
-        window.removeEventListener("beforeunload", antiUnload)
-        waiting.current.postMessage({ type: "SKIP_WAITING" })
-        setStatus("updating...")
-      }}
+    <div
+      className={`wide PWA ${
+        !(modes ?? []).includes(state.mode) ? " hidden" : ""
+      }`}
     >
-      {status !== false ? status : swStatus}
-    </button>
+      <button
+        className="blue"
+        animate={anim}
+        onAnimationEnd={onAnimEnd}
+        disabled={status !== "tap to apply update"}
+        onClick={() => {
+          waiting.current.addEventListener("statechange", (e) => {
+            if (e.target.state === "activated") window.location.reload()
+          })
+          window.removeEventListener("beforeunload", antiUnload)
+          waiting.current.postMessage({ type: "SKIP_WAITING" })
+          setStatus("updating...")
+        }}
+      >
+        {status !== false ? status : swStatus}
+      </button>
+      <button
+        className="green"
+        id="Settings"
+        onClick={() => {
+          dispatch({
+            type: "set",
+            prop: "mode",
+            val: "Settings",
+          })
+        }}
+      >
+        <FaCog />
+      </button>
+    </div>
   )
 }
 

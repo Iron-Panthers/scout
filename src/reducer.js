@@ -1,3 +1,5 @@
+import { getSettings } from "./settings"
+
 const shooting = {
   innerOuterSucc: 0,
   innerOuterFail: 0,
@@ -6,7 +8,7 @@ const shooting = {
 }
 
 export const initialState = {
-  mode: "Configure", // Configure, Scout, Review, ScanData
+  mode: "Configure", // Configure, Scout, Review, ScanData, Settings
   team: undefined,
   matchType: "Qualification", //Test, Practice, Qualification, Quarterfinal, Semifinal, Final
   matchNum: undefined,
@@ -97,7 +99,14 @@ export const reducer = (state, action) => {
   }
   switch (action.type) {
     case "reset":
-      return initialState
+      return {
+        ...initialState,
+        matchNum:
+          typeof state.matchNum === "number" && getSettings().autoIncMatch
+            ? state.matchNum + 1
+            : initialState.matchNum,
+        matchType: state.matchType,
+      }
     case "next_mode":
       const modes = ["Configure", "Scout", "Review", "ScanData"]
       return clearUndo({

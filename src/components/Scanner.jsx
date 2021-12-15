@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import { useSettings } from "../state"
 
 import Reset from "./inputs/Reset"
 import QrReader from "react-qr-reader"
@@ -11,6 +12,8 @@ import "./inputs/inputs.scss"
 import "./inputs/buttons.scss"
 
 const Scanner = () => {
+  const [settings] = useSettings()
+
   const [error, setError] = useState(false)
   const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
   const [scanCount, setScanCount] = useState(scans.current.size)
@@ -18,6 +21,7 @@ const Scanner = () => {
   const [scanHint, setScanHint] = useState("")
   const [scan, setScan] = useState(true)
   const ctx = useRef({})
+
   const beep = () => {
     const time = ctx.current.currentTime
     const osc = ctx.current.createOscillator()
@@ -56,7 +60,7 @@ const Scanner = () => {
                 scans.current.add(val)
                 setScanCount(scanCount + 1)
                 localStorage.scanSet = JSON.stringify(Array.from(scans.current))
-                beep()
+                if (settings.scannerBeep) beep()
                 setScanHint("stored")
               } else {
                 setScanHint("already scanned")
