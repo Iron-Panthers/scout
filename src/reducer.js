@@ -26,11 +26,8 @@ export const initialState = {
   },
   endgame: {
     climb: false,
-    park: false,
-    level: false,
-    notLevel: false,
-    levelTime: undefined, //value of timeLeft when level is set
-    levelQuality: "None",
+    fail: false,
+    level: "None",
   },
   underTrench: false,
   defense: false,

@@ -51,19 +51,19 @@ const Scout = () => {
               phase
               options={{
                 opA: { label: "Climb", prop: "climb", color: "green" },
-                opB: { label: "Park", prop: "park", color: "red" },
+                opB: { label: "Fail", prop: "fail", color: "red" },
               }}
             ></Switch>
             <Dropdown
               wide
               phase
-              prop="levelQuality"
+              prop="level"
               options={[
                 "None",
-                "Fail",
-                "Single Climb",
-                "Double Climb",
-                "Triple Climb",
+                "1 Low",
+                "2 Mid Rung",
+                "3 High Rung",
+                "4 Traversal Rung",
               ]}
             ></Dropdown>
           </>
