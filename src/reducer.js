@@ -1,5 +1,7 @@
 import { getSettings } from "./settings"
 
+const version = 1
+
 const shooting = {
   upperSucc: 0,
   upperFail: 0,
@@ -8,6 +10,7 @@ const shooting = {
 }
 
 export const initialState = {
+  version, // this one should not be changed, but there is no other way to ensure it is always included
   mode: "Configure", // Configure, Scout, Review, ScanData, Settings
   team: undefined,
   matchType: "Qualification", //Test, Practice, Qualification, Quarterfinal, Semifinal, Final

@@ -23,7 +23,7 @@ const Scout = () => {
       case "auto":
         return (
           <>
-            <Count />
+            <Count prop="pickup" phase label="Ball Pickup" color="green" />
             <Bool prop="taxi" phase label="Taxi" color="green" />
             <Shoot></Shoot>
           </>
