@@ -31,7 +31,8 @@ export const initialState = {
   },
   wrongCargo: false,
   defense: false,
-  problems: false,
+  scoutProblems: false,
+  robotProblems: false,
   comments: "",
   undoStack: {
     auto: [],
