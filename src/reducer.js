@@ -14,7 +14,6 @@ export const initialState = {
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
-    pathType: "NONE",
     ...shooting,
   },
   teleop: {
