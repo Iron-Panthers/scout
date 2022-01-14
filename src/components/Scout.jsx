@@ -6,7 +6,6 @@ import Next from "./inputs/Next"
 import Shoot from "./inputs/Shoot"
 import Switch from "./inputs/Switch"
 import Tabs from "./inputs/Tabs"
-import Timer from "./inputs/Timer"
 import Undo from "./inputs/Undo"
 import Info from "./inputs/Info"
 import Bool from "./inputs/Bool"
@@ -16,7 +15,6 @@ import "./Scout.scss"
 
 const Scout = () => {
   const [state, dispatch] = useContext(Context)
-  const time = useRef(150)
 
   const phaseTabContent = (() => {
     switch (state.phase) {
