@@ -82,8 +82,8 @@ const Scout = () => {
         <Tabs></Tabs>
       </div>
       {phaseTabContent}
+      {showNext && <Next wide></Next>}
       <Undo wide></Undo>
-      {showNext && <Next></Next>}
     </>
   )
 }
