@@ -1,8 +1,8 @@
 import { getSettings } from "./settings"
 
 const shooting = {
-  innerOuterSucc: 0,
-  innerOuterFail: 0,
+  upperSucc: 0,
+  upperFail: 0,
   lowerSucc: 0,
   lowerFail: 0,
 }
