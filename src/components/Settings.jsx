@@ -4,6 +4,8 @@ import { useSettings } from "../state"
 import Checkbox from "./inputs/Checkbox"
 import Reset from "./inputs/Reset"
 
+import { version as csvVersion } from "../reducer"
+
 const Settings = () => {
   const [settings, dispatch] = useSettings()
   const version = settings.version
@@ -21,8 +23,11 @@ const Settings = () => {
   }, [settings])
   return (
     <>
-      <p>{`Iron Pants 5026${Math.random() <= 0.1 ? "?" : "!"}`}</p>
-      <p>{`scout v${version.major}.${version.minor}.${version.patch}`}</p>
+      <div className="wide version">
+        <p>{`Iron Pants 5026${Math.random() <= 0.1 ? "?" : "!"}`}</p>
+        <p>{`scout v${version.major}.${version.minor}.${version.patch}`}</p>
+        <p>{`CSV API v${csvVersion}`}</p>
+      </div>
       {checkboxes}
       <Reset wide></Reset>
     </>
