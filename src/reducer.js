@@ -29,7 +29,7 @@ export const initialState = {
     fail: false,
     level: "None",
   },
-  underTrench: false,
+  wrongCargo: false,
   defense: false,
   problems: false,
   comments: "",

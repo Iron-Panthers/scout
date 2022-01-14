@@ -30,9 +30,9 @@ const Scout = () => {
         return (
           <>
             <Bool
-              prop="underTrench"
-              label="Trench Use"
-              trueLabel="Used Trench"
+              prop="wrongCargo"
+              label="Shoot Wrong Cargo"
+              trueLabel="Shot Wrong Cargo"
               color="green"
             ></Bool>
             <Bool
