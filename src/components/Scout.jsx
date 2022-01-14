@@ -24,7 +24,7 @@ const Scout = () => {
         return (
           <>
             <Count />
-            <Bool />
+            <Bool prop="taxi" phase label="Taxi" color="green" />
             <Shoot></Shoot>
           </>
         )

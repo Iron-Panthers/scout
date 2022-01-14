@@ -14,6 +14,8 @@ export const initialState = {
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
+    pickup: 0,
+    taxi: false,
     ...shooting,
   },
   teleop: {
