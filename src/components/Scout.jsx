@@ -47,9 +47,6 @@ const Scout = () => {
           </>
         )
       case "endgame":
-        const storeLevelTime = (action, undo) => {
-          action({ type: "level", time: time.current, undo })
-        }
         return (
           <>
             <Switch
@@ -58,14 +55,6 @@ const Scout = () => {
                 opA: { label: "Climb", prop: "climb", color: "green" },
                 opB: { label: "Park", prop: "park", color: "red" },
               }}
-            ></Switch>
-            <Switch
-              phase
-              options={{
-                opA: { label: "Level", prop: "level", color: "green" },
-                opB: { label: "Not Level", prop: "notLevel", color: "red" },
-              }}
-              onFlip={storeLevelTime}
             ></Switch>
             <Dropdown
               wide
@@ -96,7 +85,6 @@ const Scout = () => {
       </div>
       {phaseTabContent}
       <Undo wide></Undo>
-      <Timer timeRef={time} wide={!showNext}></Timer>
       {showNext && <Next></Next>}
     </>
   )
