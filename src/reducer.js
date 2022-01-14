@@ -1,6 +1,6 @@
 import { getSettings } from "./settings"
 
-const version = 1
+export const version = 1
 
 const shooting = {
   upperSucc: 0,
