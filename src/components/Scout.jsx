@@ -59,7 +59,7 @@ const Scout = () => {
               phase
               prop="level"
               options={[
-                "None",
+                "0 None",
                 "1 Low",
                 "2 Mid Rung",
                 "3 High Rung",
