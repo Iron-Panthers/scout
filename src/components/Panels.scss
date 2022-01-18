@@ -14,4 +14,8 @@
     margin: 0px;
     font-size: 1rem;
   }
+  & .version {
+    display: flex;
+    justify-content: space-around;
+  }
 }

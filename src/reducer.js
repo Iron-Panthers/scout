@@ -1,20 +1,25 @@
 import { getSettings } from "./settings"
+import { csvApi } from "../package.json"
+
+export const version = csvApi ?? 69
 
 const shooting = {
-  innerOuterSucc: 0,
-  innerOuterFail: 0,
+  upperSucc: 0,
+  upperFail: 0,
   lowerSucc: 0,
   lowerFail: 0,
 }
 
 export const initialState = {
+  version, // this one should not be changed, but there is no other way to ensure it is always included
   mode: "Configure", // Configure, Scout, Review, ScanData, Settings
   team: undefined,
-  matchType: "Qualification", //Test, Practice, Qualification, Quarterfinal, Semifinal, Final
+  matchType: "Qualification", //Test, Practice, Qualification
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
-    pathType: "NONE",
+    pickup: 0,
+    taxi: false,
     ...shooting,
   },
   teleop: {
@@ -22,15 +27,13 @@ export const initialState = {
   },
   endgame: {
     climb: false,
-    park: false,
-    level: false,
-    notLevel: false,
-    levelTime: undefined, //value of timeLeft when level is set
-    levelQuality: "None",
+    fail: false,
+    level: "None",
   },
-  underTrench: false,
+  wrongCargo: false,
   defense: false,
-  problems: false,
+  scoutProblems: false,
+  robotProblems: false,
   comments: "",
   undoStack: {
     auto: [],

@@ -6,37 +6,23 @@ import Next from "./inputs/Next"
 import Shoot from "./inputs/Shoot"
 import Switch from "./inputs/Switch"
 import Tabs from "./inputs/Tabs"
-import Timer from "./inputs/Timer"
 import Undo from "./inputs/Undo"
 import Info from "./inputs/Info"
 import Bool from "./inputs/Bool"
+import Count from "./inputs/Count"
 
 import "./Scout.scss"
 
 const Scout = () => {
   const [state, dispatch] = useContext(Context)
-  const time = useRef(150)
 
   const phaseTabContent = (() => {
     switch (state.phase) {
       case "auto":
         return (
           <>
-            <Dropdown
-              wide
-              phase
-              prop="pathType"
-              options={[
-                "NONE",
-                "LINE",
-                "SHOOT 3 + LINE",
-                "LINE + LOWER 3",
-                "STEAL 2",
-                "MID BALLS",
-                "TRENCH BALLS",
-                "OTHER",
-              ]}
-            ></Dropdown>
+            <Count prop="pickup" phase label="Ball Pickup" color="green" />
+            <Bool prop="taxi" phase label="Taxi" color="green" />
             <Shoot></Shoot>
           </>
         )
@@ -44,9 +30,9 @@ const Scout = () => {
         return (
           <>
             <Bool
-              prop="underTrench"
-              label="Trench Use"
-              trueLabel="Used Trench"
+              prop="wrongCargo"
+              label="Shoot Wrong Cargo"
+              trueLabel="Shot Wrong Cargo"
               color="green"
             ></Bool>
             <Bool
@@ -59,36 +45,25 @@ const Scout = () => {
           </>
         )
       case "endgame":
-        const storeLevelTime = (action, undo) => {
-          action({ type: "level", time: time.current, undo })
-        }
         return (
           <>
             <Switch
               phase
               options={{
                 opA: { label: "Climb", prop: "climb", color: "green" },
-                opB: { label: "Park", prop: "park", color: "red" },
+                opB: { label: "Fail", prop: "fail", color: "red" },
               }}
-            ></Switch>
-            <Switch
-              phase
-              options={{
-                opA: { label: "Level", prop: "level", color: "green" },
-                opB: { label: "Not Level", prop: "notLevel", color: "red" },
-              }}
-              onFlip={storeLevelTime}
             ></Switch>
             <Dropdown
               wide
               phase
-              prop="levelQuality"
+              prop="level"
               options={[
-                "None",
-                "Fail",
-                "Single Climb",
-                "Double Climb",
-                "Triple Climb",
+                "0 None",
+                "1 Low",
+                "2 Mid Rung",
+                "3 High Rung",
+                "4 Traversal Rung",
               ]}
             ></Dropdown>
           </>
@@ -107,9 +82,8 @@ const Scout = () => {
         <Tabs></Tabs>
       </div>
       {phaseTabContent}
+      {showNext && <Next wide></Next>}
       <Undo wide></Undo>
-      <Timer timeRef={time} wide={!showNext}></Timer>
-      {showNext && <Next></Next>}
     </>
   )
 }

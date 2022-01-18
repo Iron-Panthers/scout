@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useSettings } from "../state"
 
+import { version } from "../reducer"
+
 import Reset from "./inputs/Reset"
 import QrReader from "react-qr-reader"
 import SetPanel from "./inputs/SetPanel"
@@ -56,14 +58,17 @@ const Scanner = () => {
                 if (scanHint !== "") setScanHint("")
                 return
               }
-              if (!scans.current.has(val)) {
+              const versionMatch = val.version === version
+              if (!scans.current.has(val) && versionMatch) {
                 scans.current.add(val)
                 setScanCount(scanCount + 1)
                 localStorage.scanSet = JSON.stringify(Array.from(scans.current))
                 if (settings.scannerBeep) beep()
                 setScanHint("stored")
               } else {
-                setScanHint("already scanned")
+                setScanHint(
+                  !versionMatch ? "CSV versioning mismatch" : "already scanned"
+                )
               }
             }}
             onError={(err) => {
