@@ -4,9 +4,9 @@ export const initialSettings = {
   // semver.org
   version: {
     // 0.1.0
-    major: vArray[0] ?? 0,
-    minor: vArray[1] ?? 0,
-    patch: vArray[2] ?? 0,
+    major: parseInt(vArray[0] ?? 0),
+    minor: parseInt(vArray[1] ?? 0),
+    patch: parseInt(vArray[2] ?? 0),
   },
   autoIncMatch: true, // increase match number by 1 on reset
   IOSCheck: true,
