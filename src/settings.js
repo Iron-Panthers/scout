@@ -1,10 +1,12 @@
+import { version } from "../package.json"
+const vArray = version.split(".")
 export const initialSettings = {
   // semver.org
   version: {
     // 0.1.0
-    major: 0,
-    minor: 1,
-    patch: 0,
+    major: vArray[0] ?? 0,
+    minor: vArray[1] ?? 0,
+    patch: vArray[2] ?? 0,
   },
   autoIncMatch: true, // increase match number by 1 on reset
   IOSCheck: true,
@@ -19,9 +21,13 @@ export const settingsLabels = {
 
 // this is a function so that it remains reflective of localStorage if its reset
 // this could also be used to get a read only copy of settings outside a component
+// handle version upgrade here
 export const getSettings = () => ({
   ...initialSettings,
   ...JSON.parse(localStorage.settings ?? "{}"),
+  version: {
+    ...initialSettings.version,
+  },
 })
 
 export const initialLocalSettings = getSettings()
