@@ -13,7 +13,7 @@ export const initialState = {
   version, // this one should not be changed, but there is no other way to ensure it is always included
   mode: "Configure", // Configure, Scout, Review, ScanData, Settings
   team: undefined,
-  matchType: "Qualification", //Test, Practice, Qualification, Quarterfinal, Semifinal, Final
+  matchType: "Qualification", //Test, Practice, Qualification
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {

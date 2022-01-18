@@ -27,14 +27,7 @@ const Configure = () => {
       <Dropdown
         wide
         prop="matchType"
-        options={[
-          "Test",
-          "Practice",
-          "Qualification",
-          "Quarterfinal",
-          "Semifinal",
-          "Final",
-        ]}
+        options={["Test", "Practice", "Qualification"]}
       ></Dropdown>
       <Numbers label="Match #" prop="matchNum" idealLength={2}></Numbers>
       {!isIOS && <SetPanel label="Scanner" panelName="Scanner"></SetPanel>}
