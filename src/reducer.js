@@ -1,6 +1,7 @@
 import { getSettings } from "./settings"
+import { csvApi } from "../package.json"
 
-export const version = 1
+export const version = csvApi ?? 69
 
 const shooting = {
   upperSucc: 0,
