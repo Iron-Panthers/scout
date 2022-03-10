@@ -76,8 +76,9 @@ const Scanner = () => {
                 if (scanHint !== "") setScanHint("")
                 return
               }
-              console.log(parseCsvBody(val))
-              const versionMatch = val.version === version
+              let objVal = parseCsvBody(val)
+
+              const versionMatch = Number.parseInt(objVal.version) === version
               if (!scans.current.has(val) && versionMatch) {
                 scans.current.add(val)
                 setScanCount(scanCount + 1)
