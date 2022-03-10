@@ -9,9 +9,27 @@ import SetPanel from "./inputs/SetPanel"
 
 import useAnim from "../hooks/useAnim"
 
+import { header } from "../csv"
+
 import "./Scanner.scss"
 import "./inputs/inputs.scss"
 import "./inputs/buttons.scss"
+import papaparse from "papaparse"
+
+const parseCsvBody = (body) => {
+  const obj = papaparse.parse(`${header}\r\n${body}`)
+  const headArray = obj.data[0]
+  const bodyArray = obj.data[1]
+
+  let returnObj = {}
+
+  headArray.forEach((row, i) => {
+    const value = bodyArray[i]
+    returnObj[row] = value
+  })
+
+  return returnObj
+}
 
 const Scanner = () => {
   const [settings] = useSettings()
@@ -58,7 +76,9 @@ const Scanner = () => {
                 if (scanHint !== "") setScanHint("")
                 return
               }
-              const versionMatch = val.version === version
+              let objVal = parseCsvBody(val)
+
+              const versionMatch = Number.parseInt(objVal.version) === version
               if (!scans.current.has(val) && versionMatch) {
                 scans.current.add(val)
                 setScanCount(scanCount + 1)
