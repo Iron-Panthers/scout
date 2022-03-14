@@ -1,6 +1,6 @@
 {
   "name": "scout",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "csvApi": 1,
   "homepage": "https://iron-panthers.github.io/scout",
   "private": false,
