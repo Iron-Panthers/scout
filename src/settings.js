@@ -1,4 +1,4 @@
-import { version } from "../package.json"
+const version = require("../package.json").version
 const vArray = version.split(".")
 export const initialSettings = {
   // semver.org

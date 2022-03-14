@@ -1,5 +1,5 @@
 import { getSettings } from "./settings"
-import { csvApi } from "../package.json"
+const csvApi = require("../package.json").csvApi
 
 export const version = csvApi ?? 69
 
