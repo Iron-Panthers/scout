@@ -1,8 +1,8 @@
 {
   "name": "scout",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "csvApi": 1,
-  "homepage": "https://iron-panthers.github.io/scout",
+  "homepage": "scout.ironpanthers.com",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
