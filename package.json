@@ -2,7 +2,7 @@
   "name": "scout",
   "version": "1.0.3",
   "csvApi": 1,
-  "homepage": "scout.ironpanthers.com",
+  "homepage": "scout.ironpanthers.com/",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
