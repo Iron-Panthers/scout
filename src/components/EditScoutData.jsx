@@ -4,9 +4,21 @@ import { useContext, useMemo } from "react"
 
 import "./EditScoutData.scss"
 
-const labeledElement = (label, element, vertical) => {
+const elementTypes = Object.freeze({
+  Number: "Number",
+  String: "String",
+  Boolean: "Boolean",
+  Undefined: "Undefined",
+  Null: "Null",
+  Object: "Object",
+})
+
+const labeledElement = (label, element, type, vertical) => {
   return (
-    <div key={label} className={`labeledElement${vertical ? " vertical" : ""}`}>
+    <div
+      key={label}
+      className={`labeledElement ${type}${vertical ? " vertical" : ""}`}
+    >
       <p>{`${label}:`}</p>
       {element}
     </div>
@@ -14,22 +26,30 @@ const labeledElement = (label, element, vertical) => {
 }
 
 const labeledValue = (label, value) => {
+  const partialLabeledElement = (value, type) =>
+    labeledElement(label, <p>{value}</p>, type)
   // this set of code prevents react from messing up our data by assuming we dont wanna render anything
-  let string
-  if (Number.isFinite(value)) string = value.toString()
-  else if (value === false) string = "false"
-  else if (value === null) string = "null"
-  else if (value === undefined) string = "undefined"
-  else string = `"${value}"`
-
-  return labeledElement(label, <p>{string}</p>)
+  if (Number.isFinite(value))
+    return partialLabeledElement(value.toString(), elementTypes.Number)
+  else if (value === false)
+    return partialLabeledElement("false", elementTypes.Boolean)
+  else if (value === null)
+    return partialLabeledElement("null", elementTypes.Null)
+  else if (value === undefined)
+    return partialLabeledElement("undefined", elementTypes.Undefined)
+  return partialLabeledElement(`"${value}"`, elementTypes.String)
 }
 
 const objectVisualizer = (obj) =>
   Object.entries(obj).map(([key, value]) => {
     if (Object(value) === value) {
       // is an object, we need to go deeper
-      return labeledElement(key, objectVisualizer(value), true)
+      return labeledElement(
+        key,
+        objectVisualizer(value),
+        elementTypes.Object,
+        true
+      )
     }
 
     return labeledValue(key, value)

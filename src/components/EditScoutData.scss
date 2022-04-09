@@ -1,6 +1,13 @@
 $tab-size: 2em;
 $key-value-gap: $tab-size / 4;
 
+$violet: #cc99c9;
+$blue: #9ec1cf;
+$green: #9ee09e;
+$yellow: #fdfd97;
+$orange: #feb144;
+$red: #ff6663;
+
 .DataEditor,
 .labeledElement {
   display: flex;
@@ -18,14 +25,39 @@ $key-value-gap: $tab-size / 4;
     margin: 0;
   }
 
+  // type colors
+  &.Object > p:first-child {
+    background-color: $blue;
+  }
+
+  &.String {
+    background-color: $orange;
+  }
+
+  &.Number {
+    background-color: $yellow;
+  }
+
+  &.Boolean {
+    & :first-child {
+      background-color: $green;
+    }
+  }
+
+  &.Null,
+  &.Undefined {
+    background-color: $violet;
+  }
+  // end type colors
+
   flex-direction: row;
   &.vertical {
     flex-direction: column;
     & .labeledElement {
-      padding-left: $tab-size;
+      margin-left: $tab-size;
     }
   }
   & p:first-child {
-    padding-right: $key-value-gap;
+    margin-right: $key-value-gap;
   }
 }
