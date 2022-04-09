@@ -20,7 +20,7 @@ const labeledValue = (label, value) => {
   else if (value === false) string = "false"
   else if (value === null) string = "null"
   else if (value === undefined) string = "undefined"
-  else string = value
+  else string = `"${value}"`
 
   return labeledElement(label, <p>{string}</p>)
 }
@@ -40,7 +40,14 @@ const EditScoutData = () => {
 
   console.log(state)
 
-  const data = useMemo(() => objectVisualizer(state), [state])
+  const data = useMemo(
+    () =>
+      objectVisualizer({
+        ...state,
+        test: { test: 1, t: 2, bl: { a: 1, b: 2, c: 4 } },
+      }),
+    [state]
+  )
 
   return (
     <>
