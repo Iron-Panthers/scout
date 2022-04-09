@@ -26,8 +26,9 @@ const labeledElement = (label, element, type, vertical) => {
 }
 
 const labeledValue = (label, value) => {
-  const partialLabeledElement = (value, type) =>
-    labeledElement(label, <p>{value}</p>, type)
+  const partialLabeledElement = (val, type) =>
+    labeledElement(label, <p>{val}</p>, type)
+
   // this set of code prevents react from messing up our data by assuming we dont wanna render anything
   if (Number.isFinite(value))
     return partialLabeledElement(value.toString(), elementTypes.Number)
