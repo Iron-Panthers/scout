@@ -3,6 +3,7 @@ import React from "react"
 import Checkbox from "./inputs/Checkbox"
 import Freetext from "./inputs/Freetext"
 import Next from "./inputs/Next"
+import SetPanel from "./inputs/SetPanel"
 
 const Review = () => {
   return (
@@ -21,7 +22,8 @@ const Review = () => {
         prop="scoutProblems"
       ></Checkbox>
       <Freetext label="Comments?" prop="comments"></Freetext>
-      <Next wide></Next>
+      <SetPanel label="Edit Data" panelName="EditScoutData"></SetPanel>
+      <Next></Next>
     </>
   )
 }

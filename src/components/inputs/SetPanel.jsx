@@ -14,7 +14,7 @@ const SetPanel = ({ wide, label, panelName }) => {
         dispatch({ type: "set", prop: "mode", val: panelName })
       }}
     >
-      {label}
+      {label ?? panelName}
     </button>
   )
 }

@@ -11,6 +11,7 @@ import Settings from "./Settings"
 import "./Panels.scss"
 import Export from "./Export"
 import PWA from "./inputs/PWA"
+import EditScoutData from "./EditScoutData"
 
 const Panels = (props) => {
   const [state] = useContext(Context)
@@ -23,6 +24,8 @@ const Panels = (props) => {
         return <Scout></Scout>
       case "Review":
         return <Review></Review>
+      case "EditScoutData":
+        return <EditScoutData></EditScoutData>
       case "ScanData":
         return <ScanData></ScanData>
       case "Scanner":

@@ -1,0 +1,19 @@
+.DataEditor,
+.labeledElement {
+  display: flex;
+  align-items: flex-start;
+}
+
+.DataEditor {
+  flex-direction: column;
+}
+
+.labeledElement {
+  flex-direction: row;
+  &.vertical {
+    flex-direction: column;
+  }
+  & p:first-child {
+    padding-right: 0.2em;
+  }
+}
