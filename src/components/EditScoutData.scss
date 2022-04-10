@@ -66,4 +66,7 @@ $red: #ff6663;
   & :not(:first-child) {
     margin-left: $tab-size;
   }
+  &.hidden :not(:first-child) {
+    display: none;
+  }
 }
