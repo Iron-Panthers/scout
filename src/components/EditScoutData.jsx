@@ -34,27 +34,40 @@ const DataButton = ({ label, value, disabled, fn }) => {
   return button(`"${value}"`, elementTypes.String)
 }
 
-const LabelGroup = React.memo(({ label, obj }) => {
-  const [hidden, setHidden] = useState(false)
+const LabelGroup = React.memo(
+  ({ label, obj, selected, setSelected, parent }) => {
+    const [hidden, setHidden] = useState(true)
 
-  return (
-    <div className={`labelGroup${hidden ? " hidden" : ""}`}>
-      <button
-        className="Object label"
-        onClick={() => {
-          setHidden((previousVal) => !previousVal)
-        }}
-      >{`${label}: (tap to ${hidden ? "expand" : "collapse"})`}</button>
-      {objectVisualizer(obj)}
-    </div>
-  )
-})
+    return (
+      <div className={`labelGroup${hidden ? " hidden" : ""}`}>
+        <button
+          className="Object label"
+          onClick={() => {
+            setHidden((previousVal) => !previousVal)
+          }}
+        >{`${label}: (tap to ${hidden ? "expand" : "collapse"})`}</button>
+        {objectVisualizer(obj, selected, setSelected, parent)}
+      </div>
+    )
+  }
+)
 
-const objectVisualizer = (obj) =>
+const objectVisualizer = (obj, selected, setSelected, parent = ".") =>
   Object.entries(obj).map(([key, value]) => {
+    const path = `${parent}/${key}`
+
     if (Object(value) === value) {
       // is an object, we need to go deeper
-      return <LabelGroup obj={value} label={key} key={key} />
+      return (
+        <LabelGroup
+          obj={value}
+          label={key}
+          selected={selected}
+          setSelected={setSelected}
+          parent={path}
+          key={key}
+        />
+      )
     }
 
     return (
@@ -62,22 +75,40 @@ const objectVisualizer = (obj) =>
         key={key}
         label={key}
         value={value}
-        disabled={false}
-        fn={() => {}}
+        disabled={selected === path}
+        fn={() => {
+          console.log(path)
+          setSelected(path)
+        }}
       />
     )
   })
 
-const EditScoutData = () => {
+const ElementEditor = ({ path }) => {
   const [state, dispatch] = useContext(Context)
+
+  return (
+    <div className="ElementEditor">
+      <p>{path}</p>
+    </div>
+  )
+}
+
+const EditScoutData = () => {
+  const [state] = useContext(Context)
+  const [selected, setSelected] = useState(undefined)
 
   // console.log(state)
 
-  const data = useMemo(() => objectVisualizer(filterState(state)), [state])
+  const data = useMemo(
+    () => objectVisualizer(filterState(state), selected, setSelected),
+    [state, selected, setSelected]
+  )
 
   return (
     <>
       <div className="DataEditor">{data}</div>
+      <ElementEditor path={selected} />
       <SetPanel wide label="Done" panelName="Review" />
     </>
   )

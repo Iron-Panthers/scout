@@ -26,6 +26,11 @@ $red: #ff6663;
   }
 }
 
+.path {
+  max-height: min-content;
+  height: min-content;
+}
+
 .DataEditor {
   display: flex;
   align-items: flex-start;
