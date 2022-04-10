@@ -2,6 +2,8 @@ $tab-size: 2em;
 // additional gap
 $key-value-gap: 0;
 
+$padding: 0.19em;
+
 $violet: #cc99c9;
 $blue: #9ec1cf;
 $green: #9ee09e;
@@ -19,16 +21,14 @@ $red: #ff6663;
   flex-direction: column;
   overflow-y: scroll;
   grid-column: span 2;
+  grid-row: span 4;
   & p {
-    padding: 0.2em;
+    padding: $padding;
+    margin: 0;
   }
 }
 
 .labeledElement {
-  & p {
-    margin: 0;
-  }
-
   // type colors
   &.Object > p:first-child {
     background-color: $blue;
