@@ -1,8 +1,12 @@
-button {
+@mixin activeTransition {
   transition: background-color 0.5s cubic-bezier(0.37, 1.14, 0.53, 0.91);
   &:active {
     transition: background-color 0.1s cubic-bezier(0.17, 0.67, 0.11, 1.38);
   }
+}
+
+button {
+  @include activeTransition;
 
   color: black;
 

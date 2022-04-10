@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "inputs/buttons.scss";
 
 $tab-size: 2em;
 $key-value-gap: 0.4em;
@@ -19,6 +20,10 @@ $red: #ff6663;
   &.#{$type} {
     background-color: $color;
     border: $outline-thickness solid color.scale($color, $lightness: -40%);
+    @include buttons.activeTransition;
+    &:active {
+      background-color: color.scale($color, $lightness: 40%);
+    }
   }
 }
 
@@ -37,6 +42,7 @@ $red: #ff6663;
     margin: 0;
     padding-top: $padding-vertical;
     padding-bottom: $padding-vertical;
+    user-select: none;
   }
 }
 
