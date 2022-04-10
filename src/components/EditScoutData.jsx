@@ -14,66 +14,24 @@ const elementTypes = Object.freeze({
   Object: "Object",
 })
 
-const Button = ({ value, label, type, disabled, fn }) => (
-  <button
-    key={label}
-    className={`${type} label`}
-    disabled={disabled}
-    onClick={fn}
-  >{`${label}: ${value}`}</button>
-)
-
 const DataButton = ({ label, value, disabled, fn }) => {
+  const button = (val, type) => (
+    <button
+      className={`${type} label`}
+      disabled={disabled}
+      onClick={fn}
+    >{`${label}: ${val}`}</button>
+  )
+
   // this set of code prevents react from messing up our data by assuming we dont wanna render anything
   if (Number.isFinite(value))
-    return (
-      <Button
-        label={label}
-        value={value.toString()}
-        fn={fn}
-        disabled={disabled}
-        type={elementTypes.Number}
-      />
-    )
+    return button(value.toString(), elementTypes.Number)
   else if (value === false || value === true)
-    return (
-      <Button
-        label={label}
-        value={value.toString()}
-        fn={fn}
-        disabled={disabled}
-        type={elementTypes.Boolean}
-      />
-    )
-  else if (value === null)
-    return (
-      <Button
-        label={label}
-        value={"null"}
-        fn={fn}
-        disabled={disabled}
-        type={elementTypes.Null}
-      />
-    )
+    return button(value.toString(), elementTypes.Boolean)
+  else if (value === null) return button("null", elementTypes.Null)
   else if (value === undefined)
-    return (
-      <Button
-        label={label}
-        value={"undefined"}
-        fn={fn}
-        disabled={disabled}
-        type={elementTypes.Undefined}
-      />
-    )
-  return (
-    <Button
-      label={label}
-      value={`"${value}"`}
-      fn={fn}
-      disabled={disabled}
-      type={elementTypes.String}
-    />
-  )
+    return button("undefined!", elementTypes.Undefined)
+  return button(`"${value}"`, elementTypes.String)
 }
 
 const objectVisualizer = (obj) =>
@@ -81,7 +39,7 @@ const objectVisualizer = (obj) =>
     if (Object(value) === value) {
       // is an object, we need to go deeper
       return (
-        <div className="labelGroup">
+        <div className="labelGroup" key={key}>
           <button className="Object label">{`${key}: `}</button>
           {objectVisualizer(value)}
         </div>
@@ -89,16 +47,24 @@ const objectVisualizer = (obj) =>
     }
 
     return (
-      <DataButton label={key} value={value} disabled={false} fn={() => {}} />
+      <DataButton
+        key={key}
+        label={key}
+        value={value}
+        disabled={false}
+        fn={() => {}}
+      />
     )
   })
 
 const EditScoutData = () => {
   const [state, dispatch] = useContext(Context)
 
-  console.log(state)
+  // console.log(state)
 
   const data = useMemo(() => objectVisualizer(filterState(state)), [state])
+
+  console.log(data)
 
   return (
     <>
