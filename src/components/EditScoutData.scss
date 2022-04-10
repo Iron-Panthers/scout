@@ -1,5 +1,9 @@
+@use "sass:color";
+
 $tab-size: 2em;
 $key-value-gap: 0.4em;
+
+$outline-thickness: 0.2em;
 
 $padding-horizontal: 0.4em;
 $padding-vertical: 0.6em;
@@ -10,6 +14,13 @@ $green: #9ee09e;
 $yellow: #fdfd97;
 $orange: #feb144;
 $red: #ff6663;
+
+@mixin highlightType($type, $color) {
+  &.#{$type} {
+    background-color: $color;
+    outline: $outline-thickness solid color.scale($color, $lightness: -40%);
+  }
+}
 
 .DataEditor,
 .labeledElement {
@@ -31,28 +42,16 @@ $red: #ff6663;
 
 .labeledElement {
   // type colors
+  @include highlightType("Object > p:first-child", $blue);
+  @include highlightType(String, $orange);
+  @include highlightType(Number, $violet);
+  @include highlightType(Boolean, $green);
+  @include highlightType("Null, &.Undefined", $red);
+  // end type colors
+
   &.Object > p:first-child {
-    background-color: $blue;
     padding-right: $padding-vertical;
   }
-
-  &.String {
-    background-color: $orange;
-  }
-
-  &.Number {
-    background-color: $violet;
-  }
-
-  &.Boolean {
-    background-color: $green;
-  }
-
-  &.Null,
-  &.Undefined {
-    background-color: $red;
-  }
-  // end type colors
 
   flex-direction: row;
   &.vertical {
