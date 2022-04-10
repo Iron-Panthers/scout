@@ -41,24 +41,16 @@ $red: #ff6663;
   }
 
   &.Number {
-    background-color: $yellow;
+    background-color: $violet;
   }
 
   &.Boolean {
     background-color: $green;
-    & :nth-child(2) {
-      &[bool-val="false"] {
-        background-color: $red;
-      }
-      &[bool-val="true"] {
-        background-color: $green;
-      }
-    }
   }
 
   &.Null,
   &.Undefined {
-    background-color: $violet;
+    background-color: $red;
   }
   // end type colors
 
