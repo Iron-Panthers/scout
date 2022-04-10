@@ -46,7 +46,8 @@ $red: #ff6663;
   @include highlightType(String, $orange);
   @include highlightType(Number, $violet);
   @include highlightType(Boolean, $green);
-  @include highlightType("Null, &.Undefined", $red);
+  @include highlightType(Null, $red);
+  @include highlightType(Undefined, $red);
   // end type colors
 
   &.Object > p:first-child {
