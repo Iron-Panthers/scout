@@ -35,7 +35,7 @@ it("only renders next button on endgame tab", () => {
 
 it("counts shots", () => {
   for (let i = 0; i < 10; i++) {
-    expect(screen.getByText(`Lower port ${i}`)).toBeInTheDocument()
-    screen.getByText(/Lower port/).click()
+    expect(screen.getByText(`Lower hub ${i}`)).toBeInTheDocument()
+    screen.getByText(/Lower hub/).click()
   }
 })
