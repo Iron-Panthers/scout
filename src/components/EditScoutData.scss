@@ -18,6 +18,9 @@ $red: #ff6663;
   flex-direction: column;
   overflow-y: scroll;
   grid-column: span 2;
+  & p {
+    padding: 0.2em;
+  }
 }
 
 .labeledElement {
