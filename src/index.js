@@ -12,8 +12,9 @@ ReactDOM.render(
   document.getElementById("root")
 )
 
-// prevent reload
-window.addEventListener("beforeunload", antiUnload)
+// prevent reload, but not during development
+if (window.location.hostname !== "localhost")
+  window.addEventListener("beforeunload", antiUnload)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
