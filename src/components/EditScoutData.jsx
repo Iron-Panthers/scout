@@ -14,47 +14,83 @@ const elementTypes = Object.freeze({
   Object: "Object",
 })
 
-const labeledElement = (label, element, type, vertical) => {
-  return (
-    <div
-      key={label}
-      className={`labeledElement ${type}${vertical ? " vertical" : ""}`}
-    >
-      <p>{`${label}:`}</p>
-      {element}
-    </div>
-  )
-}
+const Button = ({ value, label, type, disabled, fn }) => (
+  <button
+    key={label}
+    className={`${type} label`}
+    disabled={disabled}
+    onClick={fn}
+  >{`${label}: ${value}`}</button>
+)
 
-const labeledValue = (label, value) => {
-  const partialLabeledElement = (val, type) =>
-    labeledElement(label, <p>{val}</p>, type)
-
+const DataButton = ({ label, value, disabled, fn }) => {
   // this set of code prevents react from messing up our data by assuming we dont wanna render anything
   if (Number.isFinite(value))
-    return partialLabeledElement(value.toString(), elementTypes.Number)
+    return (
+      <Button
+        label={label}
+        value={value.toString()}
+        fn={fn}
+        disabled={disabled}
+        type={elementTypes.Number}
+      />
+    )
   else if (value === false || value === true)
-    return partialLabeledElement(value.toString(), elementTypes.Boolean)
+    return (
+      <Button
+        label={label}
+        value={value.toString()}
+        fn={fn}
+        disabled={disabled}
+        type={elementTypes.Boolean}
+      />
+    )
   else if (value === null)
-    return partialLabeledElement("null", elementTypes.Null)
+    return (
+      <Button
+        label={label}
+        value={"null"}
+        fn={fn}
+        disabled={disabled}
+        type={elementTypes.Null}
+      />
+    )
   else if (value === undefined)
-    return partialLabeledElement("undefined", elementTypes.Undefined)
-  return partialLabeledElement(`"${value}"`, elementTypes.String)
+    return (
+      <Button
+        label={label}
+        value={"undefined"}
+        fn={fn}
+        disabled={disabled}
+        type={elementTypes.Undefined}
+      />
+    )
+  return (
+    <Button
+      label={label}
+      value={`"${value}"`}
+      fn={fn}
+      disabled={disabled}
+      type={elementTypes.String}
+    />
+  )
 }
 
 const objectVisualizer = (obj) =>
   Object.entries(obj).map(([key, value]) => {
     if (Object(value) === value) {
       // is an object, we need to go deeper
-      return labeledElement(
-        key,
-        objectVisualizer(value),
-        elementTypes.Object,
-        true
+      return (
+        <div className="labelGroup">
+          <button className="Object label">{`${key}: `}</button>
+          {objectVisualizer(value)}
+        </div>
       )
     }
 
-    return labeledValue(key, value)
+    return (
+      <DataButton label={key} value={value} disabled={false} fn={() => {}} />
+    )
   })
 
 const EditScoutData = () => {

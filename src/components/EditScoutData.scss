@@ -2,7 +2,6 @@
 @use "inputs/buttons.scss";
 
 $tab-size: 2em;
-$key-value-gap: 0.4em;
 
 $outline-thickness: 0.2em;
 
@@ -27,28 +26,18 @@ $red: #ff6663;
   }
 }
 
-.DataEditor,
-.labeledElement {
+.DataEditor {
   display: flex;
   align-items: flex-start;
-}
-
-.DataEditor {
   flex-direction: column;
   overflow-y: scroll;
   grid-column: span 2;
   grid-row: span 4;
-  & p {
-    margin: 0;
-    padding-top: $padding-vertical;
-    padding-bottom: $padding-vertical;
-    user-select: none;
-  }
 }
 
-.labeledElement {
+.label {
   // type colors
-  @include highlightType("Object > p:first-child", $blue);
+  @include highlightType(Object, $blue);
   @include highlightType(String, $orange);
   @include highlightType(Number, $violet);
   @include highlightType(Boolean, $green);
@@ -56,22 +45,25 @@ $red: #ff6663;
   @include highlightType(Undefined, $red);
   // end type colors
 
-  &.Object > p:first-child {
-    padding-right: $padding-vertical;
-  }
+  // &.Object > p:first-child {
+  //   padding-right: $padding-vertical;
+  // }
 
-  flex-direction: row;
-  &.vertical {
-    flex-direction: column;
-    & .labeledElement {
-      margin-left: $tab-size;
-    }
-  }
-  & p:first-child {
-    padding-left: $padding-horizontal;
-    margin-right: $key-value-gap;
-  }
-  & p:nth-child(2) {
-    padding-right: $padding-horizontal;
+  padding-left: $padding-horizontal;
+  padding-right: $padding-horizontal;
+  text-align: left;
+
+  margin: 0;
+  padding-top: $padding-vertical;
+  padding-bottom: $padding-vertical;
+  user-select: none;
+}
+
+.labelGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  & :not(:first-child) {
+    margin-left: $tab-size;
   }
 }
