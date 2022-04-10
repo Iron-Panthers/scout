@@ -1,6 +1,7 @@
 import SetPanel from "./inputs/SetPanel"
 import { Context } from "../state"
 import { useContext, useMemo } from "react"
+import { filterState } from "../csv"
 
 import "./EditScoutData.scss"
 
@@ -67,10 +68,12 @@ const EditScoutData = () => {
 
   const data = useMemo(
     () =>
-      objectVisualizer({
-        ...state,
-        test: { test: 1, t: 2, bl: { a: 1, b: 2, c: 4 } },
-      }),
+      objectVisualizer(
+        filterState({
+          ...state,
+          test: { test: 1, t: 2, bl: { a: 1, b: 2, c: 4 } },
+        })
+      ),
     [state]
   )
 

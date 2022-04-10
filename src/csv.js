@@ -1,8 +1,10 @@
 import { unparse } from "papaparse"
 import { initialState } from "./reducer"
 
-export const cleanState = ({ mode, phase, undoStack, ...state }) =>
-  Object.entries(state).reduce((obj, [key, val]) => {
+export const filterState = ({ mode, phase, undoStack, ...state }) => state
+
+export const cleanState = (rawState) =>
+  Object.entries(filterState(rawState)).reduce((obj, [key, val]) => {
     if (typeof val === "object") {
       Object.entries(val).forEach(([key2, val2]) => {
         obj[`${key}-${key2}`] = val2
