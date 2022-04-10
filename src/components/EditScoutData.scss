@@ -18,7 +18,7 @@ $red: #ff6663;
 @mixin highlightType($type, $color) {
   &.#{$type} {
     background-color: $color;
-    outline: $outline-thickness solid color.scale($color, $lightness: -40%);
+    border: $outline-thickness solid color.scale($color, $lightness: -40%);
   }
 }
 
