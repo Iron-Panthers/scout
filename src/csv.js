@@ -61,6 +61,8 @@ export const castType = (string) => {
 /** shallow iteration over an object, to cast types into their respective values if applicable or leave them as strings */
 export const castTypes = (object) => {
   return Object.entries(object).reduce((obj, [key, value]) => {
-    return (obj[key] = castType(value))
+    obj[key] = castType(value)
+
+    return obj
   }, {})
 }

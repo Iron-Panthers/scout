@@ -3,6 +3,7 @@ import {
   stateToCsv,
   cleanState,
   parseCsvBody,
+  castType,
   castTypes,
 } from "./csv"
 import { initialState } from "./reducer"
@@ -18,6 +19,24 @@ describe("object parsers and encoders", () => {
 
   it("matches snapshot for state to csv on initialState", () => {
     expect(JSON.stringify(stateToCsv(initialState))).toMatchSnapshot()
+  })
+})
+
+describe("casters", () => {
+  describe("castType", () => {
+    it(`casts "booleans" to booleans`, () => {
+      expect(castType("true")).toBe(true)
+      expect(castType("false")).toBe(false)
+    })
+  })
+
+  describe("castTypes", () => {
+    it("produces object with same keys as input with initialState", () => {
+      const state = { ...initialState }
+      const castedState = castTypes(state)
+
+      expect(Object.keys(state)).toEqual(Object.keys(castedState))
+    })
   })
 })
 
