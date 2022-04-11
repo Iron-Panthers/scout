@@ -1,6 +1,6 @@
 import Panels from "./Panels"
 import React from "react"
-import { render, screen } from "@testing-library/react"
+import { screen } from "@testing-library/react"
 
 it("renders without crashing", () => {
   renderContext(<Panels></Panels>)
