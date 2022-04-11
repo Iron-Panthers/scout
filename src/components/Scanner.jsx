@@ -31,6 +31,9 @@ const parseCsvBody = (body) => {
   return returnObj
 }
 
+/**
+ * Scans QR code to store its data
+ */
 const Scanner = () => {
   const [settings] = useSettings()
 
