@@ -7,7 +7,7 @@ export const filterState = ({ mode, phase, undoStack, ...state }) => state
 /** flattens, cleans a state object such that its keys are hyphen separated of their parents*/
 export const cleanState = (rawState) =>
   Object.entries(filterState(rawState)).reduce((obj, [key, val]) => {
-    if (typeof val === "object") {
+    if (typeof val === "object" && val !== null) {
       Object.entries(val).forEach(([key2, val2]) => {
         obj[`${key}-${key2}`] = val2
       })

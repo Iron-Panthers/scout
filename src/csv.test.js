@@ -20,6 +20,21 @@ describe("object parsers and encoders", () => {
     it("matches snapshot for cleanState on initialState", () => {
       expect(JSON.stringify(cleanState(initialState))).toMatchSnapshot()
     })
+
+    const cleanInitialState = cleanState(initialState)
+
+    test.each`
+      dirty                                                 | clean
+      ${{ ...initialState, version: null }}                 | ${{ ...cleanInitialState, version: null }}
+      ${{ ...initialState, version: undefined }}            | ${{ ...cleanInitialState, version: undefined }}
+      ${{ ...initialState, bonus: { a: 1, b: null } }}      | ${{ ...cleanInitialState, "bonus-a": 1, "bonus-b": null }}
+      ${{ ...initialState, bonus: { a: 1, b: undefined } }} | ${{ ...cleanInitialState, "bonus-a": 1, "bonus-b": undefined }}
+    `(
+      `cleans objects even if they have undefined or null`,
+      ({ dirty, clean }) => {
+        expect(cleanState(dirty)).toEqual(clean)
+      }
+    )
   })
 
   describe("stateToCsv", () => {
