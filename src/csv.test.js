@@ -39,20 +39,33 @@ describe("object parsers and encoders", () => {
 
 describe("casters", () => {
   describe("castType", () => {
-    it(`casts "booleans" to booleans`, () => {
-      expect(castType("true")).toBe(true)
-      expect(castType("false")).toBe(false)
+    test.each`
+      strBoolean | boolean
+      ${"true"}  | ${true}
+      ${"false"} | ${false}
+    `(`casts "booleans" to booleans`, ({ strBoolean, boolean }) => {
+      expect(castType(strBoolean)).toBe(boolean)
     })
 
-    it(`casts "ints" to ints`, () => {
-      expect(castType("10")).toBe(10)
-      expect(castType("1e9")).toBe(1e9)
+    test.each`
+      strInt   | int
+      ${"10"}  | ${10}
+      ${"1e9"} | ${1e9}
+    `(`casts "ints" to ints`, ({ strInt, int }) => {
+      expect(castType(strInt)).toBe(int)
     })
 
-    it(`leaves strings as they are`, () => {
-      expect(castType("ten")).toBe("ten")
-      expect(castType("ben10")).toBe("ben10")
-      expect(castType("ben, 10?")).toBe("ben, 10?")
+    test.each`
+      str
+      ${"ten"}
+      ${"ben10"}
+      ${"ben, 10?"}
+      ${"15 15"}
+      ${"10_10"}
+      ${"100_000"}
+      ${"NaN"}
+    `(`leaves strings as they are`, ({ str }) => {
+      expect(castType(str)).toBe(str)
     })
   })
 
