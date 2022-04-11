@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`matches snapshot for cleanState on initialState 1`] = `"{\\"version\\":1,\\"matchType\\":\\"Qualification\\",\\"auto-pickup\\":0,\\"auto-taxi\\":false,\\"auto-upperSucc\\":0,\\"auto-upperFail\\":0,\\"auto-lowerSucc\\":0,\\"auto-lowerFail\\":0,\\"teleop-upperSucc\\":0,\\"teleop-upperFail\\":0,\\"teleop-lowerSucc\\":0,\\"teleop-lowerFail\\":0,\\"endgame-climb\\":false,\\"endgame-fail\\":false,\\"endgame-level\\":\\"None\\",\\"wrongCargo\\":false,\\"defense\\":false,\\"scoutProblems\\":false,\\"robotProblems\\":false,\\"comments\\":\\"\\"}"`;
+
 exports[`matches snapshot for filter on initialState 1`] = `"{\\"version\\":1,\\"matchType\\":\\"Qualification\\",\\"auto\\":{\\"pickup\\":0,\\"taxi\\":false,\\"upperSucc\\":0,\\"upperFail\\":0,\\"lowerSucc\\":0,\\"lowerFail\\":0},\\"teleop\\":{\\"upperSucc\\":0,\\"upperFail\\":0,\\"lowerSucc\\":0,\\"lowerFail\\":0},\\"endgame\\":{\\"climb\\":false,\\"fail\\":false,\\"level\\":\\"None\\"},\\"wrongCargo\\":false,\\"defense\\":false,\\"scoutProblems\\":false,\\"robotProblems\\":false,\\"comments\\":\\"\\"}"`;
 
 exports[`matches snapshot for state to csv on initialState 1`] = `"\\"1,,Qualification,,0,false,0,0,0,0,0,0,0,0,false,false,None,false,false,false,false,\\""`;
