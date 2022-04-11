@@ -1,0 +1,12 @@
+{
+  "Create a snapshot of a component": {
+    "prefix": "snapshot",
+    "body": [
+      "import $1 from \"./$1\"",
+      "",
+      "it(`matches snapshot`, () => {",
+      "\tmatchesSnapshot(<$1 $0/>)",
+      "})"
+    ]
+  }
+}
