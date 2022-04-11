@@ -53,8 +53,9 @@ export const parseCsvBody = (body) => {
 
 export const castType = (string) => {
   if (Number.isFinite(string)) return Number.parseFloat(string)
-  if (string === "true" || string === "false")
-    return string === "true" ? true : false
+  if (string === "true") return true
+  if (string === "false") return false
+
   return string
 }
 
