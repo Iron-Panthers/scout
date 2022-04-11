@@ -9,28 +9,11 @@ import SetPanel from "./inputs/SetPanel"
 
 import useAnim from "../hooks/useAnim"
 
-import { header } from "../csv"
+import { parseCsvBody } from "../csv"
 
 import "./Scanner.scss"
 import "./inputs/inputs.scss"
 import "./inputs/buttons.scss"
-import papaparse from "papaparse"
-
-const parseCsvBody = (body) => {
-  const obj = papaparse.parse(`${header}\r\n${body}`)
-  const headArray = obj.data[0]
-  const bodyArray = obj.data[1]
-
-  let returnObj = {}
-
-  headArray.forEach((row, i) => {
-    const value = bodyArray[i]
-    returnObj[row] = value
-  })
-
-  return returnObj
-}
-
 /**
  * Scans QR code to store its data
  */

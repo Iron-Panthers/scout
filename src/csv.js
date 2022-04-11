@@ -1,4 +1,4 @@
-import { unparse } from "papaparse"
+import { unparse, parse } from "papaparse"
 import { initialState } from "./reducer"
 
 export const filterState = ({ mode, phase, undoStack, ...state }) => state
@@ -29,3 +29,18 @@ export const stateToCsv = (state) =>
     },
     { header: false }
   )
+
+export const parseCsvBody = (body) => {
+  const obj = parse(`${header}\r\n${body}`)
+  const headArray = obj.data[0]
+  const bodyArray = obj.data[1]
+
+  let returnObj = {}
+
+  headArray.forEach((row, i) => {
+    const value = bodyArray[i]
+    returnObj[row] = value
+  })
+
+  return returnObj
+}
