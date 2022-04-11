@@ -12,3 +12,7 @@ it("advances panel when next is clicked", () => {
   screen.getByText("NEXT").click()
   expect(screen.queryByText("NEXT")).not.toBeInTheDocument()
 })
+
+it("matches snapshot", () => {
+  matchesSnapshot(<Panels></Panels>)
+})

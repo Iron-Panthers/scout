@@ -42,3 +42,7 @@ it("counts shots", () => {
     screen.getByText(/Lower hub/).click()
   }
 })
+
+it("matches snapshot", () => {
+  matchesSnapshot(<Scout></Scout>)
+})
