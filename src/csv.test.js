@@ -10,20 +10,28 @@ import {
 import { initialState } from "./reducer"
 
 describe("object parsers and encoders", () => {
-  it("matches snapshot for filter on initialState", () => {
-    expect(JSON.stringify(filterState(initialState))).toMatchSnapshot()
+  describe("filterState", () => {
+    it("matches snapshot for filter on initialState", () => {
+      expect(JSON.stringify(filterState(initialState))).toMatchSnapshot()
+    })
   })
 
-  it("matches snapshot for cleanState on initialState", () => {
-    expect(JSON.stringify(cleanState(initialState))).toMatchSnapshot()
+  describe("cleanState", () => {
+    it("matches snapshot for cleanState on initialState", () => {
+      expect(JSON.stringify(cleanState(initialState))).toMatchSnapshot()
+    })
   })
 
-  it("matches snapshot for state to csv on initialState", () => {
-    expect(JSON.stringify(stateToCsv(initialState))).toMatchSnapshot()
+  describe("stateToCsv", () => {
+    it("matches snapshot for state to csv on initialState", () => {
+      expect(JSON.stringify(stateToCsv(initialState))).toMatchSnapshot()
+    })
   })
 
-  it("matches snapshot for header", () => {
-    expect(header).toMatchSnapshot()
+  describe("header", () => {
+    it("matches snapshot for header", () => {
+      expect(header).toMatchSnapshot()
+    })
   })
 
   // it("produces the same object from parseCsvBody as stateToCsv made", () => {
