@@ -3,6 +3,7 @@ import {
   stateToCsv,
   cleanState,
   parseCsvBody,
+  header,
   castType,
   castTypes,
 } from "./csv"
@@ -19,6 +20,10 @@ describe("object parsers and encoders", () => {
 
   it("matches snapshot for state to csv on initialState", () => {
     expect(JSON.stringify(stateToCsv(initialState))).toMatchSnapshot()
+  })
+
+  it("matches snapshot for header", () => {
+    expect(header).toMatchSnapshot()
   })
 
   // it("produces the same object from parseCsvBody as stateToCsv made", () => {
