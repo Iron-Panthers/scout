@@ -8,5 +8,16 @@
       "\tmatchesSnapshot(<$1 $0/>)",
       "})"
     ]
+  "Each Test Jest": {
+    "prefix": "eachtest",
+    "body": [
+      "each`",
+      "${1/([^,]+)([,\\s]*|)/$1${2:+|}/g}",
+      "`.test(`$2`, ({${1/([^,]+)([,\\s]*|)/$1${2:+, }/g}}) => {",
+      "\t$0",
+      "})"
+    ],
+
+    "description": "Make a paramaterized test in jest"
   }
 }
