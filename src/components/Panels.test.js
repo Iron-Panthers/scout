@@ -34,6 +34,10 @@ describe("child panels", () => {
       it("renders without crashing", () => {
         renderContext(<Panels></Panels>, { ...initialState, mode: panel })
       })
+
+      it("matches snapshot", () => {
+        matchesSnapshot(<Panels></Panels>, { ...initialState, mode: panel })
+      })
     })
   })
 })
