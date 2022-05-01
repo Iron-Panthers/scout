@@ -3,6 +3,7 @@ import { Context } from "../state"
 import React, { useContext, useMemo, useState } from "react"
 import { filterState } from "../csv"
 import get from "lodash.get"
+import { castType as castStringToType } from "../csv"
 
 import "./EditScoutData.scss"
 
@@ -135,7 +136,8 @@ const TypedInput = ({
 
 const ElementEditor = ({ path }) => {
   const [state, dispatch] = useContext(Context)
-  const type = getType(get(state, path))
+  const pathValue = get(state, path)
+  const type = getType(pathValue)
 
   return (
     <div className="ElementEditor">
@@ -146,7 +148,7 @@ const ElementEditor = ({ path }) => {
       </p>
       <TypedInput
         type={type}
-        value={get(state, path)}
+        value={pathValue}
         onChange={(event) => {
           dispatch({
             type: "pathSet",
@@ -155,6 +157,17 @@ const ElementEditor = ({ path }) => {
           })
         }}
       />
+      <button
+        onClick={() => {
+          dispatch({
+            type: "pathSet",
+            path,
+            val: castStringToType(pathValue),
+          })
+        }}
+      >
+        cast
+      </button>
     </div>
   )
 }
