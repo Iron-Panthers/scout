@@ -19,7 +19,7 @@ const ScanData = () => {
   const size = Math.min(512, Math.min(win.width, win.height) - 100)
 
   const value = useMemo(() => stateToCsv(state), [state])
-  console.log(value)
+  // console.log(value)
   return (
     <>
       <Reset wide></Reset>
