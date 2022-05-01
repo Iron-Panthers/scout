@@ -19,7 +19,9 @@ const DataButton = ({ label, value, disabled, fn }) => {
     <button
       className={`${type} label`}
       disabled={disabled}
-      onClick={fn}
+      onClick={() => {
+        fn(type)
+      }}
     >{`${label}: ${val}`}</button>
   )
 
@@ -76,14 +78,14 @@ const objectVisualizer = (obj, selected, setSelected, parent = "") =>
         label={key}
         value={value}
         disabled={selected === path}
-        fn={() => {
-          setSelected(path)
+        fn={(type) => {
+          setSelected({ path, type })
         }}
       />
     )
   })
 
-const ElementEditor = ({ path }) => {
+const ElementEditor = ({ selected: { path, type } }) => {
   const [state, dispatch] = useContext(Context)
 
   return (
@@ -91,7 +93,7 @@ const ElementEditor = ({ path }) => {
       <p>
         {path === undefined
           ? "select a value to edit"
-          : `editing value: ${path}`}
+          : `editing value (${type}): ${path}`}
       </p>
     </div>
   )
@@ -99,7 +101,7 @@ const ElementEditor = ({ path }) => {
 
 const EditScoutData = () => {
   const [state] = useContext(Context)
-  const [selected, setSelected] = useState(undefined)
+  const [selected, setSelected] = useState({ path: undefined, type: undefined })
 
   // console.log(state)
 
@@ -111,7 +113,7 @@ const EditScoutData = () => {
   return (
     <>
       <div className="DataEditor">{data}</div>
-      <ElementEditor path={selected} />
+      <ElementEditor selected={selected} />
       <SetPanel wide label="Done" panelName="Review" />
     </>
   )
