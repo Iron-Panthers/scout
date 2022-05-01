@@ -28,6 +28,16 @@ const getType = (value) => {
   return elementTypes.String
 }
 
+const castType = (value, type) => {
+  switch (type) {
+    case elementTypes.Number:
+      const num = parseFloat(value)
+      return isNaN(num) ? 0 : num
+    default:
+      return value
+  }
+}
+
 const DataButton = ({ label, value, disabled, fn }) => {
   const button = (val, type) => (
     <button
@@ -132,7 +142,11 @@ const ElementEditor = ({ path }) => {
         type={type}
         value={get(state, path)}
         onChange={(event) => {
-          dispatch({ type: "pathSet", path, val: event.target.value })
+          dispatch({
+            type: "pathSet",
+            path,
+            val: castType(event.target.value, type),
+          })
         }}
       />
     </div>
