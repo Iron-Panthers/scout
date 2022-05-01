@@ -2,6 +2,7 @@ import SetPanel from "./inputs/SetPanel"
 import { Context } from "../state"
 import React, { useContext, useMemo, useState } from "react"
 import { filterState } from "../csv"
+import get from "lodash.get"
 
 import "./EditScoutData.scss"
 
@@ -85,15 +86,15 @@ const objectVisualizer = (obj, selected, setSelected, parent = "") =>
     )
   })
 
-const TypedInput = ({ type }) => {
+const TypedInput = ({ type, value, onChange }) => {
   switch (type) {
     case elementTypes.Number:
-      return <input type="number"></input>
+      return <input type="number" {...{ value, onChange }}></input>
     case elementTypes.Null:
     case elementTypes.Undefined:
     case elementTypes.String:
     default:
-      return <input type="text"></input>
+      return <input type="text" {...{ value, onChange }}></input>
   }
 }
 
@@ -107,7 +108,7 @@ const ElementEditor = ({ selected: { path, type } }) => {
           ? "select a value to edit"
           : `editing value (${type}): ${path}`}
       </p>
-      <TypedInput type={type} />
+      <TypedInput type={type} value={get(state, path)} />
     </div>
   )
 }
