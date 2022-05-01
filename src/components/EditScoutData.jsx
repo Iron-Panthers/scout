@@ -15,6 +15,19 @@ const elementTypes = Object.freeze({
   Object: "Object",
 })
 
+/**
+ * get the type of primitive
+ * @param {Number|String|Boolean|Undefined|Null} value the value to get the type of
+ * @returns the elementType of the value
+ */
+const getType = (value) => {
+  if (Number.isFinite(value)) return elementTypes.Number
+  else if (value === false || value === true) return elementTypes.Boolean
+  else if (value === null) return elementTypes.Null
+  else if (value === undefined) return elementTypes.Undefined
+  return elementTypes.String
+}
+
 const DataButton = ({ label, value, disabled, fn }) => {
   const button = (val, type) => (
     <button
@@ -27,14 +40,20 @@ const DataButton = ({ label, value, disabled, fn }) => {
   )
 
   // this set of code prevents react from messing up our data by assuming we dont wanna render anything
-  if (Number.isFinite(value))
-    return button(value.toString(), elementTypes.Number)
-  else if (value === false || value === true)
-    return button(value.toString(), elementTypes.Boolean)
-  else if (value === null) return button("null", elementTypes.Null)
-  else if (value === undefined)
-    return button("undefined", elementTypes.Undefined)
-  return button(`"${value}"`, elementTypes.String)
+  switch (getType(value)) {
+    case elementTypes.Number:
+      return button(value.toString(), elementTypes.Number)
+    case elementTypes.Boolean:
+      return button(value.toString(), elementTypes.Boolean)
+
+    case elementTypes.Null:
+      return button("null", elementTypes.Null)
+    case elementTypes.Undefined:
+      return button("undefined", elementTypes.Undefined)
+
+    default:
+      return button(`"${value}"`, elementTypes.String)
+  }
 }
 
 const LabelGroup = React.memo(
