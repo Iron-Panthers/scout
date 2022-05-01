@@ -85,6 +85,18 @@ const objectVisualizer = (obj, selected, setSelected, parent = "") =>
     )
   })
 
+const TypedInput = ({ type }) => {
+  switch (type) {
+    case elementTypes.Number:
+      return <input type="number"></input>
+    case elementTypes.Null:
+    case elementTypes.Undefined:
+    case elementTypes.String:
+    default:
+      return <input type="text"></input>
+  }
+}
+
 const ElementEditor = ({ selected: { path, type } }) => {
   const [state, dispatch] = useContext(Context)
 
@@ -95,6 +107,7 @@ const ElementEditor = ({ selected: { path, type } }) => {
           ? "select a value to edit"
           : `editing value (${type}): ${path}`}
       </p>
+      <TypedInput type={type} />
     </div>
   )
 }
