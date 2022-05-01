@@ -357,6 +357,7 @@ exports[`child panels EditScoutData panel matches snapshot 1`] = `
     <input
       onChange={[Function]}
       type="text"
+      value=""
     />
   </div>
   <button

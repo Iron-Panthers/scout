@@ -115,7 +115,13 @@ const objectVisualizer = (obj, selected, setSelected, parent = "") =>
     )
   })
 
-const TypedInput = ({ type, value = "", onChange = () => {} }) => {
+const TypedInput = ({
+  type,
+  value = "",
+  onChange = () => {
+    /* prevent react error, by always binding to onChange */
+  },
+}) => {
   switch (type) {
     case elementTypes.Number:
       return <input type="number" {...{ value, onChange }}></input>
