@@ -88,7 +88,11 @@ const ElementEditor = ({ path }) => {
 
   return (
     <div className="ElementEditor">
-      <p>{path}</p>
+      <p>
+        {path === undefined
+          ? "select a value to edit"
+          : `editing value: ${path}`}
+      </p>
     </div>
   )
 }

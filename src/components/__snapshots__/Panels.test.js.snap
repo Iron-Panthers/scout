@@ -351,7 +351,9 @@ exports[`child panels EditScoutData panel matches snapshot 1`] = `
   <div
     className="ElementEditor"
   >
-    <p />
+    <p>
+      select a value to edit
+    </p>
   </div>
   <button
     className="wide"
