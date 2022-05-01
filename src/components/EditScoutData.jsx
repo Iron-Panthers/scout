@@ -52,9 +52,9 @@ const LabelGroup = React.memo(
   }
 )
 
-const objectVisualizer = (obj, selected, setSelected, parent = ".") =>
+const objectVisualizer = (obj, selected, setSelected, parent = "") =>
   Object.entries(obj).map(([key, value]) => {
-    const path = `${parent}/${key}`
+    const path = `${parent}${parent === "" ? "" : "."}${key}`
 
     if (Object(value) === value) {
       // is an object, we need to go deeper
@@ -77,7 +77,6 @@ const objectVisualizer = (obj, selected, setSelected, parent = ".") =>
         value={value}
         disabled={selected === path}
         fn={() => {
-          console.log(path)
           setSelected(path)
         }}
       />

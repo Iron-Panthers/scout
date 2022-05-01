@@ -20,8 +20,11 @@ $red: #ff6663;
     background-color: $color;
     border: $outline-thickness solid color.scale($color, $lightness: -40%);
     @include buttons.activeTransition;
-    &:active {
+    &:active:not(:disabled) {
       background-color: color.scale($color, $lightness: 40%);
+    }
+    &:disabled {
+      background-color: color.scale($color, $lightness: 60%);
     }
   }
 }
