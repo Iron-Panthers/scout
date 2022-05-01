@@ -24,7 +24,7 @@ const Settings = () => {
   return (
     <>
       <div className="wide version">
-        <p>{`Iron Pants 5026${Math.random() <= 0.1 ? "?" : "!"}`}</p>
+        <p>Iron Pants 5026!</p>
         <p>{`scout v${version.major}.${version.minor}.${version.patch}`}</p>
         <p>{`CSV API v${csvVersion}`}</p>
       </div>

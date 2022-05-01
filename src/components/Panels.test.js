@@ -34,11 +34,9 @@ describe("child panels", () => {
       it("renders without crashing", () => {
         renderContext(<Panels></Panels>, { ...initialState, mode: panel })
       })
-      jest.spyOn(Math, "random").mockReturnValue(0.42)
       it("matches snapshot", () => {
         matchesSnapshot(<Panels></Panels>, { ...initialState, mode: panel })
       })
-      jest.restoreAllMocks()
     })
   })
 })
