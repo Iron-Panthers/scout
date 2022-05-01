@@ -108,7 +108,13 @@ const ElementEditor = ({ selected: { path, type } }) => {
           ? "select a value to edit"
           : `editing value (${type}): ${path}`}
       </p>
-      <TypedInput type={type} value={get(state, path)} />
+      <TypedInput
+        type={type}
+        value={get(state, path)}
+        onChange={(event) => {
+          dispatch({ type: "pathSet", path, val: event.target.value })
+        }}
+      />
     </div>
   )
 }

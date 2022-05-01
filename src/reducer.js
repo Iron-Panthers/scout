@@ -1,3 +1,6 @@
+import produce from "immer"
+import set from "lodash.set"
+
 import { getSettings } from "./settings"
 const csvApi = require("../package.json").csvApi
 
@@ -151,6 +154,10 @@ export const reducer = (state, action) => {
         },
         undoStack: addUndo(state, action),
       }
+    case "pathSet":
+      return produce(state, (draft) => {
+        set(draft, action.path, action.val)
+      })
     default:
       return state
   }
