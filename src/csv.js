@@ -52,7 +52,8 @@ export const parseCsvBody = (body) => {
 }
 
 export const castType = (string) => {
-  if (isFinite(string)) return Number.parseFloat(string)
+  if (isFinite(string) && !isNaN(parseFloat(string)))
+    return Number.parseFloat(string)
   if (string === "true") return true
   if (string === "false") return false
 

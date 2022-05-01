@@ -71,9 +71,10 @@ describe("casters", () => {
     })
 
     test.each`
-      strInt   | int
-      ${"10"}  | ${10}
-      ${"1e9"} | ${1e9}
+      strInt    | int
+      ${"10"}   | ${10}
+      ${"1e9"}  | ${1e9}
+      ${"1e-3"} | ${1e-3}
     `(`casts "ints" to ints`, ({ strInt, int }) => {
       expect(castType(strInt)).toBe(int)
     })
@@ -87,6 +88,7 @@ describe("casters", () => {
       ${"10_10"}
       ${"100_000"}
       ${"NaN"}
+      ${""}
     `(`leaves strings as they are`, ({ str }) => {
       expect(castType(str)).toBe(str)
     })
