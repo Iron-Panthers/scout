@@ -17,15 +17,20 @@ div.PWA {
   display: flex;
   & > button#Settings {
     position: absolute;
+    // this places the cog in the right part of the parent
     top: 1vmin;
     right: 1vmin;
-    width: 11vmin;
-    height: 11vmin;
+    $size: min(12vmin, 70px);
+    width: $size;
+    height: $size;
     font-size: 10vmin;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0px;
+    & > svg {
+      margin: 1vmin;
+    }
   }
   & > button.blue {
     flex-grow: 1;
