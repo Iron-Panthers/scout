@@ -49,15 +49,23 @@ describe("object parsers and encoders", () => {
     })
   })
 
-  // it("produces the same object from parseCsvBody as stateToCsv made", () => {
-  //   const state = { ...initialState }
-  //   // csv is the body of our state, after being cleaned, flattened
-  //   const csv = stateToCsv(state)
-  //   // parsed data is the object generated from reading that body back into an object after attaching a header
-  //   const parsedData = parseCsvBody(csv)
+  it("produces the same object from parseCsvBody as stateToCsv made", () => {
+    const state = { ...initialState }
+    // csv is the body of our state, after being cleaned, flattened
+    const csv = stateToCsv(state)
+    // parsed data is the object generated from reading that body back into an object after attaching a header
+    const parsedData = parseCsvBody(csv)
 
-  //   expect(castTypes(parsedData)).toEqual(cleanState(state))
-  // })
+    expect(castTypes(parsedData)).toEqual(
+      Object.fromEntries(
+        Object.entries(
+          // this is the actual data being compared
+          cleanState(state)
+          // this map is required because undefined becomes "" at the serialization boundary
+        ).map(([k, v]) => [k, v === undefined ? "" : v])
+      )
+    )
+  })
 })
 
 describe("casters", () => {
