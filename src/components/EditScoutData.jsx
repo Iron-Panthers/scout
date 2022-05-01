@@ -99,7 +99,7 @@ const objectVisualizer = (obj, selected, setSelected, parent = "") =>
         value={value}
         disabled={selected === path}
         fn={(type) => {
-          setSelected({ path, type })
+          setSelected(path)
         }}
       />
     )
@@ -117,8 +117,9 @@ const TypedInput = ({ type, value, onChange }) => {
   }
 }
 
-const ElementEditor = ({ selected: { path, type } }) => {
+const ElementEditor = ({ path }) => {
   const [state, dispatch] = useContext(Context)
+  const type = getType(get(state, path))
 
   return (
     <div className="ElementEditor">
@@ -140,7 +141,7 @@ const ElementEditor = ({ selected: { path, type } }) => {
 
 const EditScoutData = () => {
   const [state] = useContext(Context)
-  const [selected, setSelected] = useState({ path: undefined, type: undefined })
+  const [selected, setSelected] = useState(undefined)
 
   // console.log(state)
 
@@ -152,7 +153,7 @@ const EditScoutData = () => {
   return (
     <>
       <div className="DataEditor">{data}</div>
-      <ElementEditor selected={selected} />
+      <ElementEditor path={selected} />
       <SetPanel wide label="Done" panelName="Review" />
     </>
   )
