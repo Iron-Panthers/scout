@@ -122,20 +122,22 @@ const TypedInput = ({
   onChange = () => {
     /* prevent react error, by always binding to onChange */
   },
+  disabled,
 }) => {
   switch (type) {
     case elementTypes.Number:
-      return <input type="number" {...{ value, onChange }}></input>
+      return <input type="number" {...{ value, onChange, disabled }}></input>
     case elementTypes.Null:
     case elementTypes.Undefined:
     case elementTypes.String:
     default:
-      return <input type="text" {...{ value, onChange }}></input>
+      return <input type="text" {...{ value, onChange, disabled }}></input>
   }
 }
 
 const ElementEditor = ({ path }) => {
   const [state, dispatch] = useContext(Context)
+  const [typeCheck, setTypeCheck] = useState(true)
   const pathValue = get(state, path)
   const type = getType(pathValue)
 
@@ -149,11 +151,14 @@ const ElementEditor = ({ path }) => {
       <TypedInput
         type={type}
         value={pathValue}
+        disabled={path === undefined}
         onChange={(event) => {
           dispatch({
             type: "pathSet",
             path,
-            val: castType(event.target.value, type),
+            val: typeCheck
+              ? castType(event.target.value, type)
+              : event.target.value,
           })
         }}
       />
@@ -168,6 +173,13 @@ const ElementEditor = ({ path }) => {
       >
         cast
       </button>
+      <input
+        type="checkbox"
+        checked={typeCheck}
+        onChange={() => {
+          setTypeCheck((current) => !current)
+        }}
+      />
     </div>
   )
 }
