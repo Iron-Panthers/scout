@@ -1,7 +1,7 @@
 {
   "name": "scout",
   "version": "1.0.3",
-  "csvApi": 1,
+  "csvApi": 2,
   "homepage": "/",
   "private": false,
   "dependencies": {
