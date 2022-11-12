@@ -6,6 +6,9 @@ import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
 import SetPanel from "./inputs/SetPanel"
+import TextLine from "./inputs/TextLine"
+
+const teamNumberRegex = /^\w*$/
 
 const Configure = () => {
   const [settings] = useSettings()
@@ -23,7 +26,12 @@ const Configure = () => {
 
   return (
     <>
-      <Numbers label="Robot Team #" prop="team"></Numbers>
+      <TextLine
+        label="Robot Team #"
+        prop="team"
+        validator={teamNumberRegex}
+        explanation="Letters and numbers only"
+      ></TextLine>
       <Dropdown
         wide
         prop="matchType"
