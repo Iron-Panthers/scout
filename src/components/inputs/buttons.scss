@@ -9,6 +9,7 @@ button {
   @include activeTransition;
 
   color: black;
+  grid-column: span 2;
 
   @mixin disabledColor {
     &:disabled {

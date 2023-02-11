@@ -9,7 +9,7 @@ const Undo = ({ wide }) => {
 
   return (
     <button
-      className={`${wide ? "wide" : ""} blue`}
+      className={`${wide ? "wide" : "halfWide"} blue`}
       disabled={state.undoStack[state.phase].length === 0}
       onClick={() => {
         dispatch({ type: "undo" })

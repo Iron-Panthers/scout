@@ -6,11 +6,13 @@ const csvApi = require("../package.json").csvApi
 
 export const version = csvApi ?? 69
 
-const shooting = {
-  upperSucc: 0,
-  upperFail: 0,
-  lowerSucc: 0,
-  lowerFail: 0,
+const grid = {
+  topCone: 0, 
+  middleCone: 0,
+  bottomCone: 0,
+  topCube: 0, 
+  middleCube: 0, 
+  bottomCube: 0,
 }
 
 export const initialState = {
@@ -21,16 +23,21 @@ export const initialState = {
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
-    pickup: 0,
-    taxi: false,
-    ...shooting,
+    mobility: false,
+    docked: false,
+    engaged: false,
+    fail: 0,
+    ...grid,
   },
   teleop: {
-    ...shooting,
+    defense: false,
+    fail: 0,
+    ...grid,
   },
   endgame: {
-    climb: false,
-    fail: false,
+    docked: false,
+    engaged: false,
+    community: false,
     level: "None",
   },
   wrongCargo: false,
