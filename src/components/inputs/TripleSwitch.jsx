@@ -6,27 +6,23 @@ import PropTypes from "prop-types"
 const getVal = (option, phase, state) =>
   phase ? (state[state.phase] ?? {})[option.prop] : state[option.prop]
 
-const MultiSwitch = ({ options: {opA, opB }, onFlip, phase }) => {
+const TripleSwitch = ({ options: {opA, opB, opC }, onFlip, phase }) => {
   const [state, dispatch] = useContext(Context)
 
   // closure abuse for fun and profit
   const onFlipFn = (...options) => (action, undo) => {
     // get the current position of the other bool in the switch
 
-    let anyTrue = false;
+ 
     for(const option of options) {
-     if (getVal(option, phase, state)) {
-       anyTrue = true;
-       break;
-     }
-    } 
+
     // if we are undoing the prior, return the other bool to its state at closure time
     // a dispatch with fresh state ect is passed in at priortime to prevent a stale fn
-    for (const option of options) {
+    
       action({
         type: `set${phase ? "InPhase" : ""}`,
         prop: option.prop,
-        val: !undo ? false : anyTrue,
+        val: !undo ? false : getVal(option, phase, state),
         undo: true,
       })
     }
@@ -34,27 +30,35 @@ const MultiSwitch = ({ options: {opA, opB }, onFlip, phase }) => {
     if (onFlip !== undefined) onFlip(action, undo)
   }
 
+
   return (
     <>
       <Bool
         {...{
           ...opA,
           phase,
-          onFlip: onFlipFn(opB),
+          onFlip: onFlipFn(opB, opC),
         }}
       ></Bool>
       <Bool
         {...{
           ...opB,
           phase,
-          onFlip: onFlipFn(opA),
+          onFlip: onFlipFn(opA, opC),
+        }}
+      ></Bool>
+       <Bool
+        {...{
+          ...opC,
+          phase,
+          onFlip: onFlipFn(opA, opB),
         }}
       ></Bool>
     </>
   )
 }
-  
-MultiSwitch.propTypes = {
+
+TripleSwitch.propTypes = {
   options: PropTypes.shape({
     opA: PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -67,8 +71,13 @@ MultiSwitch.propTypes = {
       color: PropTypes.oneOf(["red", "green", "blue"]),
     }).isRequired,
   }).isRequired,
+    opC: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      prop: PropTypes.string.isRequired,
+      color: PropTypes.oneOf(["red", "green", "blue"]),
+    }).isRequired,
   onFlip: PropTypes.func,
   phase: PropTypes.bool,
 }
 
-export default MultiSwitch
+export default TripleSwitch

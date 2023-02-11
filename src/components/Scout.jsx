@@ -14,6 +14,7 @@ import Count from "./inputs/Count"
 import Grid from "./inputs/Grid"
 
 import "./Scout.scss"
+import TripleSwitch from "./inputs/TripleSwitch"
 
 const Scout = () => {
   const [state, dispatch] = useContext(Context)
@@ -47,13 +48,14 @@ const Scout = () => {
       case "endgame":
         return (
           <>
-            <Switch
+            <TripleSwitch
               phase
               options={{
                 opA: { label: "Climb", prop: "climb", color: "green" },
                 opB: { label: "Fail", prop: "fail", color: "red" },
+                opC: { label: "Test", prop: "test", color: "blue" },
               }}
-            ></Switch>
+            ></TripleSwitch>
             <Dropdown
               wide
               phase
