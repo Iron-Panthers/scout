@@ -39,6 +39,7 @@ const Scout = () => {
               label="Defense"
               trueLabel="Defended"
               color="green"
+              tall={true}
             ></Bool>
             
           </>

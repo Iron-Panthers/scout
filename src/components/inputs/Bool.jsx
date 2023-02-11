@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 
-const Bool = ({ label, trueLabel, prop, onFlip, phase, color, wide }) => {
+const Bool = ({ label, trueLabel, prop, onFlip, phase, color, wide, tall}) => {
   const [state, dispatch] = useContext(Context)
 
   const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
@@ -10,7 +10,7 @@ const Bool = ({ label, trueLabel, prop, onFlip, phase, color, wide }) => {
 
   return (
     <button
-      className={`${color ?? ""}${wide ? " wide" : ""}`}
+      className={`${color ?? ""} ${wide ? " wide" : ""} ${tall ? "tall" : ""}`}
       disabled={current}
       onClick={() => {
         dispatch({
@@ -34,6 +34,7 @@ Bool.propTypes = {
   phase: PropTypes.bool,
   color: PropTypes.oneOf(["red", "green", "blue"]),
   wide: PropTypes.bool,
+  tall: PropTypes.bool,
 }
 
 export default Bool
