@@ -82,7 +82,7 @@ const Scout = () => {
       </div>
       {phaseTabContent}
       {showNext && <Next tall></Next>}
-      <Count prop="fail" phase label="Fail" color="green" halfWide/>
+      <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
       <Undo wide = {showNext}></Undo>
     </>
   )

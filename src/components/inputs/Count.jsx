@@ -4,14 +4,14 @@ import PropTypes from "prop-types"
 
 import "./buttons.scss"
 
-const Count = ({ label, prop, phase, color }) => {
+const Count = ({ label, prop, phase, color, width }) => {
   const [state, dispatch] = useContext(Context)
 
   const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
 
   return (
     <button
-      className={color}
+      className={`${width ?? "default"} ${color}`}
       onClick={() => {
         dispatch({
           type: `set${phase ? "InPhase" : ""}`,
@@ -28,6 +28,7 @@ Count.propTypes = {
   prop: PropTypes.string.isRequired,
   phase: PropTypes.bool,
   color: PropTypes.oneOf(["red", "green", "blue"]),
+  width: PropTypes.oneOf(["default, halfWidth, wide"])
 }
 
 export default Count
