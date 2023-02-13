@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 const getVal = (option, phase, state) =>
   phase ? (state[state.phase] ?? {})[option.prop] : state[option.prop]
 
-const TripleSwitch = ({ options: {opA, opB, opC }, onFlip, phase }) => {
+const TripleSwitch = ({ options: {opA, opB, opC }, onFlip, phase, width, height}) => {
   const [state, dispatch] = useContext(Context)
 
   // closure abuse for fun and profit
@@ -30,32 +30,42 @@ const TripleSwitch = ({ options: {opA, opB, opC }, onFlip, phase }) => {
     if (onFlip !== undefined) onFlip(action, undo)
   }
 
+  const switchElement = 
+      <>
+        <Bool
+          {...{
+            ...opA,
+            phase,
+            onFlip: onFlipFn(opB, opC),
+          }}
+        ></Bool>
+        <Bool
+          {...{
+            ...opB,
+            phase,
+            onFlip: onFlipFn(opA, opC),
+          }}
+        ></Bool>
+        <Bool
+          {...{
+            ...opC,
+            phase,
+            onFlip: onFlipFn(opA, opB),
+          }}
+        ></Bool>
+      </>
 
-  return (
-    <>
-      <Bool
-        {...{
-          ...opA,
-          phase,
-          onFlip: onFlipFn(opB, opC),
-        }}
-      ></Bool>
-      <Bool
-        {...{
-          ...opB,
-          phase,
-          onFlip: onFlipFn(opA, opC),
-        }}
-      ></Bool>
-       <Bool
-        {...{
-          ...opC,
-          phase,
-          onFlip: onFlipFn(opA, opB),
-        }}
-      ></Bool>
-    </>
-  )
+  // If width or height is defined, then return a div with the width and height with the switch element
+  if(width || height){
+    return ( 
+      <div className={`${width ? width : ""} ${height ? height : ""}`}>
+        {switchElement}
+      </div>
+    )
+  } else {
+      // Otherwise, just return the switch element
+      return switchElement
+  }
 }
 
 TripleSwitch.propTypes = {
@@ -78,6 +88,8 @@ TripleSwitch.propTypes = {
     }).isRequired,
   onFlip: PropTypes.func,
   phase: PropTypes.bool,
+  width: PropTypes.string,
+  height: PropTypes.string,
 }
 
 export default TripleSwitch

@@ -25,9 +25,14 @@ const Scout = () => {
         return (
           <>
              <Grid></Grid>
-            <Bool prop="mobility" phase label="Mobility" trueLabel="Mobile" color="green" />
-            <Bool prop="docked" phase label="Dock" color="green" />
-            <Bool prop="engaged" phase label="Engage" trueLabel="Engaged" color="green" />
+             <TripleSwitch
+              phase
+              options={{
+                opA: { label: "Dock", prop: "dock", color: "green" },
+                opB: { label: "Engage", prop: "engage", color: "red" },
+                opC: { label: "Community", prop: "community", color: "blue" },
+              }}
+            ></TripleSwitch>
             <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
           </>
         )
@@ -55,10 +60,9 @@ const Scout = () => {
                 opB: { label: "Engage", prop: "engage", color: "red" },
                 opC: { label: "Community", prop: "community", color: "blue" },
               }}
+              width = "endgameOptions"
             ></TripleSwitch>
-            <Bool prop="mobility" phase label="Mobility" trueLabel="Mobile" color="green" />
-            <Bool prop="docked" phase label="Dock" color="green" />
-            <Bool prop="engaged" phase label="Engage" trueLabel="Engaged" color="green" />
+           
           </>
         )
       default:

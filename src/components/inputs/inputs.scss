@@ -7,6 +7,10 @@ textarea:focus {
   outline: blue 1px solid;
 }
 
+.default {
+  grid-column: span 2;
+}
+
 .wide {
   grid-column: span 6;
 }
@@ -16,16 +20,30 @@ textarea:focus {
 }
 
 .tall {
+  grid-column: span 2;
   grid-row: span 3;
 }
 
-.grid {
+
+
+@mixin twoThirdsLeft {
   display: grid;
   grid-row: span 3;
   grid-column: span 4;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: minmax(0, 1fr);
+
 }
+
+.grid {
+  @include twoThirdsLeft();
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.endgameOptions {
+  @include twoThirdsLeft();
+  grid-template-columns: 1fr 1fr;
+}
+
 
 .evenFlex {
   display: flex;
