@@ -22,8 +22,8 @@ const Review = () => {
         prop="scoutProblems"
       ></Checkbox>
       <Freetext label="Comments?" prop="comments"></Freetext>
-      <SetPanel label="Edit Data" panelName="EditScoutData"></SetPanel>
-      <Next></Next>
+      <SetPanel label="Edit Data" panelName="EditScoutData" width = "wide"></SetPanel>
+      <Next wide></Next>
     </>
   )
 }

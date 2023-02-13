@@ -28,7 +28,7 @@ Count.propTypes = {
   prop: PropTypes.string.isRequired,
   phase: PropTypes.bool,
   color: PropTypes.oneOf(["red", "green", "blue"]),
-  width: PropTypes.oneOf(["default, halfWidth, wide"])
+  width: PropTypes.oneOf(["default", "halfWide", "wide"])
 }
 
 export default Count

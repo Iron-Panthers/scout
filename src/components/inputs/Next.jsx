@@ -21,6 +21,7 @@ const Next = ({ wide, tall }) => {
 
 Next.propTypes = {
   wide: PropTypes.bool,
+  tall:  PropTypes.bool,
 }
 
 export default Next
