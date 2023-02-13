@@ -38,7 +38,6 @@ export const initialState = {
     docked: false,
     engaged: false,
     community: false,
-    level: "None",
   },
   wrongCargo: false,
   defense: false,

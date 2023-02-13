@@ -28,7 +28,7 @@ const Scout = () => {
             <Bool prop="mobility" phase label="Mobility" trueLabel="Mobile" color="green" />
             <Bool prop="docked" phase label="Dock" color="green" />
             <Bool prop="engaged" phase label="Engage" trueLabel="Engaged" color="green" />
-           
+            <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
           </>
         )
       case "teleop":
@@ -42,7 +42,7 @@ const Scout = () => {
               color="green"
               tall={true}
             ></Bool>
-            
+            <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
           </>
         )
       case "endgame":
@@ -51,23 +51,14 @@ const Scout = () => {
             <TripleSwitch
               phase
               options={{
-                opA: { label: "Climb", prop: "climb", color: "green" },
-                opB: { label: "Fail", prop: "fail", color: "red" },
-                opC: { label: "Test", prop: "test", color: "blue" },
+                opA: { label: "Dock", prop: "dock", color: "green" },
+                opB: { label: "Engage", prop: "engage", color: "red" },
+                opC: { label: "Community", prop: "community", color: "blue" },
               }}
             ></TripleSwitch>
-            <Dropdown
-              wide
-              phase
-              prop="level"
-              options={[
-                "0 None",
-                "1 Low",
-                "2 Mid Rung",
-                "3 High Rung",
-                "4 Traversal Rung",
-              ]}
-            ></Dropdown>
+            <Bool prop="mobility" phase label="Mobility" trueLabel="Mobile" color="green" />
+            <Bool prop="docked" phase label="Dock" color="green" />
+            <Bool prop="engaged" phase label="Engage" trueLabel="Engaged" color="green" />
           </>
         )
       default:
@@ -85,7 +76,6 @@ const Scout = () => {
       </div>
       {phaseTabContent}
       {showNext && <Next tall></Next>}
-      <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
       <Undo wide = {showNext}></Undo>
     </>
   )
