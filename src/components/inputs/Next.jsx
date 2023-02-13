@@ -4,12 +4,12 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const Next = ({ wide }) => {
+const Next = ({ wide, tall }) => {
   const [, dispatch] = useContext(Context)
 
   return (
     <button
-      className={`blue ${wide ? "wide" : ""}`}
+      className={`blue ${wide ? "wide" : ""} ${tall ? "tall" : ""}`}
       onClick={() => {
         dispatch({ type: "next_mode" })
       }}
