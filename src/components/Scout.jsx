@@ -28,9 +28,9 @@ const Scout = () => {
              <TripleSwitch
               phase
               options={{
-                opA: { label: "Dock", prop: "dock", color: "green" },
-                opB: { label: "Engage", prop: "engage", color: "red" },
-                opC: { label: "Community", prop: "community", color: "blue" },
+                opA: { label: "Dock", prop: "docked", color: "green" },
+                opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
+                opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
               }}
             ></TripleSwitch>
             <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
@@ -56,9 +56,9 @@ const Scout = () => {
             <TripleSwitch
               phase
               options={{
-                opA: { label: "Dock", prop: "dock", color: "green" },
-                opB: { label: "Engage", prop: "engage", color: "red" },
-                opC: { label: "Community", prop: "community", color: "blue" },
+                opA: { label: "Dock", prop: "docked", color: "green" },
+                opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
+                opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
               }}
               width = "endgameOptions"
             ></TripleSwitch>

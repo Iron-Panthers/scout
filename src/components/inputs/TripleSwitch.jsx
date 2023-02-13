@@ -72,17 +72,20 @@ TripleSwitch.propTypes = {
   options: PropTypes.shape({
     opA: PropTypes.shape({
       label: PropTypes.string.isRequired,
+      trueLabel: PropTypes.string,
       prop: PropTypes.string.isRequired,
       color: PropTypes.oneOf(["red", "green", "blue"]),
     }).isRequired,
     opB: PropTypes.shape({
       label: PropTypes.string.isRequired,
+      trueLabel: PropTypes.string,
       prop: PropTypes.string.isRequired,
       color: PropTypes.oneOf(["red", "green", "blue"]),
     }).isRequired,
   }).isRequired,
     opC: PropTypes.shape({
       label: PropTypes.string.isRequired,
+      trueLabel: PropTypes.string,
       prop: PropTypes.string.isRequired,
       color: PropTypes.oneOf(["red", "green", "blue"]),
     }).isRequired,

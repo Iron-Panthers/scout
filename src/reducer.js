@@ -39,8 +39,6 @@ export const initialState = {
     engaged: false,
     community: false,
   },
-  wrongCargo: false,
-  defense: false,
   scoutProblems: false,
   robotProblems: false,
   comments: "",
