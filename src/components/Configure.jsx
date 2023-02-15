@@ -30,8 +30,8 @@ const Configure = () => {
         options={["Test", "Practice", "Qualification"]}
       ></Dropdown>
       <Numbers label="Match #" prop="matchNum" idealLength={2}></Numbers>
-      {!isIOS && <SetPanel label="Scanner" panelName="Scanner"></SetPanel>}
-      <Next wide={isIOS}></Next>
+      {!isIOS && <SetPanel width = "halfWide" label="Scanner" panelName="Scanner"></SetPanel>}
+      <Next width ={isIOS ? "wide" : "halfWide"}></Next>
     </>
   )
 }

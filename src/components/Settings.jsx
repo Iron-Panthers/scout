@@ -29,7 +29,7 @@ const Settings = () => {
         <p>{`CSV API v${csvVersion}`}</p>
       </div>
       {checkboxes}
-      <Reset wide></Reset>
+      <Reset width = "wide"></Reset>
     </>
   )
 }

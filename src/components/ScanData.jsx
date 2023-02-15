@@ -22,7 +22,7 @@ const ScanData = () => {
   // console.log(value)
   return (
     <>
-      <Reset wide></Reset>
+      <Reset width = "wide"></Reset>
       <div className="qr">
         <QRCode value={value} size={size}></QRCode>
       </div>

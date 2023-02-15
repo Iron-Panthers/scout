@@ -94,8 +94,8 @@ const Scanner = () => {
         scanHint !== "" ? " - " : ""
       }${scanHint.toUpperCase()}`}</div>
       {error && <div className="wide Center">{error}</div>}
-      <SetPanel label="Export" panelName="Export"></SetPanel>
-      <Reset></Reset>
+      <SetPanel width= "halfWide" label="Export" panelName="Export"></SetPanel>
+      <Reset width = "halfWide"></Reset>
     </>
   )
 }

@@ -4,12 +4,12 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const Next = ({ wide, tall }) => {
+const Next = ({ width, tall }) => {
   const [, dispatch] = useContext(Context)
 
   return (
     <button
-      className={`blue ${wide ? "wide" : ""} ${tall ? "tall" : ""}`}
+      className={`blue ${width ? width : "default"} ${tall ? "tall" : ""}`}
       onClick={() => {
         dispatch({ type: "next_mode" })
       }}
@@ -20,7 +20,7 @@ const Next = ({ wide, tall }) => {
 }
 
 Next.propTypes = {
-  wide: PropTypes.bool,
+  wide: PropTypes.oneOf(["default, halfWidth, wide"]),
   tall:  PropTypes.bool,
 }
 

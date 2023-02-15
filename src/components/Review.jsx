@@ -23,7 +23,7 @@ const Review = () => {
       ></Checkbox>
       <Freetext label="Comments?" prop="comments"></Freetext>
       <SetPanel label="Edit Data" panelName="EditScoutData" width = "wide"></SetPanel>
-      <Next wide></Next>
+      <Next width = "wide"></Next>
     </>
   )
 }
