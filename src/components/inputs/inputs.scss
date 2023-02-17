@@ -35,11 +35,6 @@ textarea:focus {
 .grid {
   @include twoThirdsLeft();
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  // oops, i overrided the tab font size when I put the buttons in this grid
-  // Therefore, I now set their font size here
-  > button {
-    font-size: 1rem;
-  }
 }
 
 .endgameOptions {
