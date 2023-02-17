@@ -1,13 +1,13 @@
 import React, { useContext, useRef } from "react"
 
 import { Context } from "../state"
-import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
 import Switch from "./inputs/Switch"
 import Tabs from "./inputs/Tabs"
 import Undo from "./inputs/Undo"
 import Info from "./inputs/Info"
 import Bool from "./inputs/Bool"
+import Numbers from "./inputs/Numbers"
 
 import Count from "./inputs/Count"
 
@@ -62,7 +62,7 @@ const Scout = () => {
               }}
               width = "endgameOptions"
             ></TripleSwitch>
-           
+           <Numbers label="Time Left (secs)" prop="timeLeft" width = "default" twoLines={true}></Numbers>
           </>
         )
       default:
@@ -79,7 +79,7 @@ const Scout = () => {
         <Tabs></Tabs>
       </div>
       {phaseTabContent}
-      {showNext && <Next width ="default" tall></Next>}
+      {showNext && <Next width ="default"></Next>}
       <Undo wide = {showNext}></Undo>
     </>
   )
