@@ -23,13 +23,13 @@ const Configure = () => {
 
   return (
     <>
-      <Numbers label="Robot Team #" prop="team"></Numbers>
+      <Numbers label="Robot Team #" prop="team" width = "halfWide" ></Numbers>
+      <Numbers label="Match #" prop="matchNum" idealLength={2} width = "halfWide"></Numbers>
       <Dropdown
         wide
         prop="matchType"
         options={["Test", "Practice", "Qualification"]}
       ></Dropdown>
-      <Numbers label="Match #" prop="matchNum" idealLength={2}></Numbers>
       {!isIOS && <SetPanel width = "halfWide" label="Scanner" panelName="Scanner"></SetPanel>}
       <Next width ={isIOS ? "wide" : "halfWide"}></Next>
     </>

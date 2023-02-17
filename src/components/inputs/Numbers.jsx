@@ -10,7 +10,7 @@ const Numbers = ({ label, prop, idealLength = 4, width, twoLines }) => {
   const id = `Numbers-${label}-${prop}`.replaceAll(" ", "_")
 
   const numberInputComponent = <>
-    <label htmlFor={id} className="AlignRight">
+    <label htmlFor={id} className={`${twoLines ? "default" : ""}`}>
         {label}
       </label>
       <input
@@ -47,6 +47,7 @@ Numbers.propTypes = {
   prop: PropTypes.string.isRequired,
   idealLength: PropTypes.number,
   width: PropTypes.oneOf(["default, halfWide, Wide"]),
+  twoLines: PropTypes.bool,
 }
 
 export default Numbers

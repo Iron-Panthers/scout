@@ -62,7 +62,7 @@ const Scout = () => {
               }}
               width = "endgameOptions"
             ></TripleSwitch>
-           <Numbers label="Time Left (secs)" prop="timeLeft" width = "default" twoLines={true}></Numbers>
+           <Numbers label="Time Left (secs)" idealLength = {2} prop="timeLeft" width = "default" twoLines={true}></Numbers>
           </>
         )
       default:
