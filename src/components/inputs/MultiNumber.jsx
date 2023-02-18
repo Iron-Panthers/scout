@@ -11,7 +11,6 @@ const Numbers = ({ label, prop, idealLength = 4, width, twoLines }) => {
 
 
   const numberMaker = (team) => {
-    const teamState = (state["qualitative"])[team]
     return <input
               id={team}
               type="number"
@@ -30,7 +29,7 @@ const Numbers = ({ label, prop, idealLength = 4, width, twoLines }) => {
                   : undefined,
               })
               }}
-              value={teamState[prop] ?? ""}
+              value={state[team + prop] ?? ""}
           />
 
   }  

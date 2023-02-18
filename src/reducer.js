@@ -49,15 +49,19 @@ export const initialState = {
   robotProblems: false,
   comments: "",
   qualitative : {
-    team1: {
-     ...teamQual
-    },
-    team2: {
-      ...teamQual
-     },
-    team3: {
-      ...teamQual
-     }
+    
+  team1Number: undefined,
+  team1Quickness: undefined,
+  team1fieldAwareness: undefined,
+
+  team2Number: undefined,
+  team2Quickness: undefined,
+  team2fieldAwareness: undefined,
+
+  team3Number: undefined,
+  team3Quickness: undefined,
+  team3fieldAwareness: undefined,
+
   },
   undoStack: {
     auto: [],
