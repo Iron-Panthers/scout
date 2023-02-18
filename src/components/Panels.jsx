@@ -51,7 +51,7 @@ const Panels = (props) => {
   })()
   return (
     <div className="panel" data-testid="panels">
-      <PWA modes={["Configure"]} />
+      <PWA modes={["Configure", "ConfigQualitative"]} />
       {panel}
     </div>
   )

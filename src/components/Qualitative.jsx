@@ -27,7 +27,7 @@ const Qualitative = () => {
       </div>
       <div>hello</div>
      
-     <Next width ="default"></Next>
+     <Next width ="default" qualitative = {true}></Next>
       <Undo wide = {true}></Undo>
     </>
   )

@@ -140,6 +140,12 @@ export const reducer = (state, action) => {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1],
       })
+    case "next_qualitative_mode": 
+    const qualitativeModes = ["ConfigQualitative", "Qualitative", "QualitativeScanData"]
+      return clearUndo({
+        ...state,
+        mode: qualitativeModes[qualitativeModes.indexOf(state.mode) + 1],
+      })
     case "set_phase":
       return {
         ...state,
