@@ -7,6 +7,8 @@ import Scout from "./Scout"
 import ScanData from "./ScanData"
 import Scanner from "./Scanner"
 import Settings from "./Settings"
+import Qualitative from "./Qualitative"
+import ConfigureQualitative from "./ConfigureQualitative"
 
 import "./Panels.scss"
 import Export from "./Export"
@@ -20,6 +22,10 @@ const Panels = (props) => {
     switch (state.mode) {
       case "Configure":
         return <Configure></Configure>
+      case "ConfigQualitative":
+        return <ConfigureQualitative></ConfigureQualitative>
+      case "Qualitative":
+        return <Qualitative></Qualitative>
       case "Scout":
         return <Scout></Scout>
       case "Review":

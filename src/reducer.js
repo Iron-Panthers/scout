@@ -15,6 +15,12 @@ const grid = {
   bottomCube: 0,
 }
 
+const teamQual = {
+  number: undefined,
+  quickness: undefined,
+  fieldAwareness: undefined,
+}
+
 export const initialState = {
   version, // this one should not be changed, but there is no other way to ensure it is always included
   mode: "Configure", // Configure, Scout, Review, ScanData, Settings
@@ -42,6 +48,17 @@ export const initialState = {
   scoutProblems: false,
   robotProblems: false,
   comments: "",
+  qualitative : {
+    team1: {
+     ...teamQual
+    },
+    team2: {
+      ...teamQual
+     },
+    team3: {
+      ...teamQual
+     }
+  },
   undoStack: {
     auto: [],
     teleop: [],

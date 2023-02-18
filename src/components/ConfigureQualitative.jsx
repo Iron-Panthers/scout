@@ -7,7 +7,10 @@ import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
 import SetPanel from "./inputs/SetPanel"
 
-const Configure = () => {
+import MultiNumber from "./inputs/MultiNumber"
+
+
+const ConfigureQualitative = () => {
   const [settings] = useSettings()
   const isIOS =
     ([
@@ -20,20 +23,22 @@ const Configure = () => {
     ].includes(navigator.platform) ||
       (navigator.userAgent.includes("Mac") && "ontouchend" in document)) &&
     settings.IOSCheck
+ 
+
 
   return (
     <>
-      <Numbers label="Robot Team #" prop="team" width = "halfWide" ></Numbers>
+       <MultiNumber label = "test" prop = "num" idealLength = {4} width = "halfWide"/>
       <Numbers label="Match #" prop="matchNum" idealLength={2} width = "halfWide"></Numbers>
       <Dropdown
         wide
         prop="matchType"
         options={["Test", "Practice", "Qualification"]}
       ></Dropdown>
-      {!isIOS && <SetPanel width = "halfWide" label="Qualitative Scanner" panelName="qualitativeScanner"></SetPanel>}
+      {!isIOS && <SetPanel width = "halfWide" label="Scanner" panelName="Scanner"></SetPanel>}
       <Next width ={isIOS ? "wide" : "halfWide"}></Next>
     </>
   )
 }
 
-export default Configure
+export default ConfigureQualitative

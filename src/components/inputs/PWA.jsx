@@ -76,6 +76,16 @@ const PWA = ({ modes }) => {
       >
         {status !== false ? status : swStatus}
       </button>
+      <button className = "green"
+        id = "Qualitative Scouting"
+        onClick={() => {
+          dispatch({
+            type: "set",
+            prop: "mode",
+            val: "ConfigQualitative",
+          })
+        }}>
+      </button>
       <button
         className="green"
         id="Settings"
