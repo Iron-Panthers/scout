@@ -8,10 +8,6 @@ import SetPanel from "./inputs/SetPanel"
 const Review = () => {
   return (
     <>
-      <Checkbox
-        label="Shot wrong cargo (with intent to score)"
-        prop="wrongCargo"
-      ></Checkbox>
       <Checkbox label="Played defense" prop="defense"></Checkbox>
       <Checkbox
         label="Robot had problems / malfunction"
