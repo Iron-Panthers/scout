@@ -35,7 +35,7 @@ const ConfigureQualitative = () => {
         prop="matchType"
         options={["Test", "Practice", "Qualification"]}
       ></Dropdown>
-      {!isIOS && <SetPanel width = "halfWide" label="Scanner" panelName="Scanner"></SetPanel>}
+      {!isIOS && <SetPanel width = "halfWide" label="Qualitative Scanner" panelName="qualitativeScanner"></SetPanel>}
       <Next width ={isIOS ? "wide" : "halfWide"} qualitative></Next>
     </>
   )
