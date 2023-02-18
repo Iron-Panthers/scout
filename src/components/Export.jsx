@@ -40,6 +40,7 @@ const Export = () => {
       </button>
 
       <button
+        className="halfWide"
         disabled={scans.length === 0}
         onClick={() => {
           if (
@@ -57,7 +58,7 @@ const Export = () => {
       >
         Tap to CLEAR ALL {scans.length} STORED QR CODES PERMANENTLY
       </button>
-      <Reset></Reset>
+      <Reset width = "halfWide"></Reset>
     </>
   )
 }
