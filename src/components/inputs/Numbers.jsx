@@ -46,7 +46,7 @@ Numbers.propTypes = {
   label: PropTypes.string.isRequired,
   prop: PropTypes.string.isRequired,
   idealLength: PropTypes.number,
-  width: PropTypes.oneOf(["default, halfWide, Wide"]),
+  width: PropTypes.oneOf(["default", "halfWide", "wide"]),
   twoLines: PropTypes.bool,
 }
 
