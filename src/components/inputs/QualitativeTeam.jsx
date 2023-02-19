@@ -9,10 +9,18 @@ const QualitativeTeam = ({team}) => {
     // console.log(state[team+"Number"])
     // console.log(team)
   return (
+
     <div className = "wide qualitativeTeam">
+    <div id = "teamHeader">
+        <p>Quickness</p>
+        <p>{state[team + "Number"]}</p>
+        <p>Field Awareness</p>
+    </div>
+      <div className="qualitativeIncrementers">
       <QualitativeCount team = {team} prop = "Quickness"/>
-      <p>{state[team + "Number"]}</p>
+      <p></p>
       <QualitativeCount team = {team} prop = "FieldAwareness"/>
+      </div>
     </div>
   )
 }

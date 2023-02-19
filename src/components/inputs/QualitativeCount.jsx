@@ -3,6 +3,7 @@ import { Context } from "../../state"
 import PropTypes from "prop-types"
 
 import "./buttons.scss"
+import "./inputs.scss"
 
 const QualitativeCount = ({team, prop, width }) => {
   const [state, dispatch] = useContext(Context)
@@ -16,7 +17,7 @@ const QualitativeCount = ({team, prop, width }) => {
   }
 
   return (
-      <>
+      <div className="qualitativeCounter">
     <button
       className={`${width ?? "default"} green`}
       disabled = {state[team + prop] >= 3}
@@ -29,7 +30,7 @@ const QualitativeCount = ({team, prop, width }) => {
       disabled = {state[team + prop] <= 1}
       onClick={() => handleIncrement(-1)}
     >-</button>
-    </>
+    </div>
   )
 }
 

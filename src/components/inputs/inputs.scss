@@ -43,30 +43,54 @@ textarea:focus {
 }
 
 .qualitativeTeam {
-  display: flex;
+  grid-row: span 2;
+  border-top: 0.5rem solid;
+  border-top: 5px;
+  #teamHeader {
+    display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  button{
-    display:block;
+   p {
     flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0px;
-    width: 0px;
-    font-size: 4rem;
-  }
-
-  p {
-   flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0px;
     font-size: 1.2rem;
     text-align: center;
+   }
   }
-
-  
 }
 
+.qualitativeIncrementers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  .qualitativeCounter {
+ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    grid-column: span 2;
+    
+    button{
+      display:block;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0px;
+      width: 0px;
+      font-size: 4rem;
+    }
+
+    p {
+    flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0px;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    
+  }
+}
 
 .evenFlex {
   display: flex;
