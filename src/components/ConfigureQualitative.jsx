@@ -28,7 +28,7 @@ const ConfigureQualitative = () => {
 
   return (
     <>
-       <TripleTeamSelector label = "test" prop = "Number" idealLength = {4} width = "halfWide"/>
+       <TripleTeamSelector label = "Alliance Teams" prop = "Number" idealLength = {4} width = "halfWide"/>
       <Numbers label="Match #" prop="matchNum" idealLength={2} width = "halfWide"></Numbers>
       <Dropdown
         wide
