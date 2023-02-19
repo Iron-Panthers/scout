@@ -7,7 +7,7 @@ import Next from "./inputs/Next"
 import Numbers from "./inputs/Numbers"
 import SetPanel from "./inputs/SetPanel"
 
-import MultiNumber from "./inputs/MultiNumber"
+import TripleTeamSelector from "./inputs/TripleTeamSelector"
 
 
 const ConfigureQualitative = () => {
@@ -28,7 +28,7 @@ const ConfigureQualitative = () => {
 
   return (
     <>
-       <MultiNumber label = "test" prop = "num" idealLength = {4} width = "halfWide"/>
+       <TripleTeamSelector label = "test" prop = "Number" idealLength = {4} width = "halfWide"/>
       <Numbers label="Match #" prop="matchNum" idealLength={2} width = "halfWide"></Numbers>
       <Dropdown
         wide

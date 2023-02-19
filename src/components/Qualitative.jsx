@@ -10,10 +10,8 @@ import Numbers from "./inputs/Numbers"
 
 import Count from "./inputs/Count"
 
-import Grid from "./inputs/Grid"
 
 import "./Scout.scss"
-import TripleSwitch from "./inputs/TripleSwitch"
 
 const Qualitative = () => {
   const [state, dispatch] = useContext(Context)
@@ -23,7 +21,6 @@ const Qualitative = () => {
     <>
       <div className="scoutHead">
         <Info></Info>
-        <Tabs></Tabs>
       </div>
       <div>hello</div>
      

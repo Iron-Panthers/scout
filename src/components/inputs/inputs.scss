@@ -121,4 +121,27 @@ div.Numbers {
     // scss thinks we want pre-compile min so we need to bypass it
     flex-basis: unquote("min(25vw, 100px)");
   }
+
+}
+
+div.TripleTeamSelector {
+  display: flex;
+  gap: 1vw;
+  padding-left: 3vw;
+  .teams {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    & > input {
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0px;
+    }
+  }
+  & > label {
+    white-space: nowrap;
+    // scss thinks we want pre-compile min so we need to bypass it
+    flex-basis: unquote("min(25vw, 100px)");
+  }
 }

@@ -20,7 +20,7 @@ const Next = ({ width, tall, qualitative }) => {
 }
 
 Next.propTypes = {
-  wide: PropTypes.oneOf(["default, halfWidth, wide"]),
+  wide: PropTypes.oneOf(["default", "halfWidth", "wide"]),
   tall:  PropTypes.bool,
   qualitative: PropTypes.bool
 }

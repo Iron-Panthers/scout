@@ -23,7 +23,7 @@ const teamQual = {
 
 export const initialState = {
   version, // this one should not be changed, but there is no other way to ensure it is always included
-  mode: "Configure", // Configure, Scout, Review, ScanData, Settings
+  mode: "Configure", // Configure, Scout, Review, ScanData, Settings, ConfigQualitative
   team: undefined,
   matchType: "Qualification", //Test, Practice, Qualification
   matchNum: undefined,
@@ -48,8 +48,7 @@ export const initialState = {
   scoutProblems: false,
   robotProblems: false,
   comments: "",
-  qualitative : {
-    
+// Qualitative attributes... I don't want to deal with phase anymore     
   team1Number: undefined,
   team1Quickness: undefined,
   team1fieldAwareness: undefined,
@@ -62,7 +61,6 @@ export const initialState = {
   team3Quickness: undefined,
   team3fieldAwareness: undefined,
 
-  },
   undoStack: {
     auto: [],
     teleop: [],
@@ -145,7 +143,7 @@ export const reducer = (state, action) => {
         mode: modes[modes.indexOf(state.mode) + 1],
       })
     case "next_qualitative_mode": 
-    const qualitativeModes = ["ConfigQualitative", "Qualitative", "QualitativeScanData"]
+    const qualitativeModes = ["ConfigQualitative", "Qualitative", "ScanData"]
       return clearUndo({
         ...state,
         mode: qualitativeModes[qualitativeModes.indexOf(state.mode) + 1],

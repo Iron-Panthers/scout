@@ -4,24 +4,22 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const Numbers = ({ label, prop, idealLength = 4, width, twoLines }) => {
+const TripleTeamSelector = ({ label, prop, idealLength = 4, width}) => {
   
   const [state, dispatch] = useContext(Context)
-  // const id = `Numbers-${label}-${prop}`.replaceAll(" ", "_")
-
-
+    
   const numberMaker = (team) => {
+
     return <input
               id={team}
               type="number"
               pattern="[0-9]*"
               placeholder={"0".repeat(idealLength)}
               autoComplete="off"
-              className={`${width ? width : "wide"}`}
               onChange={(event) => {
               dispatch({
-                  type: "set",
-                  prop,
+                  type: `set`,
+                  prop: team + prop,
                   val: !(
                   event.target.value === undefined || event.target.value === ""
                   )
@@ -33,29 +31,27 @@ const Numbers = ({ label, prop, idealLength = 4, width, twoLines }) => {
           />
 
   }  
-  const numberInputComponent = <>
-    <label htmlFor={"team1"} className={`${twoLines ? "default" : ""}`}>
+  
+  return <div className={`TripleTeamSelector ${ width ? width :"wide"}`}>
+    <label htmlFor={"team1"}>
         {label}
       </label>
-      {numberMaker("team1")}
-      {numberMaker("team2")}
-      {numberMaker("team3")}
-      
-  </>
-
-  return twoLines ? numberInputComponent : (
-    <div className={`Numbers ${ width ? width :"wide"}`}>
-     {numberInputComponent}
+      <div className = "teams">
+        {numberMaker("team1")}
+        {numberMaker("team2")}
+        {numberMaker("team3")}
+      </div>
     </div>
-  )
+  
 }
 
-Numbers.propTypes = {
+TripleTeamSelector.propTypes = {
   label: PropTypes.string.isRequired,
   prop: PropTypes.string.isRequired,
+  phase: PropTypes.bool,
   idealLength: PropTypes.number,
-  width: PropTypes.oneOf(["default, halfWide, Wide"]),
+  width: PropTypes.oneOf(["default", "halfWide", "wide"]),
   twoLines: PropTypes.bool,
 }
 
-export default Numbers
+export default TripleTeamSelector
