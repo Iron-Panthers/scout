@@ -42,6 +42,31 @@ textarea:focus {
   grid-template-columns: 1fr 1fr;
 }
 
+.qualitativeTeam {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  button{
+    display:block;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0px;
+    width: 0px;
+    font-size: 4rem;
+  }
+
+  p {
+   flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0px;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  
+}
+
 
 .evenFlex {
   display: flex;

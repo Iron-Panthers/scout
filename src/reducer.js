@@ -50,16 +50,16 @@ export const initialState = {
   comments: "",
 // Qualitative attributes... I don't want to deal with phase anymore     
   team1Number: undefined,
-  team1Quickness: undefined,
-  team1fieldAwareness: undefined,
+  team1Quickness: 1,
+  team1FieldAwareness: 1,
 
   team2Number: undefined,
-  team2Quickness: undefined,
-  team2fieldAwareness: undefined,
+  team2Quickness: 1,
+  team2FieldAwareness: 1,
 
   team3Number: undefined,
-  team3Quickness: undefined,
-  team3fieldAwareness: undefined,
+  team3Quickness: 1,
+  team3FieldAwareness: 1,
 
   undoStack: {
     auto: [],
