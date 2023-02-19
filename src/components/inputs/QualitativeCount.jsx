@@ -10,7 +10,7 @@ const QualitativeCount = ({team, prop, width }) => {
   const handleIncrement = (increment) => {
     dispatch({
         type: `set`,
-        prop,
+        prop: team + prop,
         val: state[team + prop] + increment,
       })
   }
@@ -19,11 +19,14 @@ const QualitativeCount = ({team, prop, width }) => {
       <>
     <button
       className={`${width ?? "default"} green`}
+      disabled = {state[team + prop] >= 3}
       onClick={() => handleIncrement(1)}
     >+</button>
-    <p>{prop === "FieldAwareness" ? "Field Awareness" : prop}</p>
+    
+    <p>{state[team + prop]}</p>
         <button
       className={`${width ?? "default"} red`}
+      disabled = {state[team + prop] <= 1}
       onClick={() => handleIncrement(-1)}
     >-</button>
     </>
