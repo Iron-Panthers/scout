@@ -44,4 +44,22 @@ button {
     }
     @include disabledColor();
   }
+
+  &.yellow {
+    background-color: hsl(63, 100%, 86%);
+    border: 2px solid hsl(63, 100%, 26%);
+    &:active {
+      background-color: hsl(63, 100%, 66%);
+    }
+    @include disabledColor();
+  }
+
+  &.purple {
+    background-color: hsl(280, 100%, 86%);
+    border: 2px solid hsl(280, 100%, 26%);
+    &:active {
+      background-color: hsl(280, 100%, 66%);
+    }
+
+  }
 }
