@@ -58,8 +58,12 @@ export const stateToCsv = (state) =>
 export const parseCsvBody = (body) => {
 
   // SUPER BAD FIX!!!
-  // I assume that the qual matches have less commmas, simply because there's less data
-  // Forgive me
+  // I find the number of commas in the provided data
+  // Then, I find the number of elements by adding 1 to the number of commas
+  // That should be equal to the number of fields...in theory
+  // Using that number, you can compare the number of fields to the qualitative or match fields to see
+  // what type of data the body contains
+  // ASSUMES THAT QUALITATIVE AND MATCH HAVE A DIFFERENT NUMBER OF FIELDS
 
   const numCommas = (body.match(/,/g) || []).length;
 
