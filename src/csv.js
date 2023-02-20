@@ -2,7 +2,16 @@ import { unparse, parse } from "papaparse"
 import { initialState } from "./reducer"
 
 /** remove unwanted keys from state */
-export const filterState = ({ mode, phase, undoStack, ...state }) => state
+export const filterState = ({mode, phase, undoStack, ...state }) => {
+    // If the phase is auto, then we couldn't have gone into the standard scouting mode
+    // Therefore, this is a qualitative scouting form, and the standard scout keys should be filtered out
+    return filterCleanedState(phase === "auto", state)  
+}
+
+// Standard scout keys: team, auto, teleop, endgame, scoutProblems, robotProblems, comments
+const filterCleanedState = (isQualitative, {version, team, auto, teleop, endgame, scoutProblems, robotProblems, comments, ...qualitativeState}) => 
+ isQualitative ? {version, ...qualitativeState} : ({version, team, auto, teleop, endgame, scoutProblems, robotProblems, comments})
+
 
 /** flattens, cleans a state object such that its keys are hyphen separated of their parents*/
 export const cleanState = (rawState) =>
@@ -17,19 +26,29 @@ export const cleanState = (rawState) =>
     return obj
   }, {})
 
-/** the fields on a state - the flattened keys */
-export const fields = Object.entries(cleanState(initialState)).map(
+
+/** the fields on a qual state - the flattened keys */
+export const qualFields = Object.entries(cleanState(initialState)).map(
   ([key]) => key
 )
 
-/** the csv header for a csv ed state */
-export const header = unparse({ fields })
+
+/** the fields on a match state - the flattened keys */
+export const matchFields = Object.entries(cleanState({...initialState, phase: "endgame"})).map(
+  ([key]) => key
+)
+
+/** the csv header for a match csv ed state */
+export const matchHeader = unparse({matchFields})
+
+/** the csv header for a qualitative csv ed state */
+export const qualHeader = unparse({...qualFields})
 
 /** converts state into a csv string */
 export const stateToCsv = (state) =>
   unparse(
     {
-      fields,
+      fields : state.phase === "auto" ? qualFields : matchFields,
       data: Object.entries(cleanState(state)).map(([, val]) => val),
     },
     { header: false }
@@ -37,6 +56,23 @@ export const stateToCsv = (state) =>
 
 /** converts the body of a csv string into a flattened state object */
 export const parseCsvBody = (body) => {
+
+  // SUPER BAD FIX!!!
+  // I assume that the qual matches have less commmas, simply because there's less data
+  // Forgive me
+
+  const numCommas = (body.match(/,/g) || []).length;
+
+  let header = []
+  if(numCommas + 1 === qualFields.length) {
+    header = qualFields
+  } else if (numCommas + 1 === matchFields.length) {
+    header = matchFields
+  } else {
+    alert("Something horrible has occurred")
+  }
+
+console.log(body)
   const obj = parse(`${header}\r\n${body}`)
   const headArray = obj.data[0]
   const bodyArray = obj.data[1]
@@ -47,7 +83,7 @@ export const parseCsvBody = (body) => {
     const value = bodyArray[i]
     returnObj[row] = value
   })
-
+ 
   return returnObj
 }
 

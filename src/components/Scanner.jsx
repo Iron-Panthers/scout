@@ -21,8 +21,9 @@ const Scanner = () => {
   const [settings] = useSettings()
 
   const [error, setError] = useState(false)
-  const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
-  const [scanCount, setScanCount] = useState(scans.current.size)
+  const matchScans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
+  const qualScans = useRef(new Set(JSON.parse(localStorage.qualScanSet ?? "[]")))
+  const [scanCount, setScanCount] = useState(matchScans.current.size + qualScans.current.size)
   const [anim, onAnimEnd] = useAnim(scanCount)
   const [scanHint, setScanHint] = useState("")
   const [scan, setScan] = useState(true)
@@ -63,12 +64,23 @@ const Scanner = () => {
                 return
               }
               let objVal = parseCsvBody(val)
-
+              console.log(objVal)
               const versionMatch = Number.parseInt(objVal.version) === version
-              if (!scans.current.has(val) && versionMatch) {
-                scans.current.add(val)
+              if ((!matchScans.current.has(val) && !qualScans.current.has(val)) && versionMatch) {
+                
                 setScanCount(scanCount + 1)
-                localStorage.scanSet = JSON.stringify(Array.from(scans.current))
+
+                // Checking if the quickness has been set
+                // If it has, then the csv object must be from the qualitative scouting
+                // Otherwise, it should be a normal match
+                if(objVal?.team1Quickness) {
+                  qualScans.current.add(val)
+                  localStorage.qualitativeScanSet = JSON.stringify(Array.from(qualScans.current))
+                } else {
+                  matchScans.current.add(val)
+                  localStorage.matchScanSet = JSON.stringify(Array.from(matchScans.current))
+                }
+                
                 if (settings.scannerBeep) beep()
                 setScanHint("stored")
               } else {
