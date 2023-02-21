@@ -43,13 +43,16 @@ textarea:focus {
 }
 
 .qualitativeTeam {
+
+  $widthOfCounter : span 3;
   grid-row: span 2;
-  border-top: 0.5rem solid;
-  border-top: 5px;
-  #teamHeader {
-    display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  
+
+  border-bottom:0.2em solid gray;
+ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-auto-rows: minmax(0, 1fr);
    p {
     flex-grow: 1;
     flex-shrink: 1;
@@ -57,40 +60,51 @@ textarea:focus {
     font-size: 1.2rem;
     text-align: center;
    }
-  }
-}
+   #teamNumber {
+    font-weight: bold;
+    font-size: 1.5rem;
+   }
+   .attribute {
+     grid-column: $widthOfCounter
+   }
 
-.qualitativeIncrementers {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   .qualitativeCounter {
+    
  
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    grid-column: $widthOfCounter;
+    
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-between;
 
-    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: minmax(0, 1fr);
     
     button{
-      display:block;
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 0px;
-      width: 0px;
+      // display:inline-block;
+      // flex-grow: 1;
+      // flex-shrink: 1;
+      // flex-basis: 0px;
       font-size: 4rem;
+      grid-column: span 1;
+      border-radius: 25vh;
+      margin-bottom: 0.4vh;
+      text-align: center;
+      // width: 0px;
     }
+   
 
     p {
-    flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 0px;
+      // flex-grow: 1;
+      // flex-shrink: 1;
+      // flex-basis: 0px;
       font-size: 1.2rem;
       text-align: center;
     }
-
-    
   }
 }
+
 
 .evenFlex {
   display: flex;

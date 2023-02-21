@@ -11,16 +11,13 @@ const QualitativeTeam = ({team}) => {
   return (
 
     <div className = "wide qualitativeTeam">
-    <div id = "teamHeader">
-        <p>Quickness</p>
-        <p>{state[team + "Number"]}</p>
-        <p>Field Awareness</p>
-    </div>
-      <div className="qualitativeIncrementers">
-      <QualitativeCount team = {team} prop = "Quickness"/>
-      <p></p>
-      <QualitativeCount team = {team} prop = "FieldAwareness"/>
-      </div>
+        <p className="attribute">Quickness</p>
+        <p id = "teamNumber">{state[team + "Number"]}</p>
+        <p className="attribute">Field Awareness</p>
+        
+        <QualitativeCount team = {team} prop = "Quickness"/>
+        <p id = "spacer"></p>
+        <QualitativeCount team = {team} prop = "FieldAwareness"/>
     </div>
   )
 }

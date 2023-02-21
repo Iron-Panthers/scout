@@ -19,7 +19,7 @@ const QualitativeCount = ({team, prop, width }) => {
   return (
       <div className="qualitativeCounter">
     <button
-      className={`${width ?? "default"} green`}
+      className={`green`}
       disabled = {state[team + prop] >= 3}
       onClick={() => handleIncrement(1)}
     >+</button>
