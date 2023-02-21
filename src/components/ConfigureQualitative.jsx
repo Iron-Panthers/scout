@@ -33,6 +33,8 @@ const ConfigureQualitative = () => {
 
       // Then actually checking to make sure the two numbers are not equivalent
       if(team1 !== team2) return true
+
+      return false
     }
 
     // Checks to make sure that at least one of the teams has been actually been filled out
