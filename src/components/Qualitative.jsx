@@ -14,7 +14,7 @@ const Qualitative = () => {
       <QualitativeTeam team = "team1"/>
       <QualitativeTeam team = "team2"/>
       <QualitativeTeam team = "team3"/>
-     <Next width ="wide" qualitative = {true}></Next>
+     <Next width ="wide" tall qualitative = {true} isDisabled = {!allDifferentValues} disabledText="All teams must have different value"></Next>
     </>
   )
 }
