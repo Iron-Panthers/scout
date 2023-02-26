@@ -13,13 +13,13 @@ const Info = () => {
    
     switch(definedTeams.length) {
       case (0) :
-        return "team #????"
+        return "Team #????"
       case (1) :
-        return "team #" + definedTeams[0]
+        return "Team #" + definedTeams[0]
       case (2) :
-        return "teams #" + definedTeams [0] + " and #" + definedTeams[1]
+        return "Teams #" + definedTeams [0] + " and #" + definedTeams[1]
       case (3) :
-        return "teams #" + definedTeams [0] + ", #" + definedTeams[1] +  ", and #" + definedTeams[2]
+        return "Teams #" + definedTeams [0] + ", #" + definedTeams[1] +  ", and #" + definedTeams[2]
       default:
         console.log("Cry, for you have somehow bypassed my team checking")
     }
@@ -27,7 +27,7 @@ const Info = () => {
     
   })()
 
-  const teamNum = state.mode === "Qualitative" ? formattedMultipleTeams : "team #" + state.team
+  const teamNum = state.mode === "Qualitative" ? formattedMultipleTeams : "Team #" + state.team
 
   return (
     <div className="Info Center">

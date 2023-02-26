@@ -99,9 +99,7 @@ const PWA = ({ modes }) => {
           setStatus("updating...")
         }}
       >
-        {state.mode === "Configure" ? "Match Scouting".toUpperCase() : "Qualitative Scouting".toUpperCase()}
-        <br></br>
-        <br></br>
+        {(state.mode === "Configure" ? "Match Scouting".toUpperCase() : "Qualitative Scouting".toUpperCase()) + "\n\n"}
         {status !== false ? status : swStatus}
       </button>
       <button

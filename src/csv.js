@@ -8,9 +8,9 @@ export const filterState = ({mode, phase, undoStack, ...state }) => {
     return filterCleanedState(phase === "auto", state)  
 }
 
-// Standard scout keys: team, auto, teleop, endgame, scoutProblems, robotProblems, comments
-const filterCleanedState = (isQualitative, {version, team, auto, teleop, endgame, scoutProblems, robotProblems, comments, ...qualitativeState}) => 
- isQualitative ? {version, ...qualitativeState} : ({version, team, auto, teleop, endgame, scoutProblems, robotProblems, comments})
+// Standard scout keys: team, auto, teleop, endgame, defense, scoutProblems, robotProblems, comments
+const filterCleanedState = (isQualitative, {version, team, auto, teleop, endgame, defense, scoutProblems, robotProblems, comments, ...qualitativeState}) => 
+ isQualitative ? {version, ...qualitativeState} : ({version, team, auto, teleop, endgame, defense, scoutProblems, robotProblems, comments})
 
 
 /** flattens, cleans a state object such that its keys are hyphen separated of their parents*/

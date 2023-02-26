@@ -11,9 +11,8 @@ const QualitativeTeam = ({team}) => {
   return (
 
     <div className = "wide qualitativeTeam">
-        {/* <p className="attribute">Quickness</p> */}
+
         <p id = "teamNumber">{state[team + "Number"]}</p>
-        {/* <p className="attribute">Field Awareness</p> */}
         
         <QualitativeCount team = {team} prop = "Quickness"/>
         <p id = "spacer"></p>

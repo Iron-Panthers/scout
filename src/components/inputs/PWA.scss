@@ -39,6 +39,7 @@ div.PWA {
   & > button.blue {
     flex-grow: 1;
     font-size: 1.5rem;
+    white-space: pre-line;
     &:disabled {
       background-color: hsl(206, 60%, 90%);
       &[animate="1"] {
