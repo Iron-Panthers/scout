@@ -14,12 +14,12 @@ const Export = () => {
   const qualScans = JSON.parse(localStorage.qualitativeScanSet ?? "[]")
 
 
-  const downloadCSV = (header, scans) => {
+  const downloadCSV = (header, scans, name) => {
     const csv = `${header}\r\n${scans.join("\r\n")}`
     const blob = new Blob([csv], { type: "text/csv" })
     const elem = window.document.createElement("a")
     elem.href = window.URL.createObjectURL(blob)
-    elem.download = `Scout_${new Date()
+    elem.download = `${name}_${new Date()
       .toDateString()
       .replaceAll(" ", "_")}_${new Date()
       .toTimeString()
@@ -42,9 +42,9 @@ const Export = () => {
         disabled={matchScans.length === 0 && qualScans.length === 0}
         onClick={() => {
           // Download match data
-          downloadCSV(matchFields, matchScans)
+          downloadCSV(matchFields, matchScans, "Match")
           // Download qual data
-          downloadCSV(qualFields, qualScans)
+          downloadCSV(qualFields, qualScans, "Qualitative")
         }}
       >
         Export and download as csv
