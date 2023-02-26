@@ -4,12 +4,13 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const Numbers = ({ label, prop, idealLength = 4 }) => {
+const Numbers = ({ label, prop, idealLength = 4, width, twoLines }) => {
+  
   const [state, dispatch] = useContext(Context)
   const id = `Numbers-${label}-${prop}`.replaceAll(" ", "_")
-  return (
-    <div className="Numbers">
-      <label htmlFor={id} className="AlignRight">
+
+  const numberInputComponent = <>
+    <label htmlFor={id} className={`${twoLines ? "default" : ""}`}>
         {label}
       </label>
       <input
@@ -18,7 +19,7 @@ const Numbers = ({ label, prop, idealLength = 4 }) => {
         pattern="[0-9]*"
         placeholder={"0".repeat(idealLength)}
         autoComplete="off"
-        className="wide"
+        className={`${width ? width : "wide"}`}
         onChange={(event) => {
           dispatch({
             type: "set",
@@ -32,6 +33,11 @@ const Numbers = ({ label, prop, idealLength = 4 }) => {
         }}
         value={state[prop] ?? ""}
       />
+  </>
+
+  return twoLines ? numberInputComponent : (
+    <div className={`Numbers ${ width ? width :"wide"}`}>
+     {numberInputComponent}
     </div>
   )
 }
@@ -40,6 +46,8 @@ Numbers.propTypes = {
   label: PropTypes.string.isRequired,
   prop: PropTypes.string.isRequired,
   idealLength: PropTypes.number,
+  width: PropTypes.oneOf(["default", "halfWide", "wide"]),
+  twoLines: PropTypes.bool,
 }
 
 export default Numbers

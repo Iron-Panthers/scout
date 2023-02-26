@@ -3,14 +3,11 @@ import React from "react"
 import Checkbox from "./inputs/Checkbox"
 import Freetext from "./inputs/Freetext"
 import Next from "./inputs/Next"
+import SetPanel from "./inputs/SetPanel"
 
 const Review = () => {
   return (
     <>
-      <Checkbox
-        label="Shot wrong cargo (with intent to score)"
-        prop="wrongCargo"
-      ></Checkbox>
       <Checkbox label="Played defense" prop="defense"></Checkbox>
       <Checkbox
         label="Robot had problems / malfunction"
@@ -21,7 +18,8 @@ const Review = () => {
         prop="scoutProblems"
       ></Checkbox>
       <Freetext label="Comments?" prop="comments"></Freetext>
-      <Next wide></Next>
+      <SetPanel label="Edit Data" panelName="EditScoutData" width = "wide"></SetPanel>
+      <Next width = "wide"></Next>
     </>
   )
 }

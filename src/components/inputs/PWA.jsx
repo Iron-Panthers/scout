@@ -8,6 +8,8 @@ import { FaCog } from "react-icons/fa"
 
 import "./buttons.scss"
 import "./PWA.scss"
+import "./inputs.scss"
+
 
 const PWA = ({ modes }) => {
   const [state, dispatch] = useContext(Context)
@@ -54,11 +56,34 @@ const PWA = ({ modes }) => {
     })
   }, [])
 
+  const isHidden = !(modes ?? []).includes(state.mode) ? " hidden" : "";
+
   return (
+    <>
+     <button className = {`halfWide blue ${isHidden}`}
+        id = "switchScoutingType"
+        onClick={() => {
+          dispatch({
+            type: "set",
+            prop: "mode",
+            val: state.mode === "Configure" ?  "ConfigQualitative" : "Configure",
+          })
+        }}>
+      {state.mode === "Configure" ?  "Qualitative Scouting" : "Match Scouting"}
+      </button>
+      <button className = {`halfWide blue ${isHidden}`}
+        id = "settingsWideButton"
+        onClick={() => {
+          dispatch({
+            type: "set",
+            prop: "mode",
+            val: "Settings",
+          })
+        }}>
+      Settings
+      </button>
     <div
-      className={`wide PWA ${
-        !(modes ?? []).includes(state.mode) ? " hidden" : ""
-      }`}
+      className={`wide PWA ${isHidden}`}
     >
       <button
         className="blue"
@@ -74,6 +99,7 @@ const PWA = ({ modes }) => {
           setStatus("updating...")
         }}
       >
+        {(state.mode === "Configure" ? "Match Scouting".toUpperCase() : "Qualitative Scouting".toUpperCase()) + "\n\n"}
         {status !== false ? status : swStatus}
       </button>
       <button
@@ -90,6 +116,7 @@ const PWA = ({ modes }) => {
         <FaCog />
       </button>
     </div>
+    </>
   )
 }
 

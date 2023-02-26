@@ -16,8 +16,8 @@ export const Settings = React.createContext({
 
 export const useSettings = () => useContext(Settings)
 
-export const Provider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+export const Provider = ({ children, customInitialState = initialState }) => {
+  const [state, dispatch] = React.useReducer(reducer, customInitialState)
   const [settings, settingsDispatch] = React.useReducer(
     settingsReducer,
     initialLocalSettings

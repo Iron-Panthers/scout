@@ -1,40 +1,66 @@
+import produce from "immer"
+import set from "lodash.set"
+
 import { getSettings } from "./settings"
 const csvApi = require("../package.json").csvApi
 
 export const version = csvApi ?? 69
 
-const shooting = {
-  upperSucc: 0,
-  upperFail: 0,
-  lowerSucc: 0,
-  lowerFail: 0,
+const grid = {
+  topCone: 0, 
+  middleCone: 0,
+  bottomCone: 0,
+  topCube: 0, 
+  middleCube: 0, 
+  bottomCube: 0,
+}
+
+const teamQual = {
+  number: undefined,
+  quickness: undefined,
+  fieldAwareness: undefined,
 }
 
 export const initialState = {
   version, // this one should not be changed, but there is no other way to ensure it is always included
-  mode: "Configure", // Configure, Scout, Review, ScanData, Settings
+  mode: "Configure", // Configure, Scout, Review, ScanData, Settings, ConfigQualitative
   team: undefined,
   matchType: "Qualification", //Test, Practice, Qualification
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
-    pickup: 0,
-    taxi: false,
-    ...shooting,
+    mobility: false,
+    docked: false,
+    engaged: false,
+    fail: 0,
+    ...grid,
   },
   teleop: {
-    ...shooting,
+    defense: false,
+    fail: 0,
+    ...grid,
   },
   endgame: {
-    climb: false,
-    fail: false,
-    level: "None",
+    docked: false,
+    engaged: false,
+    community: false,
   },
-  wrongCargo: false,
-  defense: false,
   scoutProblems: false,
   robotProblems: false,
   comments: "",
+// Qualitative attributes... I don't want to deal with phase anymore     
+  team1Number: undefined,
+  team1Quickness: 1,
+  team1FieldAwareness: 1,
+
+  team2Number: undefined,
+  team2Quickness: 1,
+  team2FieldAwareness: 1,
+
+  team3Number: undefined,
+  team3Quickness: 1,
+  team3FieldAwareness: 1,
+
   undoStack: {
     auto: [],
     teleop: [],
@@ -116,6 +142,12 @@ export const reducer = (state, action) => {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1],
       })
+    case "next_qualitative_mode": 
+    const qualitativeModes = ["ConfigQualitative", "Qualitative", "ScanData"]
+      return clearUndo({
+        ...state,
+        mode: qualitativeModes[qualitativeModes.indexOf(state.mode) + 1],
+      })
     case "set_phase":
       return {
         ...state,
@@ -151,6 +183,10 @@ export const reducer = (state, action) => {
         },
         undoStack: addUndo(state, action),
       }
+    case "pathSet":
+      return produce(state, (draft) => {
+        set(draft, action.path, action.val)
+      })
     default:
       return state
   }

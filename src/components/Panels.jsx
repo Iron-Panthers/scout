@@ -7,10 +7,13 @@ import Scout from "./Scout"
 import ScanData from "./ScanData"
 import Scanner from "./Scanner"
 import Settings from "./Settings"
+import Qualitative from "./Qualitative"
+import ConfigureQualitative from "./ConfigureQualitative"
 
 import "./Panels.scss"
 import Export from "./Export"
 import PWA from "./inputs/PWA"
+import EditScoutData from "./EditScoutData"
 
 const Panels = (props) => {
   const [state] = useContext(Context)
@@ -19,10 +22,16 @@ const Panels = (props) => {
     switch (state.mode) {
       case "Configure":
         return <Configure></Configure>
+      case "ConfigQualitative":
+        return <ConfigureQualitative></ConfigureQualitative>
+      case "Qualitative":
+        return <Qualitative></Qualitative>
       case "Scout":
         return <Scout></Scout>
       case "Review":
         return <Review></Review>
+      case "EditScoutData":
+        return <EditScoutData></EditScoutData>
       case "ScanData":
         return <ScanData></ScanData>
       case "Scanner":
@@ -42,7 +51,7 @@ const Panels = (props) => {
   })()
   return (
     <div className="panel" data-testid="panels">
-      <PWA modes={["Configure"]} />
+      <PWA modes={["Configure", "ConfigQualitative"]} />
       {panel}
     </div>
   )

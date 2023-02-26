@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+Array [
+  <div
+    className="Center wide"
+  >
+    Scanned and Stored 0 QR
+  </div>,
+  <button
+    className="wide"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Export and download as csv
+  </button>,
+  <button
+    disabled={true}
+    onClick={[Function]}
+  >
+    Tap to CLEAR ALL 
+    0
+     STORED QR CODES PERMANENTLY
+  </button>,
+  <button
+    className="Reset red "
+    onClick={[Function]}
+  >
+    Tap to Reset
+  </button>,
+]
+`;

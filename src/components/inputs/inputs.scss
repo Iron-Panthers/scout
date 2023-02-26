@@ -1,3 +1,5 @@
+@use "sass:math";
+
 textarea {
   resize: none;
   outline: black 1px solid;
@@ -7,12 +9,93 @@ textarea:focus {
   outline: blue 1px solid;
 }
 
-.wide {
+.default {
   grid-column: span 2;
 }
 
+.wide {
+  grid-column: span 6;
+}
+
+.halfWide {
+  grid-column: span 3;
+}
+
 .tall {
-  grid-row: span 2;
+  grid-row: span 3;
+}
+
+
+
+@mixin twoThirdsLeft {
+  display: grid;
+  grid-row: span 3;
+  grid-column: span 4;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.grid {
+  @include twoThirdsLeft();
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.endgameOptions {
+  @include twoThirdsLeft();
+  grid-template-columns: 1fr 1fr;
+}
+
+// Must be odd, because one slot is taken up by an empty tag for spacing
+$qualCounterSlots : 7;
+$widthOfCounter : span math.floor($qualCounterSlots / 2);
+
+.qualitativeTeam {
+
+  grid-row: span 4;
+
+  border-top: 0.175em solid silver;
+
+  display: grid;
+  grid-template-columns: repeat($qualCounterSlots, 1fr);
+  grid-auto-rows: minmax(0, 1fr);
+
+  #teamNumber {
+    font-weight: bold;
+    font-size: 2.4rem;
+    grid-column: span 7;
+  }
+
+}
+
+.qualitativeCounter {
+
+  grid-column: $widthOfCounter;
+  grid-row: span 4;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(0, 1fr);
+
+  .attribute {
+    grid-column: span 3;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 3rem;
+    text-align: center;
+    //font-weight: bold;
+
+    grid-column: span 1;
+    border-radius: 25vh;
+    margin-bottom: 0.4vh;   
+  }
+
+  p {
+    font-size: 1.6rem;
+    text-align: center;
+  }
 }
 
 .evenFlex {
@@ -22,7 +105,7 @@ textarea:focus {
   justify-content: space-between;
 }
 
-.evenFlex > * {
+.evenFlex>* {
   flex-grow: 1;
   width: 0;
 }
@@ -49,10 +132,12 @@ label.AlignRight {
 label.Checkbox {
   justify-content: flex-start;
   user-select: none;
-  & > input {
+
+  &>input {
     margin-right: 10vw;
     margin-left: 5vw;
   }
+
   &[warn="1"] {
     background-color: hsl(354, 100%, 95%);
   }
@@ -64,6 +149,7 @@ button {
 
 select {
   color: black;
+  border: 2px solid black;
   -webkit-appearance: menulist;
 }
 
@@ -80,19 +166,47 @@ input[type="checkbox"] {
 
 div.Numbers,
 div.TextLine {
-  grid-column: span 2;
   display: flex;
   gap: 1vw;
   padding-left: 3vw;
-  & > input {
+
+  &>input {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0px;
     width: 0px;
   }
-  & > label {
+
+  &>label {
     white-space: nowrap;
     // scss thinks we want pre-compile min so we need to bypass it
-    flex-basis: unquote("min(25vw, 150px)");
+    flex-basis: unquote("min(25vw, 100px)");
+  }
+
+}
+
+div.TripleTeamSelector {
+  display: flex;
+  gap: 1vw;
+  padding-left: 3vw;
+
+  .teams {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0px;
+    width: 0px;
+
+    &>input {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+  }
+
+  &>label {
+    white-space: nowrap;
+    // scss thinks we want pre-compile min so we need to bypass it
+    flex-basis: unquote("min(25vw, 100px)");
   }
 }

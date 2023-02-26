@@ -9,34 +9,21 @@ import SetPanel from "./inputs/SetPanel"
 
 import useAnim from "../hooks/useAnim"
 
-import { header } from "../csv"
+import { parseCsvBody } from "../csv"
 
 import "./Scanner.scss"
 import "./inputs/inputs.scss"
 import "./inputs/buttons.scss"
-import papaparse from "papaparse"
-
-const parseCsvBody = (body) => {
-  const obj = papaparse.parse(`${header}\r\n${body}`)
-  const headArray = obj.data[0]
-  const bodyArray = obj.data[1]
-
-  let returnObj = {}
-
-  headArray.forEach((row, i) => {
-    const value = bodyArray[i]
-    returnObj[row] = value
-  })
-
-  return returnObj
-}
-
+/**
+ * Scans QR code to store its data
+ */
 const Scanner = () => {
   const [settings] = useSettings()
 
   const [error, setError] = useState(false)
-  const scans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
-  const [scanCount, setScanCount] = useState(scans.current.size)
+  const matchScans = useRef(new Set(JSON.parse(localStorage.scanSet ?? "[]")))
+  const qualScans = useRef(new Set(JSON.parse(localStorage.qualScanSet ?? "[]")))
+  const [scanCount, setScanCount] = useState(matchScans.current.size + qualScans.current.size)
   const [anim, onAnimEnd] = useAnim(scanCount)
   const [scanHint, setScanHint] = useState("")
   const [scan, setScan] = useState(true)
@@ -77,12 +64,23 @@ const Scanner = () => {
                 return
               }
               let objVal = parseCsvBody(val)
-
+              console.log(objVal)
               const versionMatch = Number.parseInt(objVal.version) === version
-              if (!scans.current.has(val) && versionMatch) {
-                scans.current.add(val)
+              if ((!matchScans.current.has(val) && !qualScans.current.has(val)) && versionMatch) {
+                
                 setScanCount(scanCount + 1)
-                localStorage.scanSet = JSON.stringify(Array.from(scans.current))
+
+                // Checking if the quickness has been set
+                // If it has, then the csv object must be from the qualitative scouting
+                // Otherwise, it should be a normal match
+                if(objVal?.team1Quickness) {
+                  qualScans.current.add(val)
+                  localStorage.qualitativeScanSet = JSON.stringify(Array.from(qualScans.current))
+                } else {
+                  matchScans.current.add(val)
+                  localStorage.matchScanSet = JSON.stringify(Array.from(matchScans.current))
+                }
+                
                 if (settings.scannerBeep) beep()
                 setScanHint("stored")
               } else {
@@ -108,8 +106,8 @@ const Scanner = () => {
         scanHint !== "" ? " - " : ""
       }${scanHint.toUpperCase()}`}</div>
       {error && <div className="wide Center">{error}</div>}
-      <SetPanel label="Export" panelName="Export"></SetPanel>
-      <Reset></Reset>
+      <SetPanel width= "halfWide" label="Export" panelName="Export"></SetPanel>
+      <Reset width = "halfWide"></Reset>
     </>
   )
 }

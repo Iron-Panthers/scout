@@ -9,6 +9,9 @@ import useWindowSize from "../hooks/useWindowSize"
 
 import "./inputs/QRCode.scss"
 
+/**
+ * Produces and displays QR code for scanning
+ */
 const ScanData = () => {
   const [state] = useContext(Context)
 
@@ -19,7 +22,7 @@ const ScanData = () => {
   console.log(value)
   return (
     <>
-      <Reset wide></Reset>
+      <Reset width = "wide"></Reset>
       <div className="qr">
         <QRCode value={value} size={size}></QRCode>
       </div>

@@ -1,17 +1,20 @@
 import React, { useContext, useRef } from "react"
 
 import { Context } from "../state"
-import Dropdown from "./inputs/Dropdown"
 import Next from "./inputs/Next"
-import Shoot from "./inputs/Shoot"
 import Switch from "./inputs/Switch"
 import Tabs from "./inputs/Tabs"
 import Undo from "./inputs/Undo"
 import Info from "./inputs/Info"
 import Bool from "./inputs/Bool"
+import Numbers from "./inputs/Numbers"
+
 import Count from "./inputs/Count"
 
+import Grid from "./inputs/Grid"
+
 import "./Scout.scss"
+import TripleSwitch from "./inputs/TripleSwitch"
 
 const Scout = () => {
   const [state, dispatch] = useContext(Context)
@@ -21,51 +24,45 @@ const Scout = () => {
       case "auto":
         return (
           <>
-            <Count prop="pickup" phase label="Ball Pickup" color="green" />
-            <Bool prop="taxi" phase label="Taxi" color="green" />
-            <Shoot></Shoot>
+             <Grid></Grid>
+             <TripleSwitch
+              phase
+              options={{
+                opA: { label: "Dock", prop: "docked", color: "green" },
+                opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
+                opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
+              }}
+            ></TripleSwitch>
+            <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
           </>
         )
       case "teleop":
         return (
           <>
-            <Bool
-              prop="wrongCargo"
-              label="Shoot Wrong Cargo"
-              trueLabel="Shot Wrong Cargo"
-              color="green"
-            ></Bool>
+           <Grid></Grid>
             <Bool
               prop="defense"
               label="Defense"
               trueLabel="Defended"
               color="green"
+              tall={true}
             ></Bool>
-            <Shoot></Shoot>
+            <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
           </>
         )
       case "endgame":
         return (
           <>
-            <Switch
+            <TripleSwitch
               phase
               options={{
-                opA: { label: "Climb", prop: "climb", color: "green" },
-                opB: { label: "Fail", prop: "fail", color: "red" },
+                opA: { label: "Dock", prop: "docked", color: "green" },
+                opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
+                opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
               }}
-            ></Switch>
-            <Dropdown
-              wide
-              phase
-              prop="level"
-              options={[
-                "0 None",
-                "1 Low",
-                "2 Mid Rung",
-                "3 High Rung",
-                "4 Traversal Rung",
-              ]}
-            ></Dropdown>
+              width = "endgameOptions"
+            ></TripleSwitch>
+           <Numbers label="Time Left (secs)" idealLength = {2} prop="timeLeft" width = "default" twoLines={true}></Numbers>
           </>
         )
       default:
@@ -82,8 +79,8 @@ const Scout = () => {
         <Tabs></Tabs>
       </div>
       {phaseTabContent}
-      {showNext && <Next wide></Next>}
-      <Undo wide></Undo>
+      {showNext && <Next width ="default"></Next>}
+      <Undo wide = {showNext}></Undo>
     </>
   )
 }

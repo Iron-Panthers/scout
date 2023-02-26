@@ -1,0 +1,31 @@
+{
+  "Create a snapshot of a component": {
+    "prefix": "snapshot",
+    "body": [
+      "import $1 from \"./$1\"",
+      "",
+      "it(`matches snapshot`, () => {",
+      "\tmatchesSnapshot(<$1 $0/>)",
+      "})"
+    ]
+  },
+
+  "Test Each Jest": {
+    "prefix": "testeach",
+    "body": [
+      "test.each`",
+      "\t${1/([^,]+)([,\\s]*|)/$1${2:+\t| }/g}",
+      "\t${1/([^,]+)([,\\s]*|)/${}${2:+\t| }/g}",
+      "`(`$2`, ({${1/([^,]+)([,\\s]*|)/$1${2:+, }/g}}) => {",
+      "\t$0",
+      "})"
+    ],
+
+    "description": "Make a paramaterized test in jest"
+  },
+
+  "Describe Block": {
+    "prefix": "dblock",
+    "body": ["describe(\"$1\", () => {", "\t$0", "})\n"]
+  }
+}

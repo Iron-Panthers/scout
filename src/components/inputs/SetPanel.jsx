@@ -4,23 +4,23 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const SetPanel = ({ wide, label, panelName }) => {
+const SetPanel = ({ width, label, panelName }) => {
   const [, dispatch] = useContext(Context)
 
   return (
     <button
-      className={wide ? "wide" : ""}
+      className={width ? width : ""}
       onClick={() => {
         dispatch({ type: "set", prop: "mode", val: panelName })
       }}
     >
-      {label}
+      {label ?? panelName}
     </button>
   )
 }
 
 SetPanel.propTypes = {
-  wide: PropTypes.bool,
+  width: PropTypes.oneOf(["default", "halfWide", "wide"]),
   label: PropTypes.string.isRequired,
   panelName: PropTypes.string.isRequired,
 }

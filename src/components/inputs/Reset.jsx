@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 
-const Reset = ({ wide }) => {
+const Reset = ({ width }) => {
   const [, dispatch] = useContext(Context)
   const [confirm, setConfirm] = useState(false)
 
@@ -15,7 +15,7 @@ const Reset = ({ wide }) => {
 
   return (
     <button
-      className={`Reset red ${wide ? "wide" : ""}`}
+      className={`Reset red ${width ? width : "default"}`}
       onClick={() => {
         if (!confirm) {
           setConfirm(true)
@@ -30,7 +30,7 @@ const Reset = ({ wide }) => {
 }
 
 Reset.propTypes = {
-  wide: PropTypes.bool,
+  wide: PropTypes.oneOf(["default, halfWide, wide"]),
 }
 
 export default Reset

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`has an initial state that matches the snapshot 1`] = `"{\\"version\\":1,\\"mode\\":\\"Configure\\",\\"matchType\\":\\"Qualification\\",\\"phase\\":\\"auto\\",\\"auto\\":{\\"pickup\\":0,\\"taxi\\":false,\\"upperSucc\\":0,\\"upperFail\\":0,\\"lowerSucc\\":0,\\"lowerFail\\":0},\\"teleop\\":{\\"upperSucc\\":0,\\"upperFail\\":0,\\"lowerSucc\\":0,\\"lowerFail\\":0},\\"endgame\\":{\\"climb\\":false,\\"fail\\":false,\\"level\\":\\"None\\"},\\"wrongCargo\\":false,\\"defense\\":false,\\"scoutProblems\\":false,\\"robotProblems\\":false,\\"comments\\":\\"\\",\\"undoStack\\":{\\"auto\\":[],\\"teleop\\":[],\\"endgame\\":[]}}"`;

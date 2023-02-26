@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+Array [
+  <div
+    className="scoutHead"
+  >
+    <div
+      className="Info Center"
+    >
+      <p>
+        qualification #??
+      </p>
+      <p>
+        team #????
+      </p>
+    </div>
+    <div
+      className="Tabs wide evenFlex"
+    >
+      <button
+        className="Tab"
+        disabled={true}
+        onClick={[Function]}
+      >
+        auto
+      </button>
+      <button
+        className="Tab"
+        disabled={false}
+        onClick={[Function]}
+      >
+        teleop
+      </button>
+      <button
+        className="Tab"
+        disabled={false}
+        onClick={[Function]}
+      >
+        endgame
+      </button>
+    </div>
+  </div>,
+  <button
+    className="green"
+    onClick={[Function]}
+  >
+    Ball Pickup 0
+  </button>,
+  <button
+    className="green"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Taxi
+  </button>,
+  <button
+    className="green"
+    onClick={[Function]}
+  >
+    Upper hub 0
+  </button>,
+  <button
+    className="red"
+    onClick={[Function]}
+  >
+    fail 0
+  </button>,
+  <button
+    className="green"
+    onClick={[Function]}
+  >
+    Lower hub 0
+  </button>,
+  <button
+    className="red"
+    onClick={[Function]}
+  >
+    fail 0
+  </button>,
+  <button
+    className="wide blue"
+    disabled={true}
+    onClick={[Function]}
+  >
+    UNDO
+  </button>,
+]
+`;
