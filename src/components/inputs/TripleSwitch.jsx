@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 const getVal = (option, phase, state) =>
   phase ? (state[state.phase] ?? {})[option.prop] : state[option.prop]
 
-const TripleSwitch = ({ options: {opA, opB, opC }, onFlip, phase, width, height}) => {
+const TripleSwitch = ({ options: {opA, opB, opC}, onFlip, phase, width, height}) => {
   const [state, dispatch] = useContext(Context)
 
   // closure abuse for fun and profit
