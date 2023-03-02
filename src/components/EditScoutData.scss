@@ -39,12 +39,12 @@ $red: #ff6663;
   align-items: flex-start;
   flex-direction: column;
   overflow-y: scroll;
-  grid-column: span 2;
+  grid-column: span 3;
   grid-row: span 4;
 }
 
 .ElementEditor {
-  grid-column: span 2;
+  grid-column: span 3;
   display: flex;
   & > p:first-child {
     margin: 3vw;

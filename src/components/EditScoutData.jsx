@@ -199,7 +199,7 @@ const EditScoutData = () => {
     <>
       <div className="DataEditor">{data}</div>
       <ElementEditor path={selected} />
-      <SetPanel wide label="Done" panelName="Review" />
+      <SetPanel width = "halfWide" label="Done" panelName="Review" />
     </>
   )
 }
