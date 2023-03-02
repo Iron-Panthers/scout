@@ -8,10 +8,54 @@ export const filterState = ({mode, phase, undoStack, ...state }) => {
     return filterCleanedState(phase === "auto", state)  
 }
 
-// Standard scout keys: team, auto, teleop, endgame, defense, scoutProblems, robotProblems, comments
-const filterCleanedState = (isQualitative, {version, team, auto, teleop, endgame, defense, scoutProblems, robotProblems, comments, ...qualitativeState}) => 
- isQualitative ? {version, ...qualitativeState} : ({version, team, auto, teleop, endgame, defense, scoutProblems, robotProblems, comments})
-
+/**
+ * Standard qualitative keys: 
+ * team1Number, 
+ * team1Quickness, 
+ * team1FieldAwareness, 
+ * team2Number,
+ * team2Quickness,
+ * team2FieldAwareness,
+ * team3Number,
+ * team3Quickness,
+ * team3FieldAwareness,
+  */
+ 
+const filterCleanedState = (isQualitative, {
+  // The headers shared between both match and qualitative data
+  version,
+  matchType,
+  matchNum,
+  // Checking for all the qualitative headers
+  // Did it this way, so it's easier to check if all wanted values are here
+  team1Number,
+  team1Quickness,
+  team1FieldAwareness,
+  team2Number,
+  team2Quickness,
+  team2FieldAwareness,
+  team3Number,
+  team3Quickness,
+  team3FieldAwareness,
+  ...matchState
+}) => isQualitative ? {
+  version,
+  matchType,
+  matchNum,
+  team1Number,
+  team1Quickness,
+  team1FieldAwareness,
+  team2Number,
+  team2Quickness,
+  team2FieldAwareness,
+  team3Number,
+  team3Quickness,
+  team3FieldAwareness
+} : {
+  version,
+  matchType,
+  matchNum, 
+  ...matchState }
 
 /** flattens, cleans a state object such that its keys are hyphen separated of their parents*/
 export const cleanState = (rawState) =>

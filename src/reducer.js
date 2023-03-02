@@ -36,7 +36,6 @@ export const initialState = {
     ...grid,
   },
   teleop: {
-    defense: false,
     fail: 0,
     ...grid,
   },
@@ -45,6 +44,7 @@ export const initialState = {
     engaged: false,
     community: false,
   },
+  defense: false,
   scoutProblems: false,
   robotProblems: false,
   comments: "",
