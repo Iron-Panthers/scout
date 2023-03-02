@@ -40,7 +40,7 @@ const Configure = () => {
       <Dropdown
         wide
         prop="matchType"
-        options={["Test", "Practice", "Qualification"]}
+        options={["Practice", "Qualification", "Playoff"]}
       ></Dropdown>
       {!isIOS && <SetPanel width = "halfWide" label="Scanner" panelName="Scanner"></SetPanel>}
       <Next width ={isIOS ? "wide" : "halfWide"} isDisabled = {!(state.team && state.matchNum)} disabledText={disabledMessage}></Next>
