@@ -25,7 +25,7 @@ export const initialState = {
   version, // this one should not be changed, but there is no other way to ensure it is always included
   mode: "Configure", // Configure, Scout, Review, ScanData, Settings, ConfigQualitative
   team: undefined,
-  matchType: "Qualification", //Test, Practice, Qualification
+  matchType: "Qualification", //Playoff, Practice, Qualification
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
@@ -36,7 +36,6 @@ export const initialState = {
     ...grid,
   },
   teleop: {
-    defense: false,
     fail: 0,
     ...grid,
   },
@@ -45,6 +44,7 @@ export const initialState = {
     engaged: false,
     community: false,
   },
+  defense: false,
   scoutProblems: false,
   robotProblems: false,
   comments: "",

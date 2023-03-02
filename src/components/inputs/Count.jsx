@@ -27,7 +27,7 @@ Count.propTypes = {
   label: PropTypes.string.isRequired,
   prop: PropTypes.string.isRequired,
   phase: PropTypes.bool,
-  color: PropTypes.oneOf(["red", "green", "blue"]),
+  color: PropTypes.oneOf(["red", "green", "blue", "yellow", "purple"]),
   width: PropTypes.oneOf(["default", "halfWide", "wide"])
 }
 
