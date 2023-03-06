@@ -22,7 +22,7 @@ const Scanner = () => {
 
   const [error, setError] = useState(false)
   const matchScans = useRef(new Set(JSON.parse(localStorage.matchScanSet ?? "[]")))
-  const qualScans = useRef(new Set(JSON.parse(localStorage.qualScanSet ?? "[]")))
+  const qualScans = useRef(new Set(JSON.parse(localStorage.qualitativeScanSet ?? "[]")))
   const [scanCount, setScanCount] = useState(matchScans.current.size + qualScans.current.size)
   const [anim, onAnimEnd] = useAnim(scanCount)
   const [scanHint, setScanHint] = useState("")
@@ -75,7 +75,7 @@ const Scanner = () => {
                 // Otherwise, it should be a normal match
                 if(objVal?.team1Quickness) {
                   qualScans.current.add(val)
-                  localStorage.qualScanSet = JSON.stringify(Array.from(qualScans.current))
+                  localStorage.qualitativeScanSet = JSON.stringify(Array.from(qualScans.current))
                 } else {
                   matchScans.current.add(val)
                   localStorage.matchScanSet = JSON.stringify(Array.from(matchScans.current))
