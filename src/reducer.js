@@ -26,6 +26,7 @@ export const initialState = {
   mode: "Configure", // Configure, Scout, Review, ScanData, Settings, ConfigQualitative
   team: undefined,
   matchType: "Qualification", //Playoff, Practice, Qualification
+  typeOfData: "Match", // Match or Qualitative
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
