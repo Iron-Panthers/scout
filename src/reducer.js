@@ -39,11 +39,11 @@ export const initialState = {
     fail: 0,
     ...grid,
   },
-  endgame: {
-    docked: false,
-    engaged: false,
-    community: false,
-  },
+  // endgame: {
+  //   docked: false,
+  //   engaged: false,
+  //   community: false,
+  // },
   defense: false,
   scoutProblems: false,
   robotProblems: false,
