@@ -46,7 +46,6 @@ textarea:focus {
 
 // Must be odd, because one slot is taken up by an empty tag for spacing
 $qualCounterSlots : 7;
-$widthOfCounter : span math.floor($qualCounterSlots / 2);
 
 .qualitativeTeam {
 
@@ -65,7 +64,7 @@ $widthOfCounter : span math.floor($qualCounterSlots / 2);
   }
   .attribute {
     grid-column: span 3;
-    justify-content: center;
+    // justify-content: center;
     text-align: center;
     font-size: 1.2rem;
   }
@@ -73,7 +72,6 @@ $widthOfCounter : span math.floor($qualCounterSlots / 2);
 
 
     button {
-      font-size: 3rem;
       text-align: center;
       //font-weight: bold;
   
@@ -81,13 +79,21 @@ $widthOfCounter : span math.floor($qualCounterSlots / 2);
       border-radius: 25vh;
       margin-bottom: 0.4vh;   
     }
+
+    .notIOS {
+      font-size: 3rem;
+    }
+
+    .IOS {
+      font-size: 1.7rem;
+    }
+
     p {
       font-size: 1.6rem;
       text-align: center;
     }
 
 }
-
 
   
   
