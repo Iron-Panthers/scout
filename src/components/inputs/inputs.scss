@@ -63,18 +63,6 @@ $widthOfCounter : span math.floor($qualCounterSlots / 2);
     font-size: 2.4rem;
     grid-column: span 7;
   }
-
-}
-
-.qualitativeCounter {
-
-  grid-column: $widthOfCounter;
-  grid-row: span 4;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: minmax(0, 1fr);
-
   .attribute {
     grid-column: span 3;
     justify-content: center;
@@ -82,22 +70,27 @@ $widthOfCounter : span math.floor($qualCounterSlots / 2);
     font-size: 1.2rem;
   }
 
-  button {
-    font-size: 3rem;
-    text-align: center;
-    //font-weight: bold;
 
-    grid-column: span 1;
-    border-radius: 25vh;
-    margin-bottom: 0.4vh;   
-  }
 
-  p {
-    font-size: 1.6rem;
-    text-align: center;
-  }
+    button {
+      font-size: 3rem;
+      text-align: center;
+      //font-weight: bold;
+  
+      grid-column: span 1;
+      border-radius: 25vh;
+      margin-bottom: 0.4vh;   
+    }
+    p {
+      font-size: 1.6rem;
+      text-align: center;
+    }
+
 }
 
+
+  
+  
 .evenFlex {
   display: flex;
   flex-direction: row;
