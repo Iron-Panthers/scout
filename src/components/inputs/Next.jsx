@@ -12,8 +12,8 @@ const Next = ({ width, tall, qualitative, typeOfData, isDisabled = false, disabl
       className={`blue ${width ? width : "default"} ${tall ? "tall" : ""}`}
       disabled = {isDisabled}
       onClick={() => {
-        dispatch({ type: qualitative ? "next_qualitative_mode" : "next_mode" })
-        if(typeOfData) dispatch({typeOfData: typeOfData})
+        if(typeOfData) dispatch({type: "set", prop: "typeOfData", val: typeOfData})
+        dispatch({ type: qualitative ? "next_qualitative_mode" : "next_mode" })        
       }}
     >
     <p>{isDisabled ? disabledText : ""}</p>
