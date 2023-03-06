@@ -1,10 +1,11 @@
 import React from "react"
 import Count from "./Count"
+import PropTypes from "prop-types"
 
 
+const Grid = ({width}) => (
 
-const Grid = () => (
-  <div className="grid">
+  <div className={`grid ${width ? width : "wide"}`}>
     <Count prop="topCone" phase label="Top Cone" color="yellow"/>
     <Count prop="topCube" phase label="Top Cube" color="purple"/>
     <Count prop="middleCone" phase label="Middle Cone" color="yellow"/>
@@ -13,5 +14,9 @@ const Grid = () => (
     <Count prop="bottomCube" phase label="Bottom Cube" color="purple"/>
   </div>
 )
+
+Grid.propTypes = {
+  width: PropTypes.oneOf(["default", "halfWide", "wide"])
+}
 
 export default Grid

@@ -24,53 +24,53 @@ const Scout = () => {
       case "auto":
         return (
           <>
-             <Grid></Grid>
-             <TripleSwitch
+             <Grid width = "wide"></Grid>
+             {/* <TripleSwitch
               phase
               options={{
                 opA: { label: "Dock", prop: "docked", color: "green" },
                 opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
                 opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
               }}
-            ></TripleSwitch>
-            <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
+            ></TripleSwitch> */}
+            {/* <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/> */}
           </>
         )
       case "teleop":
         return (
           <>
-           <Grid></Grid>
+            <Grid width = "twoThirds"></Grid>
+            <Numbers label="Time Left (secs)" idealLength = {2} prop="timeLeft" width = "default" twoLines={true}></Numbers>
             <Bool
               prop="defense"
               label="Defense"
               trueLabel="Defended"
               color="green"
-              tall={true}
+              tall={false}
             ></Bool>
-            <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/>
           </>
         )
-      case "endgame":
-        return (
-          <>
-            <TripleSwitch
-              phase
-              options={{
-                opA: { label: "Dock", prop: "docked", color: "green" },
-                opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
-                opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
-              }}
-              width = "endgameOptions"
-            ></TripleSwitch>
-           <Numbers label="Time Left (secs)" idealLength = {2} prop="timeLeft" width = "default" twoLines={true}></Numbers>
-          </>
-        )
+      // case "endgame":
+      //   return (
+      //     <>
+      //       <TripleSwitch
+      //         phase
+      //         options={{
+      //           opA: { label: "Dock", prop: "docked", color: "green" },
+      //           opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
+      //           opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
+      //         }}
+      //         width = "endgameOptions"
+      //       ></TripleSwitch>
+      //      <Numbers label="Time Left (secs)" idealLength = {2} prop="timeLeft" width = "default" twoLines={true}></Numbers>
+      //     </>
+      //   )
       default:
         return <div>no tab exists.</div>
     }
   })()
 
-  const showNext = state.phase === "endgame"
+  const showNext = state.phase === "teleop"
 
   return (
     <>
@@ -79,8 +79,9 @@ const Scout = () => {
         <Tabs></Tabs>
       </div>
       {phaseTabContent}
-      {showNext && <Next width ="default"></Next>}
-      <Undo wide = {showNext}></Undo>
+      
+      <Undo wide = {!showNext}></Undo>
+      {showNext && <Next width ="halfWide"></Next>}
     </>
   )
 }
