@@ -92,14 +92,16 @@ export const matchFields = Object.entries(cleanState({...initialState, typeOfDat
 // export const qualHeader = unparse({...qualFields})
 
 /** converts state into a csv string */
-export const stateToCsv = (state) =>
-  unparse(
+export const stateToCsv = (state) =>{
+  // console.log(state)
+  return unparse(
     {
-      fields : state.phase === "auto" ? qualFields : matchFields,
+      fields : state.typeOfData === "Qualitative" ? qualFields : matchFields,
       data: Object.entries(cleanState(state)).map(([, val]) => val),
     },
     { header: false }
   )
+}
 
 /** converts the body of a csv string into a flattened state object */
 export const parseCsvBody = (body) => {
