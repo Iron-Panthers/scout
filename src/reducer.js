@@ -32,11 +32,9 @@ export const initialState = {
     mobility: false,
     docked: false,
     engaged: false,
-    fail: 0,
     ...grid,
   },
   teleop: {
-    fail: 0,
     ...grid,
   },
   // endgame: {
