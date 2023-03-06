@@ -33,8 +33,8 @@ const Export = () => {
   return (
     <>
       <div className="Center wide">{`Scanned and Stored ${matchScans.length} match QR code${
-        matchScans.length > 1 ? "s" : ""} and ${qualScans.length} qualitative QR code${
-        qualScans.length > 1 ? "s" : ""}`}
+        matchScans.length !== 1 ? "s" : ""} and ${qualScans.length} qualitative QR code${
+        qualScans.length !== 1 ? "s" : ""}`}
       </div>
 
       <button
@@ -59,7 +59,8 @@ const Export = () => {
               "Are you very, very sure? All scanned QR code data will be lost forever."
             )
           ) {
-            delete localStorage.scanSet
+            delete localStorage.matchScanSet
+            delete localStorage.qualitativeScanSet
             alert("Cleared, resetting app state.")
             dispatch({ type: "reset" })
           } else {
