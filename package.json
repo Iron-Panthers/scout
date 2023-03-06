@@ -1,10 +1,13 @@
 {
   "name": "scout",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "csvApi": 2,
   "homepage": "/",
   "private": false,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
     "immer": "^9.0.12",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
@@ -15,6 +18,8 @@
     "react-icons": "^4.3.1",
     "react-qr-code": "^2.0.2",
     "react-qr-reader": "^2.2.1",
+    "react-scripts": "5.0.0",
+    "sass": "^1.56.1",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",

@@ -105,6 +105,7 @@ $widthOfCounter : span math.floor($qualCounterSlots / 2);
 
 select,
 input[type="number"],
+input[type="text"],
 textarea {
   padding: 2px 2vw;
 }
@@ -156,7 +157,8 @@ input[type="checkbox"] {
   padding-bottom: 1px;
 }
 
-div.Numbers {
+div.Numbers,
+div.TextLine {
   display: flex;
   gap: 1vw;
   padding-left: 3vw;

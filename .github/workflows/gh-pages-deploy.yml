@@ -17,8 +17,9 @@ jobs:
           cache: "npm"
 
       - name: Build
+        # we need to use force bc of deps misalignment
         run: |
-          npm i
+          npm i --force
           npm run build
 
       - name: Deploy
