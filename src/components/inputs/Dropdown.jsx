@@ -2,17 +2,17 @@ import React, { useContext, useMemo } from "react"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
 
-const Dropdown = ({ options, prop, phase, wide }) => {
+const Dropdown = ({prop, phase, wide, options}) => {
   const [state, dispatch] = useContext(Context)
   const optionsElems = useMemo(
     () =>
-      options.map((value) => (
-        <option value={value} key={value}>
-          {value}
+    options.map((option) => 
+        <option value={option.value ? option.value : option.label} key={option.value ? option.value : option.label}>
+          {option.label}
         </option>
-      )),
+      ),
     [options]
-  )
+    )
   return (
     <select
       className={wide ? "wide" : ""}
@@ -31,7 +31,11 @@ const Dropdown = ({ options, prop, phase, wide }) => {
 }
 
 Dropdown.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string
+  })).isRequired,
   prop: PropTypes.string.isRequired,
   phase: PropTypes.bool,
   wide: PropTypes.bool,
