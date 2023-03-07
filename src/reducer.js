@@ -140,6 +140,8 @@ export const reducer = (state, action) => {
             ? state.matchNum + 1
             : initialState.matchNum,
         matchType: state.matchType,
+        mode: state.typeOfData === "Match" ? "Configure" : "ConfigQualitative",
+        typeOfData: state.typeOfData,
       }
     case "next_mode":
       const modes = ["Configure", "Scout", "Review", "ScanData"]

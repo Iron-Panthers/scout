@@ -81,7 +81,7 @@ const Scout = () => {
       {phaseTabContent}
       
       <Undo wide = {!showNext}></Undo>
-      {showNext && <Next width ="halfWide" typeOfData="Match"></Next>}
+      {showNext && <Next width ="halfWide"></Next>}
     </>
   )
 }

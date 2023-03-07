@@ -66,10 +66,14 @@ const PWA = ({ modes }) => {
           dispatch({
             type: "set",
             prop: "mode",
-            val: state.mode === "Configure" ?  "ConfigQualitative" : "Configure",
+            val: state.typeOfData === "Match" ?  "ConfigQualitative" : "Configure",
           })
+          dispatch({
+            type: "set", 
+            prop: "typeOfData", 
+            val: state.typeOfData === "Match" ?  "Qualitative" : "Match"})
         }}>
-      {state.mode === "Configure" ?  "Qualitative Scouting" : "Match Scouting"}
+      {state.mode === "Configure" ?  "Qualitative" : "Match"}
       </button>
       <button className = {`halfWide blue ${isHidden}`}
         id = "settingsWideButton"
