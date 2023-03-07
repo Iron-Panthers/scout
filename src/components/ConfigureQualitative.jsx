@@ -68,7 +68,11 @@ const ConfigureQualitative = () => {
       <Dropdown
         wide
         prop="matchType"
-        options={["Practice", "Qualification", "Playoff"]}
+        options={[
+          {label: "Practice", value: "practice"}, 
+          {label: "Qualification", value: "qm"}, 
+          {label: "Semifinals", value: "sf"}, 
+          {label: "Finals", value: "f"}]}
       ></Dropdown>
       {!isIOS && <SetPanel width = "halfWide" label="Scanner" panelName="Scanner"></SetPanel>}
       <Next width ={isIOS ? "wide" : "halfWide"} qualitative isDisabled = {!ready} disabledText= {disabledMessage}></Next>
