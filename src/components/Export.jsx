@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 
-import { Context } from "../state"
+import { Context, useSettings } from "../state"
 import { matchFields, qualFields } from "../csv"
 
 import Reset from "./inputs/Reset"
@@ -9,13 +9,14 @@ import "./inputs/inputs.scss"
 
 const Export = () => {
   const [, dispatch] = useContext(Context)
+  const [settings] = useSettings()
 
   const matchScans = JSON.parse(localStorage.matchScanSet ?? "[]")
   const qualScans = JSON.parse(localStorage.qualitativeScanSet ?? "[]")
 
 
   const downloadCSV = (header, scans, name) => {
-    const csv = `${header}\r\n${scans.join("\r\n")}`
+    const csv = `${settings.exportWithHeaders ? (header  + "\r\n"): ""}${scans.join("\r\n")}`
     const blob = new Blob([csv], { type: "text/csv" })
     const elem = window.document.createElement("a")
     elem.href = window.URL.createObjectURL(blob)
