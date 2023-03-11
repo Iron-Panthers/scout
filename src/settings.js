@@ -11,12 +11,14 @@ export const initialSettings = {
   autoIncMatch: true, // increase match number by 1 on reset
   IOSCheck: true,
   scannerBeep: true,
+  exportWithHeaders: true,
 }
 
 export const settingsLabels = {
   autoIncMatch: "automatically increase match number by one when reset",
   IOSCheck: "userAgent parsing to detect iOS",
   scannerBeep: "beep feedback on successful scan",
+  exportWithHeaders : "export the csv data with the headers"
 }
 
 // this is a function so that it remains reflective of localStorage if its reset
