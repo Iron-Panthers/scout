@@ -53,7 +53,7 @@ const ConfigureQualitative = () => {
   
       if(!teamFilledOut && !state.matchNum) return "Provide all 3 team numbers and a match number"
 
-      if(!teamFilledOut) return "Provide all 3 numbers"
+      if(!teamFilledOut) return "Provide all 3 team numbers"
 
       if(!teamNumsUnequal) return "You cannot have multiple of the same team"
 
