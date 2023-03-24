@@ -38,7 +38,7 @@ const ConfigureQualitative = () => {
     }
 
     // Checks to make sure that at least one of the teams has been actually been filled out
-    const teamFilledOut = state.team1Number || state.team2Number || state.team3Number
+    const teamFilledOut = state.team1Number && state.team2Number && state.team3Number
 
     // Comparing all the teams
     const teamNumsUnequal = compareTwoTeamNums(state.team1Number,state.team2Number) 
@@ -51,9 +51,9 @@ const ConfigureQualitative = () => {
     // Creating the disabled message
     const disabledMessage = (() => {
   
-      if(!teamFilledOut && !state.matchNum) return "Provide at least one team number and match number"
+      if(!teamFilledOut && !state.matchNum) return "Provide all 3 team numbers and a match number"
 
-      if(!teamFilledOut) return "Provide at least one team number"
+      if(!teamFilledOut) return "Provide all 3 team numbers"
 
       if(!teamNumsUnequal) return "You cannot have multiple of the same team"
 
