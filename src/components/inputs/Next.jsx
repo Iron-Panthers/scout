@@ -15,7 +15,7 @@ const Next = ({ width, tall, qualitative, isDisabled = false, disabledText = "" 
         dispatch({ type: qualitative ? "next_qualitative_mode" : "next_mode" })        
       }}
     >
-    <p>{isDisabled ? disabledText : ""}</p>
+    {isDisabled && <p>{disabledText}</p>}
       NEXT
     </button>
   )
