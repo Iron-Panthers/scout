@@ -50,6 +50,7 @@ export const initialState = {
   defense: false,
   scoutProblems: false,
   robotProblems: false,
+  pickupLocation: "Ground",
   comments: "",
 // Qualitative attributes... I don't want to deal with phase anymore     
   team1Number: undefined,
