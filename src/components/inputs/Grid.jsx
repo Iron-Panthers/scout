@@ -16,7 +16,7 @@ const Grid = ({width}) => (
 )
 
 Grid.propTypes = {
-  width: PropTypes.oneOf(["default", "halfWide", "wide"])
+  width: PropTypes.oneOf(["default", "halfWide", "twoThirds", "wide"])
 }
 
 export default Grid

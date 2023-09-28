@@ -121,6 +121,7 @@ input[type="number"],
 input[type="text"],
 textarea {
   padding: 2px 2vw;
+  font-size: max(16px, 1.6rem);
 }
 
 p,
@@ -215,4 +216,8 @@ div.TripleTeamSelector {
     // scss thinks we want pre-compile min so we need to bypass it
     flex-basis: unquote("min(25vw, 100px)");
   }
+}
+
+.center {
+  text-align: center;
 }

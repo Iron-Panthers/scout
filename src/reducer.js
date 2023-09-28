@@ -36,9 +36,7 @@ export const initialState = {
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
-    mobility: false,
-    docked: false,
-    engaged: false,
+    chargeStation: "None",
     ...grid,
   },
   teleop: {

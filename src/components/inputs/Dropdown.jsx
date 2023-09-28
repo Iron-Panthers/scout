@@ -1,8 +1,10 @@
 import React, { useContext, useMemo } from "react"
 import { Context } from "../../state"
 import PropTypes from "prop-types"
+import "./inputs.scss"
 
-const Dropdown = ({prop, phase, wide, options}) => {
+
+const Dropdown = ({prop, phase, wide, center, options}) => {
   const [state, dispatch] = useContext(Context)
   const optionsElems = useMemo(
     () =>
@@ -15,8 +17,11 @@ const Dropdown = ({prop, phase, wide, options}) => {
     )
   return (
     <select
-      className={wide ? "wide" : ""}
+      className={(wide ? " wide " : " halfWide ") + (center ? " center " : "")}
       onChange={(event) => {
+
+        console.log("phase:" + phase + " prop:" + prop + " val:" + event.target.value)
+
         dispatch({
           type: `set${phase ? "InPhase" : ""}`,
           prop,
@@ -39,6 +44,7 @@ Dropdown.propTypes = {
   prop: PropTypes.string.isRequired,
   phase: PropTypes.bool,
   wide: PropTypes.bool,
+  center: PropTypes.bool
 }
 
 export default Dropdown
