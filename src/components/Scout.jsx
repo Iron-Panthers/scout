@@ -8,6 +8,7 @@ import Undo from "./inputs/Undo"
 import Info from "./inputs/Info"
 import Bool from "./inputs/Bool"
 import Numbers from "./inputs/Numbers"
+import Dropdown from "./inputs/Dropdown"
 
 import Count from "./inputs/Count"
 
@@ -80,8 +81,22 @@ const Scout = () => {
       </div>
       {phaseTabContent}
       
-      <Undo wide = {!showNext}></Undo>
+      <Undo wide = {false}></Undo>
+      {!showNext && (
+              <Dropdown
+              phase = {true}
+              wide = {false}
+              center = {true}
+              prop="chargeStation"
+              options={[
+                {label: "None", value: "None"}, 
+                {label: "Docked", value: "Docked"}, 
+                {label: "Engaged", value: "Engaged"}
+              ]}
+            ></Dropdown>
+      )}
       {showNext && <Next width ="halfWide"></Next>}
+      
     </>
   )
 }
