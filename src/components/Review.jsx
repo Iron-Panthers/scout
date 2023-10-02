@@ -18,16 +18,18 @@ const Review = () => {
         label="Scouting data accidents / problems"
         prop="scoutProblems"
       ></Checkbox>
-      <Dropdown
-              wide = {false}
-              center = {true}
-              prop="pickupLocation"
-              options={[
-                {label: "Ground", value: "Ground"},
-                {label: "Single Substation", value: "Single Substation"}, 
-                {label: "Double Substation", value: "Double Substation"}
-              ]}
-        ></Dropdown>
+      <Checkbox
+        label="Ground pickup"
+        prop="groundPickup"
+      ></Checkbox>
+      <Checkbox
+        label="Single substation pickup"
+        prop="singleSubstation"
+      ></Checkbox>
+      <Checkbox
+        label="Double substation pickup"
+        prop="doubleSubstation"
+      ></Checkbox>
       <Freetext label="Comments?" prop="comments"></Freetext>
       <SetPanel label="Edit Data" panelName="EditScoutData" width = "wide"></SetPanel>
       <Next width = "wide"></Next>
