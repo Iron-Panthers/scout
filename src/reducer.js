@@ -37,6 +37,7 @@ export const initialState = {
   phase: "auto", //auto, teleop, endgame
   auto: {
     chargeStation: "None",
+    mobility: false,
     ...grid,
   },
   teleop: {

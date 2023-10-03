@@ -10,7 +10,7 @@ const Bool = ({ label, trueLabel, prop, onFlip, phase, color, wide, tall}) => {
 
   return (
     <button
-      className={`${color ?? ""} ${wide ? " wide" : ""} ${tall ? "tall" : ""}`}
+      className={`${color ?? ""} ${wide ? " wide " : " default "} ${tall ? "tall" : ""}`}
       disabled={current}
       onClick={() => {
         dispatch({
