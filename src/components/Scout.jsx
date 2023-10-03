@@ -81,11 +81,11 @@ const Scout = () => {
       </div>
       {phaseTabContent}
       
-      <Undo wide = {false}></Undo>
-      {!showNext && (
+      <Undo width = {state.phase === "auto"? "default": "halfWide"}></Undo>
+      {state.phase === "auto" && (
               <Dropdown
               phase = {true}
-              wide = {false}
+              width = "default"
               center = {true}
               prop="chargeStation"
               options={[
@@ -95,6 +95,19 @@ const Scout = () => {
               ]}
             ></Dropdown>
       )}
+
+      {state.phase === "auto" && (
+          <Bool
+            phase = {true}
+            prop="mobility"
+            label="Mobility"
+            trueLabel="Mobility Success"
+            color="green"
+            tall={false}
+      ></Bool>
+      )}
+
+
       {showNext && <Next width ="halfWide"></Next>}
       
     </>
