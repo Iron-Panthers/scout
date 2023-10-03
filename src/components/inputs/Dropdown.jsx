@@ -17,7 +17,7 @@ const Dropdown = ({prop, phase, wide, center, options}) => {
     )
   return (
     <select
-      className={(wide ? " wide " : " halfWide ") + (center ? " center " : "")}
+      className={(wide ? " wide " : " halfWide ") + (center ? " center-text " : "")}
       onChange={(event) => {
 
         console.log("phase:" + phase + " prop:" + prop + " val:" + event.target.value)

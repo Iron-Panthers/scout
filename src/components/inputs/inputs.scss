@@ -123,12 +123,25 @@ textarea {
   padding: 2px 2vw;
 }
 
-p,
-label,
-div.Center {
+
+@mixin center{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+p,
+label,
+div.Center {
+  @include center();
+}
+
+div.Divider {
+ @include center();
+ text-decoration: underline;
+ font-weight: bold;
+ font-size: 1.4rem;
 }
 
 label.AlignRight {
@@ -217,6 +230,7 @@ div.TripleTeamSelector {
   }
 }
 
-.center {
+.center-text {
   text-align: center;
 }
+

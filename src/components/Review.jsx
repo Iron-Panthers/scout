@@ -18,6 +18,7 @@ const Review = () => {
         label="Scouting data accidents / problems"
         prop="scoutProblems"
       ></Checkbox>
+      <div className="TextLine Divider">Pickup</div>
       <Checkbox
         label="Ground pickup"
         prop="groundPickup"
