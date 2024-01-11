@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 import "./buttons.scss"
 import "./inputs.scss"
 
-const QualitativeCount = ({team, prop1, prop2,}) => {
+const QualitativeCount = ({team, prop1, prop2, phase}) => {
   const [state, dispatch] = useContext(Context)
 
   const [settings] = useSettings()
@@ -33,7 +33,10 @@ const QualitativeCount = ({team, prop1, prop2,}) => {
   }
 
   const createIncrement = (prop) => {
-   return <>
+    
+   return <div className = "qualCounter">
+
+<label className="attribute">{prop === "FieldAwareness" ? "Field Awareness" : prop}</label>
    <button
     className={`green ` + fontSize}
     disabled = {state[team + prop] >= 3}
@@ -42,27 +45,30 @@ const QualitativeCount = ({team, prop1, prop2,}) => {
       +
   </button>
   
-  <p>{state[team + prop]}</p>
+  
+  <p
+  // Read FROM FRICKING PHASE
+  >{state[team + prop]}</p>
       <button
         className={`red ` + fontSize}
         disabled = {state[team + prop] <= 1}
         onClick={() => handleIncrement(-1, prop)}
       >-</button>
 
-   </> 
+   </div> 
 
   }
 
   return (
       <>
-          
-        <label className="attribute">{prop1 === "FieldAwareness" ? "Field Awareness" : prop1}</label>
-        <p className = "spacer"></p>
-        <label className="attribute">{prop2 === "FieldAwareness" ? "Field Awareness" : prop2}</label>
+      
         
           {createIncrement(prop1)}
-          <p className = "spacer"></p>
+
+      
           {createIncrement(prop2)}
+
+        
 
     </>
   )

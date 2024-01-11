@@ -10,7 +10,7 @@ const QualitativeTeam = ({team}) => {
     // console.log(team)
   return (
 
-    <div className = "wide qualitativeTeam">
+    <div className = "qualitativeTeam">
 
         <p id = "teamNumber">{state[team + "Number"]}</p>
 
