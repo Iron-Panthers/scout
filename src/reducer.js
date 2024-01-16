@@ -17,8 +17,8 @@ const grid = {
 
 const teamQual = {
   number: undefined,
-  quickness: undefined,
-  fieldAwareness: undefined,
+  quickness: 1,
+  fieldAwareness: 1,
 }
 
 export const initialState = {
@@ -56,7 +56,32 @@ export const initialState = {
   doubleSubstation: false,
   comments: "",
 // Qualitative attributes... I don't want to deal with phase anymore     
-  team1Number: undefined,
+  
+  team1: {
+    ...teamQual
+  },
+  team2: {
+    ...teamQual
+  },
+  team3: {
+    ...teamQual
+  },
+
+qualitative: {
+    team1Number: undefined,
+  team1Quickness: 1,
+  team1FieldAwareness: 1,
+
+  team2Number: undefined,
+  team2Quickness: 1,
+  team2FieldAwareness: 1,
+
+  team3Number: undefined,
+  team3Quickness: 1,
+  team3FieldAwareness: 1,
+
+  },  
+team1Number: undefined,
   team1Quickness: 1,
   team1FieldAwareness: 1,
 
@@ -188,6 +213,18 @@ export const reducer = (state, action) => {
         ...state,
         [state.phase]: {
           ...state[state.phase],
+          [action.prop]: action.val,
+        },
+        undoStack: addUndo(state, action),
+      }
+      // I really bad at naming
+      // Basically sets a prop inside a phase 
+      // (Qualitative doesn't have tabs...)
+    case "setPropInPhase":
+      return {
+        ...state,
+        [action.phase]: {
+          ...state[action.phase],
           [action.prop]: action.val,
         },
         undoStack: addUndo(state, action),
