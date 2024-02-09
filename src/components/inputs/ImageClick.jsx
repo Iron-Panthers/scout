@@ -203,12 +203,12 @@ const ImageClick = ({ prop, phase, full, locations}) => {
 
   const dispatchShot = (shotType) => {
 
-    const currentJSON = [...current, {
+    const currentJSON = [...current, JSON.stringify({
       shotType: shotType, 
       x: shotLocation.x,
       y: shotLocation.y,
       cycleTime: cycleTime,
-    }]
+    })]
 
     console.log(currentJSON)
 
@@ -223,10 +223,10 @@ const ImageClick = ({ prop, phase, full, locations}) => {
 
   const dispatchButtonLocation = (location) => {
 
-    const currentJSON = [...current, {
+    const currentJSON = [...current, JSON.stringify({
       shotType: "intakeNote", 
       location: location,
-    }]
+    })]
 
     console.log(currentJSON)
 
