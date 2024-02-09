@@ -40,13 +40,8 @@ export const initialState = {
     prevCycleTimeStamp: 0,
     scoreSpeaker: 0,
     scoreAmp: 0,
-    intakeNote: undefined,
   },
   teleop: {
-    scoreSpeaker: 0,
-    scoreAmp: 0,
-    scoreAmpedSpeaker: 0, 
-    shuttlePieces: false,
     shotData: [],
     prevCycleTimeStamp: 0,
   },
@@ -76,20 +71,20 @@ export const initialState = {
     ...teamQual
   },
 
-qualitative: {
-    team1Number: undefined,
-  team1Quickness: 1,
-  team1FieldAwareness: 1,
+// qualitative: {
+//     team1Number: undefined,
+//   team1Quickness: 1,
+//   team1FieldAwareness: 1,
 
-  team2Number: undefined,
-  team2Quickness: 1,
-  team2FieldAwareness: 1,
+//   team2Number: undefined,
+//   team2Quickness: 1,
+//   team2FieldAwareness: 1,
 
-  team3Number: undefined,
-  team3Quickness: 1,
-  team3FieldAwareness: 1,
+//   team3Number: undefined,
+//   team3Quickness: 1,
+//   team3FieldAwareness: 1,
 
-  },  
+//   },  
 
   undoStack: {
     auto: [],
