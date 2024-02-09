@@ -16,6 +16,7 @@ import Grid from "./inputs/Grid"
 
 import "./Scout.scss"
 import TripleSwitch from "./inputs/TripleSwitch"
+import ImageClick from "./inputs/ImageClick"
 
 const Scout = () => {
   const [state, dispatch] = useContext(Context)
@@ -25,53 +26,47 @@ const Scout = () => {
       case "auto":
         return (
           <>
-             <Grid width = "wide"></Grid>
-             {/* <TripleSwitch
-              phase
-              options={{
-                opA: { label: "Dock", prop: "docked", color: "green" },
-                opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
-                opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
-              }}
-            ></TripleSwitch> */}
-            {/* <Count prop="fail" phase label="Fail" color="green" width = "halfWide"/> */}
+            <ImageClick full locations phase prop="path"></ImageClick>
           </>
         )
       case "teleop":
         return (
           <>
-            <Grid width = "twoThirds"></Grid>
-            <Numbers label="Time Left (secs)" idealLength = {2} prop="timeLeft" width = "default" twoLines={true}></Numbers>
+            {/* <Count prop="scoreSpeaker" phase label="Score Speaker" color="yellow" width={"halfWide"}/>
+            <Count prop="scoreAmp" phase label="Score Amp" color="blue" width={"halfWide"}/>
+            <Count prop="scoreAmpedSpeaker" phase label="Score AMPED Speaker" color="red" width={"halfWide"}/>
+            <Bool prop="shuttlePieces" phase label="Shuttle Pieces" trueLabel = "Shuttled Pieces" color="green"  width={"halfWide"}></Bool>
             <Bool
               prop="defense"
               label="Defense"
               trueLabel="Defended"
               color="green"
               tall={false}
-            ></Bool>
+              width={"halfWide"}
+            ></Bool> */}
+
+            <ImageClick full prop = "shotData" phase></ImageClick>
+
+          
+            
           </>
         )
-      // case "endgame":
-      //   return (
-      //     <>
-      //       <TripleSwitch
-      //         phase
-      //         options={{
-      //           opA: { label: "Dock", prop: "docked", color: "green" },
-      //           opB: { label: "Engage", trueLabel: "Engaged", prop: "engaged", color: "green" },
-      //           opC: { label: "Community", trueLabel: "Community", prop: "community", color: "green" },
-      //         }}
-      //         width = "endgameOptions"
-      //       ></TripleSwitch>
-      //      <Numbers label="Time Left (secs)" idealLength = {2} prop="timeLeft" width = "default" twoLines={true}></Numbers>
-      //     </>
-      //   )
+      case "endgame":
+        return (
+          <>
+           <Bool prop="scoreTrap" phase label="Score Trap" trueLabel = "Scored Trap" color="green" width={"halfWide"}></Bool>
+           <Bool prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="green" width={"halfWide"}></Bool>
+           <Bool prop="climb" phase label="Climb" trueLabel = "Climbed" color="green" width={"halfWide"}></Bool>
+           <Numbers label="Time of start (secs)" idealLength = {2} prop="timeLeft" width = "halfWide" twoLines={false}></Numbers>
+           <Undo width = {"halfWide"}></Undo>
+          </>
+        )
       default:
         return <div>no tab exists.</div>
     }
   })()
 
-  const showNext = state.phase === "teleop"
+  const showNext = state.phase === "endgame"
 
   return (
     <>
@@ -81,31 +76,7 @@ const Scout = () => {
       </div>
       {phaseTabContent}
       
-      <Undo width = {state.phase === "auto"? "default": "halfWide"}></Undo>
-      {state.phase === "auto" && (
-              <Dropdown
-              phase = {true}
-              width = "default"
-              center = {true}
-              prop="chargeStation"
-              options={[
-                {label: "None", value: "None"}, 
-                {label: "Docked", value: "Docked"}, 
-                {label: "Engaged", value: "Engaged"}
-              ]}
-            ></Dropdown>
-      )}
-
-      {state.phase === "auto" && (
-          <Bool
-            phase = {true}
-            prop="mobility"
-            label="Mobility"
-            trueLabel="Mobility Success"
-            color="green"
-            tall={false}
-      ></Bool>
-      )}
+      {/* <Undo width = {"halfWide"}></Undo> */}
 
 
       {showNext && <Next width ="halfWide"></Next>}

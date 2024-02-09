@@ -37,13 +37,20 @@ const filterCleanedState = (isQualitative, {
   ...matchState}
 
 /** flattens, cleans a state object such that its keys are hyphen separated of their parents*/
+/** Brandon here - also adding the capability to flatten an array, separating elements by \n characters*/
 export const cleanState = (rawState) =>
   Object.entries(filterState(rawState)).reduce((obj, [key, val]) => {
-    if (typeof val === "object" && val !== null) {
+    
+    if(Array.isArray(val)){
+      const stringified = val.reduce((prev, current) => prev + current + "\n") 
+
+      obj[key] = stringified
+    }else if (typeof val === "object" && val !== null) {
       Object.entries(val).forEach(([key2, val2]) => {
         obj[`${key}-${key2}`] = val2
       })
-    } else {
+    } 
+    else {
       obj[key] = val
     }
     return obj
@@ -70,6 +77,7 @@ export const matchFields = Object.entries(cleanState({...initialState, typeOfDat
 /** converts state into a csv string */
 export const stateToCsv = (state) =>{
   // console.log(state)
+  console.log(state.typeOfData === "Qualitative" ? qualFields : matchFields)
   return unparse(
     {
       fields : state.typeOfData === "Qualitative" ? qualFields : matchFields,
@@ -83,6 +91,8 @@ export const stateToCsv = (state) =>{
 export const parseCsvBody = (body) => {
 
   const header = body.includes("Match") ? [...matchFields] : [...qualFields]
+
+//console.log(header)
 
 console.log(body)
   const obj = parse(`${header}\r\n${body}`)

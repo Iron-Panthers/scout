@@ -36,18 +36,27 @@ export const initialState = {
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
-    chargeStation: "None",
-    mobility: false,
-    ...grid,
+    path: [],
+    prevCycleTimeStamp: 0,
+    scoreSpeaker: 0,
+    scoreAmp: 0,
+    intakeNote: undefined,
   },
   teleop: {
-    ...grid,
+    scoreSpeaker: 0,
+    scoreAmp: 0,
+    scoreAmpedSpeaker: 0, 
+    shuttlePieces: false,
+    shotData: [],
+    prevCycleTimeStamp: 0,
   },
-  // endgame: {
-  //   docked: false,
-  //   engaged: false,
-  //   community: false,
-  // },
+  endgame: {
+    scoreTrap: false,
+    harmonize: false,
+    climb: false,
+    timeOfStart: undefined,
+
+  },
   defense: false,
   scoutProblems: false,
   robotProblems: false,
@@ -81,17 +90,6 @@ qualitative: {
   team3FieldAwareness: 1,
 
   },  
-team1Number: undefined,
-  team1Quickness: 1,
-  team1FieldAwareness: 1,
-
-  team2Number: undefined,
-  team2Quickness: 1,
-  team2FieldAwareness: 1,
-
-  team3Number: undefined,
-  team3Quickness: 1,
-  team3FieldAwareness: 1,
 
   undoStack: {
     auto: [],
