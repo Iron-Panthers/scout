@@ -8,6 +8,7 @@ const TripleTeamSelector = ({ label, prop, idealLength = 4, width}) => {
   
   const [state, dispatch] = useContext(Context)
     
+  console.log(state)
   const numberMaker = (team) => {
 
     return <input
@@ -18,8 +19,9 @@ const TripleTeamSelector = ({ label, prop, idealLength = 4, width}) => {
               autoComplete="off"
               onChange={(event) => {
               dispatch({
-                  type: `set`,
-                  prop: team + prop,
+                  type: `setPropInPhase`,
+                  phase: team,
+                  prop: prop,
                   val: !(
                   event.target.value === undefined || event.target.value === ""
                   )
@@ -27,7 +29,7 @@ const TripleTeamSelector = ({ label, prop, idealLength = 4, width}) => {
                   : undefined,
               })
               }}
-              value={state[team + prop] ?? ""}
+              value={state[team][prop] ?? ""}
           />
 
   }  

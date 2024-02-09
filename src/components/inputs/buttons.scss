@@ -60,6 +60,15 @@ button {
     &:active {
       background-color: hsl(280, 100%, 66%);
     }
-
+    @include disabledColor();
   }
+
+  &.transparent{
+    background-color: hsla(251, 65%, 15%, 0.75);
+    border: 2px solid hsl(251, 65%, 25%);
+    &:active {
+      background-color: hsl(251, 65%, 50%);
+    }
+  }
+  @include disabledColor();
 }

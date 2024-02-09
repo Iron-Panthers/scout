@@ -6,19 +6,18 @@ import "./inputs.scss"
 
 const QualitativeTeam = ({team}) => {
     const [state, dispatch] = useContext(Context)
-    // console.log(state[team+"Number"])
-    // console.log(team)
+   
   return (
 
-    <div className = "wide qualitativeTeam">
+    <div className = "qualitativeTeam">
 
-        <p id = "teamNumber">{state[team + "Number"]}</p>
+        <p id = "teamNumber">{state[team].number}</p>
 
-        <QualitativeCount team = {team} prop1 = "Quickness" prop2 = "FieldAwareness"/>
+        <QualitativeCount prop1 = "quickness" prop2 = "fieldAwareness" phase = {team}/>
 
     </div>
   )
-}
+} 
 
 QualitativeCount.propTypes = {
     team: PropTypes.oneOf(["team1", "team2", "team3"]).isRequired

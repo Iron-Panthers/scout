@@ -37,13 +37,15 @@ const ConfigureQualitative = () => {
       return false
     }
 
+    let [team1Num, team2Num, team3Num] = [state.team1.number, state.team2.number, state.team3.number]
+   
     // Checks to make sure that at least one of the teams has been actually been filled out
-    const teamFilledOut = state.team1Number && state.team2Number && state.team3Number
+    const teamFilledOut = team1Num && team2Num && team3Num
 
     // Comparing all the teams
-    const teamNumsUnequal = compareTwoTeamNums(state.team1Number,state.team2Number) 
-    && compareTwoTeamNums(state.team1Number, state.team3Number) 
-    && compareTwoTeamNums(state.team2Number, state.team3Number)
+    const teamNumsUnequal = compareTwoTeamNums(team1Num, team2Num) 
+    && compareTwoTeamNums(team1Num, team3Num) 
+    && compareTwoTeamNums(team2Num, team3Num)
 
     // Checks if we're ready to move on 
     const ready = state.matchNum && teamFilledOut && teamNumsUnequal
@@ -63,7 +65,7 @@ const ConfigureQualitative = () => {
 
   return (
     <>
-       <TripleTeamSelector label = "Alliance Teams" prop = "Number" idealLength = {4} width = "halfWide"/>
+       <TripleTeamSelector label = "Alliance Teams" prop = "number" idealLength = {4} width = "halfWide"/>
       <Numbers label="Match #" prop="matchNum" idealLength={2} width = "halfWide"></Numbers>
       <Dropdown
         wide

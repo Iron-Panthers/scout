@@ -17,8 +17,8 @@ const grid = {
 
 const teamQual = {
   number: undefined,
-  quickness: undefined,
-  fieldAwareness: undefined,
+  quickness: 1,
+  fieldAwareness: 1,
 }
 
 export const initialState = {
@@ -36,18 +36,27 @@ export const initialState = {
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
   auto: {
-    chargeStation: "None",
-    mobility: false,
-    ...grid,
+    path: [],
+    prevCycleTimeStamp: 0,
+    scoreSpeaker: 0,
+    scoreAmp: 0,
+    intakeNote: undefined,
   },
   teleop: {
-    ...grid,
+    scoreSpeaker: 0,
+    scoreAmp: 0,
+    scoreAmpedSpeaker: 0, 
+    shuttlePieces: false,
+    shotData: [],
+    prevCycleTimeStamp: 0,
   },
-  // endgame: {
-  //   docked: false,
-  //   engaged: false,
-  //   community: false,
-  // },
+  endgame: {
+    scoreTrap: false,
+    harmonize: false,
+    climb: false,
+    timeOfStart: undefined,
+
+  },
   defense: false,
   scoutProblems: false,
   robotProblems: false,
@@ -56,7 +65,19 @@ export const initialState = {
   doubleSubstation: false,
   comments: "",
 // Qualitative attributes... I don't want to deal with phase anymore     
-  team1Number: undefined,
+  
+  team1: {
+    ...teamQual
+  },
+  team2: {
+    ...teamQual
+  },
+  team3: {
+    ...teamQual
+  },
+
+qualitative: {
+    team1Number: undefined,
   team1Quickness: 1,
   team1FieldAwareness: 1,
 
@@ -67,6 +88,8 @@ export const initialState = {
   team3Number: undefined,
   team3Quickness: 1,
   team3FieldAwareness: 1,
+
+  },  
 
   undoStack: {
     auto: [],
@@ -188,6 +211,18 @@ export const reducer = (state, action) => {
         ...state,
         [state.phase]: {
           ...state[state.phase],
+          [action.prop]: action.val,
+        },
+        undoStack: addUndo(state, action),
+      }
+      // I really bad at naming
+      // Basically sets a prop inside a phase 
+      // (Qualitative doesn't have tabs...)
+    case "setPropInPhase":
+      return {
+        ...state,
+        [action.phase]: {
+          ...state[action.phase],
           [action.prop]: action.val,
         },
         undoStack: addUndo(state, action),

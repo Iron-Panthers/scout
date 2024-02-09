@@ -5,8 +5,10 @@ import PropTypes from "prop-types"
 import "./buttons.scss"
 import "./inputs.scss"
 
-const QualitativeCount = ({team, prop1, prop2,}) => {
+const QualitativeCount = ({prop1, prop2, phase}) => {
   const [state, dispatch] = useContext(Context)
+
+ 
 
   const [settings] = useSettings()
 
@@ -26,52 +28,58 @@ const QualitativeCount = ({team, prop1, prop2,}) => {
 
   const handleIncrement = (increment, prop) => {
     dispatch({
-        type: `set`,
-        prop: team + prop,
-        val: state[team + prop] + increment,
+        type: `setPropInPhase`,
+        phase: phase,
+        prop: prop,
+        val: state[phase][prop] + increment,
       })
   }
 
   const createIncrement = (prop) => {
-   return <>
+    const current = state[phase][prop]
+       
+   return <div className = "qualCounter">
+
+<label className="attribute">{prop === "FieldAwareness" ? "Field Awareness" : prop}</label>
    <button
     className={`green ` + fontSize}
-    disabled = {state[team + prop] >= 3}
+    disabled = {current >= 3}
     onClick={() => handleIncrement(1, prop)}
   >
       +
   </button>
   
-  <p>{state[team + prop]}</p>
+  
+  <p>{current}</p>
+
       <button
         className={`red ` + fontSize}
-        disabled = {state[team + prop] <= 1}
+        disabled = {current <= 1}
         onClick={() => handleIncrement(-1, prop)}
       >-</button>
 
-   </> 
+   </div> 
 
   }
 
   return (
       <>
-          
-        <label className="attribute">{prop1 === "FieldAwareness" ? "Field Awareness" : prop1}</label>
-        <p className = "spacer"></p>
-        <label className="attribute">{prop2 === "FieldAwareness" ? "Field Awareness" : prop2}</label>
+      
         
           {createIncrement(prop1)}
-          <p className = "spacer"></p>
+
+      
           {createIncrement(prop2)}
+
+        
 
     </>
   )
 }
 
 QualitativeCount.propTypes = {
-  team: PropTypes.oneOf(["team1", "team2", "team3"]).isRequired,
-  prop: PropTypes.oneOf(["Quickness, FieldAwareness"]).isRequired,
-  phase: PropTypes.bool,
+  prop: PropTypes.oneOf(["quickness, fieldAwareness"]).isRequired,
+  phase: PropTypes.oneOf(["team1", "team2", "team3"]).isRequired,
 }
 
 export default QualitativeCount
