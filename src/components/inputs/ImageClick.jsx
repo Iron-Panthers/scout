@@ -253,8 +253,8 @@ const ImageClick = ({ prop, phase, full, locations}) => {
 
 
   return (
-    <>
-        <div className="wide imageClick tall" ref = {divRef}>
+
+        <div className="fiveSixths imageClick veryTall" ref = {divRef}>
 
             {!displayPopup &&
               <img 
@@ -285,7 +285,6 @@ const ImageClick = ({ prop, phase, full, locations}) => {
     </div>
    
     
-    </>
   )
 
 }

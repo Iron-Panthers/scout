@@ -33,7 +33,7 @@ Bool.propTypes = {
   onFlip: PropTypes.func,
   phase: PropTypes.bool,
   color: PropTypes.oneOf(["red", "green", "blue"]),
-  width: PropTypes.oneOf(["default", "halfWide", "wide"]),
+  width: PropTypes.string,
   tall: PropTypes.bool,
 }
 

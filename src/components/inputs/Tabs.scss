@@ -1,7 +1,15 @@
 .Tab {
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
   flex-grow: 1;
+
+  // Regular
+  // border-top-right-radius: 20px;
+  // border-top-left-radius: 20px;
+
+  //Sideways  
+  width: 100%;
+  
+  transform: rotate(180deg);
+  writing-mode:vertical-rl;
 }
 
 .Tab:disabled {
@@ -19,4 +27,5 @@
 
 .Tabs {
   flex-basis: 100%;
+  flex-direction: column-reverse;
 }

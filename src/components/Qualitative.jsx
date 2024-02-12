@@ -12,7 +12,7 @@ const Qualitative = () => {
   
   return (
     <>
-      <div className="scoutHead">
+      <div className="scoutHead wide">
         <Info></Info>
       </div>
       <div className = "qualitativeTeamInputs">

@@ -21,7 +21,7 @@ const Tabs = () => {
     </button>
   ))
 
-  return <div className="Tabs wide evenFlex">{TabArray}</div>
+  return <div className="Tabs veryTall sixth evenFlex">{TabArray}</div>
 }
 
 export default Tabs

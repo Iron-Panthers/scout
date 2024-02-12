@@ -3,7 +3,6 @@ import { Context } from "../../state"
 
 import "./inputs.scss"
 import "./Info.scss"
-import { format } from "prettier"
 
 const Info = () => {
   const [state] = useContext(Context)

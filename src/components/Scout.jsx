@@ -54,10 +54,10 @@ const Scout = () => {
       case "endgame":
         return (
           <>
-           <Bool prop="scoreTrap" phase label="Score Trap" trueLabel = "Scored Trap" color="green" width={"halfWide"}></Bool>
-           <Bool prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="green" width={"halfWide"}></Bool>
-           <Bool prop="climb" phase label="Climb" trueLabel = "Climbed" color="green" width={"halfWide"}></Bool>
-           <Numbers label="Time of start (secs)" idealLength = {2} prop="timeLeft" width = "halfWide" twoLines={false}></Numbers>
+           <Bool prop="scoreTrap" phase label="Score Trap" trueLabel = "Scored Trap" color="green" width="fiveTwelfths"></Bool>
+           <Bool prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="green" width={"fiveTwelfths"}></Bool>
+          
+           <Numbers label="Time of start (secs)" idealLength = {2} prop="timeLeft" width = "fiveTwelfths" twoLines={false}></Numbers>
            <Undo width = {"halfWide"}></Undo>
           </>
         )
@@ -70,11 +70,16 @@ const Scout = () => {
 
   return (
     <>
-      <div className="scoutHead">
+      <div className={`scoutHead half`}>
         <Info></Info>
-        <Tabs></Tabs>
+        {/* <Tabs></Tabs> */}
       </div>
+      <p className="third">Total Notes: </p>
+      <Undo width = "oneSixth"></Undo>
+
+      <Tabs></Tabs> 
       {phaseTabContent}
+     
       
       {/* <Undo width = {"halfWide"}></Undo> */}
 

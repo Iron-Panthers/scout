@@ -8,21 +8,22 @@ import Numbers from "./inputs/Numbers"
 import SetPanel from "./inputs/SetPanel"
 
 import TripleTeamSelector from "./inputs/TripleTeamSelector"
+import Freetext from "./inputs/Freetext"
 
 
 const ConfigureQualitative = () => {
   const [settings] = useSettings()
-  const isIOS =
-    ([
-      "iPad Simulator",
-      "iPhone Simulator",
-      "iPod Simulator",
-      "iPad",
-      "iPhone",
-      "iPod",
-    ].includes(navigator.platform) ||
-      (navigator.userAgent.includes("Mac") && "ontouchend" in document)) &&
-    settings.IOSCheck
+  // const isIOS =
+  //   ([
+  //     "iPad Simulator",
+  //     "iPhone Simulator",
+  //     "iPod Simulator",
+  //     "iPad",
+  //     "iPhone",
+  //     "iPod",
+  //   ].includes(navigator.platform) ||
+  //     (navigator.userAgent.includes("Mac") && "ontouchend" in document)) &&
+  //   settings.IOSCheck
  
     const [state] = useContext(Context)
 
@@ -76,8 +77,12 @@ const ConfigureQualitative = () => {
           {label: "Semifinals", value: "sf"}, 
           {label: "Finals", value: "f"}]}
       ></Dropdown>
-      {!isIOS && <SetPanel width = "halfWide" label="Scanner" panelName="Scanner"></SetPanel>}
-      <Next width ={isIOS ? "wide" : "halfWide"} qualitative isDisabled = {!ready} disabledText= {disabledMessage}></Next>
+      {/* {!isIOS && <SetPanel width = "halfWide" label="Scanner" panelName="Scanner"></SetPanel>} */}
+
+      
+      <Freetext label = "Scouter Name:" prop="scouterName"/>
+
+      <Next width ="halfWide" qualitative isDisabled = {!ready} disabledText= {disabledMessage}></Next>
     </>
   )
 }
