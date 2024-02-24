@@ -4,7 +4,7 @@ import { useSettings } from "../state"
 import { version } from "../reducer"
 
 import Reset from "./inputs/Reset"
-import QrReader from "react-qr-reader"
+import { useZxing } from "react-zxing";
 import SetPanel from "./inputs/SetPanel"
 
 import useAnim from "../hooks/useAnim"
@@ -53,47 +53,56 @@ const Scanner = () => {
     return () => ctx.current.close()
   }, [ctx])
 
+
+  
+const { ref } = useZxing({
+        onDecodeResult(result) {
+          console.log(result.getText())
+          handleScan(result.getText())
+    }, onError (err) {
+            console.error(err)
+            setError(err)
+    }
+});
+
+
+const handleScan = (val) => {
+    
+      if (val === null) {
+        if (scanHint !== "") setScanHint("")
+        return
+      }
+      let objVal = parseCsvBody(val)
+      console.log(objVal)
+      const versionMatch = Number.parseInt(objVal.version) === version
+      if ((!matchScans.current.has(val) && !qualScans.current.has(val)) && versionMatch) {
+
+        setScanCount(scanCount + 1)
+
+        // Checking if the quickness has been set
+        // If it has, then the csv object must be from the qualitative scouting
+        // Otherwise, it should be a normal match
+        if(objVal?.team1Quickness) {
+          qualScans.current.add(val)
+          localStorage.qualitativeScanSet = JSON.stringify(Array.from(qualScans.current))
+        } else {
+          matchScans.current.add(val)
+          localStorage.matchScanSet = JSON.stringify(Array.from(matchScans.current))
+        }
+
+        if (settings.scannerBeep) beep()
+        setScanHint("stored")
+      } else {
+        setScanHint(
+          !versionMatch ? "CSV versioning mismatch" : "already scanned"
+        )
+      }
+}
   return (
     <>
       {scan && (
-        <div className="QrWrapper" animate={anim} onAnimationEnd={onAnimEnd}>
-          <QrReader
-            onScan={(val) => {
-              if (val === null) {
-                if (scanHint !== "") setScanHint("")
-                return
-              }
-              let objVal = parseCsvBody(val)
-              console.log(objVal)
-              const versionMatch = Number.parseInt(objVal.version) === version
-              if ((!matchScans.current.has(val) && !qualScans.current.has(val)) && versionMatch) {
-                
-                setScanCount(scanCount + 1)
-
-                // Checking if the quickness has been set
-                // If it has, then the csv object must be from the qualitative scouting
-                // Otherwise, it should be a normal match
-                if(objVal?.team1Quickness) {
-                  qualScans.current.add(val)
-                  localStorage.qualitativeScanSet = JSON.stringify(Array.from(qualScans.current))
-                } else {
-                  matchScans.current.add(val)
-                  localStorage.matchScanSet = JSON.stringify(Array.from(matchScans.current))
-                }
-                
-                if (settings.scannerBeep) beep()
-                setScanHint("stored")
-              } else {
-                setScanHint(
-                  !versionMatch ? "CSV versioning mismatch" : "already scanned"
-                )
-              }
-            }}
-            onError={(err) => {
-              console.error(err)
-              setError(err)
-            }}
-          ></QrReader>
+        <div className="QrWrapper wide veryTall" animate={anim} onAnimationEnd={onAnimEnd}>
+            <video ref={ref}></video>
         </div>
       )}
       <button

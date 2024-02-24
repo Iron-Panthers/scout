@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const TripleTeamSelector = ({ label, prop, idealLength = 4, width}) => {
+const TripleTeamSelector = ({ label, prop, idealLength = 4, width, height}) => {
   
   const [state, dispatch] = useContext(Context)
     
@@ -34,7 +34,7 @@ const TripleTeamSelector = ({ label, prop, idealLength = 4, width}) => {
 
   }  
   
-  return <div className={`TripleTeamSelector ${ width ? width :"wide"}`}>
+  return <div className={`TripleTeamSelector ${ width } ${ height }`}>
     <label htmlFor={"team1"}>
         {label}
       </label>

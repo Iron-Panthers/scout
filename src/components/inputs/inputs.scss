@@ -268,13 +268,11 @@ div.TripleTeamSelector {
     font-size: 1.75rem;
     font-weight: bold;
   }
-  button {
-    flex-basis: 25%;
-  }
-
-  .popupButton{
-    // flex-basis: 25%;
-  }
 
 }
 
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

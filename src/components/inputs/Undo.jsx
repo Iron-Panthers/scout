@@ -4,12 +4,12 @@ import PropTypes from "prop-types"
 
 import "./buttons.scss"
 
-const Undo = ({ width }) => {
+const Undo = ({ width, height }) => {
   const [state, dispatch] = useContext(Context)
 
   return (
     <button
-      className={`${width ? width : "halfWide"} blue`}
+      className={`${width} ${height} blue`}
       disabled={state.undoStack[state.phase].length === 0}
       onClick={() => {
         dispatch({ type: "undo" })

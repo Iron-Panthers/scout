@@ -71,6 +71,13 @@
 }
 
 
+.twoHigh {
+    grid-row: span 2;
+}
+
+.fiveHigh{
+    grid-row: span 5;
+}
 .tall {
   grid-row: span 3;
 }

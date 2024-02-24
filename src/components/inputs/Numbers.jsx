@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const Numbers = ({ label, prop, idealLength = 4, width, twoLines }) => {
+const Numbers = ({ label, prop, idealLength = 4, width, twoLines, height }) => {
   
   const [state, dispatch] = useContext(Context)
   const id = `Numbers-${label}-${prop}`.replaceAll(" ", "_")
@@ -36,7 +36,7 @@ const Numbers = ({ label, prop, idealLength = 4, width, twoLines }) => {
   </>
 
   return twoLines ? numberInputComponent : (
-    <div className={`Numbers ${ width ? width :"wide"}`}>
+    <div className={`Numbers ${ width ? width :"wide"} ${height}`}>
      {numberInputComponent}
     </div>
   )

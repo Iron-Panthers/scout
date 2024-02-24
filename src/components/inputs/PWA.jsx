@@ -90,7 +90,7 @@ const PWA = ({ modes }) => {
             prop: "typeOfData", 
             val: state.typeOfData === "Match" ?  "Qualitative" : "Match"})
         }}>
-      {state.mode === "Configure" ?  "Qualitative" : "Match"}
+      {state.typeOfData === "Match" ? "Switch to Qualitative" : "Switch to Match"}
       </button>
     
       {!isIOS && <SetPanel width = {`halfWide ${isHidden}`} label="Scanner" panelName="Scanner"></SetPanel>}

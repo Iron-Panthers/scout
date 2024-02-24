@@ -17,7 +17,8 @@ const Tabs = () => {
       }}
       key={label}
     >
-      {label}
+        <span>{label}</span>
+    
     </button>
   ))
 

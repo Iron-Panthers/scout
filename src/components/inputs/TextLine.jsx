@@ -9,12 +9,13 @@ const TextLine = ({
   prop,
   validator,
   explanation,
+  width,
   capitalize = true,
 }) => {
   const [state, dispatch] = useContext(Context)
   const id = `TextLine-${label}-${prop}`.replaceAll(" ", "_")
   return (
-    <div className="TextLine">
+    <div className={`TextLine ${width}`}>
       <label htmlFor={id} className="AlignRight" title={explanation}>
         {label}
       </label>
