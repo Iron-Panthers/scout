@@ -5,11 +5,11 @@
   }
 }
 
-button {
+// maybe find better fix, I want div to have same colors
+button, div {
   @include activeTransition;
 
   color: black;
-  grid-column: span 2;
   font-size: 1rem;
 
   @mixin disabledColor {
@@ -27,11 +27,29 @@ button {
     @include disabledColor();
   }
 
+  &.less-red {
+    background-color: hsl(354, 100%, 93%);
+    border: 2px solid hsl(354, 100%, 25%);
+    &:active {
+      background-color: hsl(354, 100%, 73%);
+    }
+    @include disabledColor();
+  }
+
   &.green {
     background-color: hsl(133, 100%, 86%);
     border: 2px solid hsl(133, 100%, 26%);
     &:active {
       background-color: hsl(133, 100%, 66%);
+    }
+    @include disabledColor();
+  }
+
+  &.less-green {
+    background-color: hsl(133, 100%, 93%);
+    border: 2px solid hsl(133, 100%, 26%);
+    &:active {
+      background-color: hsl(133, 100%, 73%);
     }
     @include disabledColor();
   }
@@ -45,11 +63,29 @@ button {
     @include disabledColor();
   }
 
+  &.less-blue {
+    background-color: hsl(206, 100%, 93%);
+    border: 2px solid hsl(206, 100%, 26%);
+    &:active {
+      background-color: hsl(206, 100%, 73%);
+    }
+    @include disabledColor();
+  }
+
   &.yellow {
     background-color: hsl(63, 100%, 86%);
     border: 2px solid hsl(63, 100%, 26%);
     &:active {
       background-color: hsl(63, 100%, 66%);
+    }
+    @include disabledColor();
+  }
+
+  &.less-yellow {
+    background-color: hsl(63, 100%, 93%);
+    border: 2px solid hsl(63, 100%, 26%);
+    &:active {
+      background-color: hsl(63, 100%, 73%);
     }
     @include disabledColor();
   }
@@ -63,12 +99,22 @@ button {
     @include disabledColor();
   }
 
+  &.less-purple {
+    background-color: hsl(280, 100%, 93%);
+    border: 2px solid hsl(280, 100%, 26%);
+    &:active {
+      background-color: hsl(280, 100%, 73%);
+    }
+    @include disabledColor();
+  }
+
   &.transparent{
     background-color: hsla(251, 65%, 15%, 0.75);
     border: 2px solid hsl(251, 65%, 25%);
     &:active {
       background-color: hsl(251, 65%, 50%);
     }
+    @include disabledColor();
   }
-  @include disabledColor();
+    @include disabledColor();
 }

@@ -11,8 +11,6 @@
 }
 
 .QrWrapper {
-  grid-row: span 4;
-  grid-column: span 6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,6 +19,11 @@
     max-height: 70vh;
     max-width: 70vmin;
   }
+ video {
+     flex-grow: 1;
+     max-height: 75vh;
+     max-width: 75vmin;
+ }
 
   &[animate="1"] {
     animation: scan 1.3s cubic-bezier(0.23, 1.06, 0.48, 0.7);

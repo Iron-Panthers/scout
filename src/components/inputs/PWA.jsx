@@ -1,10 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState, } from "react"
 import useAnim from "../../hooks/useAnim"
-import { Context } from "../../state"
+import { Context, useSettings } from "../../state"
 import PropTypes from "prop-types"
 import * as serviceWorkerRegistration from "../../serviceWorkerRegistration"
 import antiUnload from "../../antiUnload"
 import { FaCog } from "react-icons/fa"
+
+import SetPanel from "./SetPanel"
 
 import "./buttons.scss"
 import "./PWA.scss"
@@ -24,6 +26,21 @@ const PWA = ({ modes }) => {
   )
 
   const waiting = useRef(null)
+
+
+  const [settings] = useSettings()
+  const isIOS =
+    ([
+      "iPad Simulator",
+      "iPhone Simulator",
+      "iPod Simulator",
+      "iPad",
+      "iPhone",
+      "iPod",
+    ].includes(navigator.platform) ||
+      (navigator.userAgent.includes("Mac") && "ontouchend" in document)) &&
+    settings.IOSCheck
+
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -60,7 +77,7 @@ const PWA = ({ modes }) => {
 
   return (
     <>
-     <button className = {`halfWide blue ${isHidden}`}
+     <button className = {`${isIOS? "wide": "halfWide"} blue ${isHidden}`}
         id = "switchScoutingType"
         onClick={() => {
           dispatch({
@@ -73,9 +90,12 @@ const PWA = ({ modes }) => {
             prop: "typeOfData", 
             val: state.typeOfData === "Match" ?  "Qualitative" : "Match"})
         }}>
-      {state.mode === "Configure" ?  "Qualitative" : "Match"}
+      {state.typeOfData === "Match" ? "Switch to Qualitative" : "Switch to Match"}
       </button>
-      <button className = {`halfWide blue ${isHidden}`}
+    
+      {!isIOS && <SetPanel width = {`halfWide ${isHidden}`} label="Scanner" panelName="Scanner"></SetPanel>}
+
+      {/* <button className = {`halfWide blue ${isHidden}`}
         id = "settingsWideButton"
         onClick={() => {
           dispatch({
@@ -85,7 +105,7 @@ const PWA = ({ modes }) => {
           })
         }}>
       Settings
-      </button>
+      </button> */}
     <div
       className={`wide PWA ${isHidden}`}
     >

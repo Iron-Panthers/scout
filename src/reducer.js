@@ -7,12 +7,10 @@ const csvApi = require("../package.json").csvApi
 export const version = csvApi ?? 69
 
 const grid = {
-  topCone: 0, 
-  middleCone: 0,
-  bottomCone: 0,
-  topCube: 0, 
-  middleCube: 0, 
-  bottomCube: 0,
+  scoreSpeaker: 0,
+  missSpeaker: 0,
+  scoreAmp: 0,
+  missAmp: 0,
 }
 
 const teamQual = {
@@ -35,56 +33,42 @@ export const initialState = {
   typeOfData: "Match", // Match or Qualitative
   matchNum: undefined,
   phase: "auto", //auto, teleop, endgame
+  scoutName: "",
+  startTime: 0,
   auto: {
+    mobility: false,
     path: [],
-    prevCycleTimeStamp: 0,
-    scoreSpeaker: 0,
-    scoreAmp: 0,
+    actions: [],
+    ...grid,
+    dropoff: 0,
   },
   teleop: {
-    shotData: [],
-    prevCycleTimeStamp: 0,
+    actions: [],
+    ...grid,
+    scoreTrap: 0,
+    shuttle: 0,
   },
   endgame: {
-    scoreTrap: false,
     harmonize: false,
     climb: false,
-    timeOfStart: undefined,
-
+    park: false,
+    climbTimeOfStart: undefined,
   },
   defense: false,
   scoutProblems: false,
   robotProblems: false,
-  groundPickup: false,
-  singleSubstation: false,
-  doubleSubstation: false,
   comments: "",
-// Qualitative attributes... I don't want to deal with phase anymore     
-  
+  // Qualitative attributes... I don't want to deal with phase anymore
+
   team1: {
-    ...teamQual
+    ...teamQual,
   },
   team2: {
-    ...teamQual
+    ...teamQual,
   },
   team3: {
-    ...teamQual
+    ...teamQual,
   },
-
-// qualitative: {
-//     team1Number: undefined,
-//   team1Quickness: 1,
-//   team1FieldAwareness: 1,
-
-//   team2Number: undefined,
-//   team2Quickness: 1,
-//   team2FieldAwareness: 1,
-
-//   team3Number: undefined,
-//   team3Quickness: 1,
-//   team3FieldAwareness: 1,
-
-//   },  
 
   undoStack: {
     auto: [],
@@ -95,11 +79,28 @@ export const initialState = {
 
 const addUndo = (state, action) => {
   // only add an undo in Scout mode
-  if (state.mode !== "Scout" || action.undo === true) return state.undoStack
+  // or if it's not setting the start time
+
+  if (state.mode !== "Scout" || action.undo === true || action.track === false)
+    return state.undoStack
   // console.log(state.undoStack[state.phase])
   const undoStack = [...state.undoStack[state.phase]]
   if (state.undoStack[state.phase].length >= 15) {
     undoStack.shift()
+  }
+
+  const prevState = action.type === "setInPhase" ? state[state.phase] : state
+
+  console.log(prevState)
+  console.log(action.prop)
+  console.log(prevState[action.prop])
+
+  let vals = prevState[action.prop]
+  if (Array.isArray(action.prop)) {
+    vals = []
+    for (const prop of action.prop) {
+      vals.push(prevState[prop])
+    }
   }
 
   undoStack.push({
@@ -107,10 +108,7 @@ const addUndo = (state, action) => {
     phase: state.phase,
     prop: action.prop,
     prior: action.prior,
-    val:
-      action.type === "setInPhase"
-        ? state[state.phase][action.prop]
-        : state[action.prop],
+    val: vals,
   })
 
   return {
@@ -124,7 +122,7 @@ const popUndo = (state) => {
   const newStack = [...state.undoStack[state.phase]]
   const action = { undo: true, ...newStack.pop() }
 
-  // console.log(action)
+  console.log(action)
 
   return {
     ...reducer(state, action),
@@ -162,6 +160,7 @@ export const reducer = (state, action) => {
         matchType: state.matchType,
         mode: state.typeOfData === "Match" ? "Configure" : "ConfigQualitative",
         typeOfData: state.typeOfData,
+        scoutName: state.scoutName,
       }
     case "next_mode":
       const modes = ["Configure", "Scout", "Review", "ScanData"]
@@ -169,8 +168,8 @@ export const reducer = (state, action) => {
         ...state,
         mode: modes[modes.indexOf(state.mode) + 1],
       })
-    case "next_qualitative_mode": 
-    const qualitativeModes = ["ConfigQualitative", "Qualitative", "ScanData"]
+    case "next_qualitative_mode":
+      const qualitativeModes = ["ConfigQualitative", "Qualitative", "ScanData"]
       return clearUndo({
         ...state,
         mode: qualitativeModes[qualitativeModes.indexOf(state.mode) + 1],
@@ -190,29 +189,68 @@ export const reducer = (state, action) => {
           levelTime: action.undo ? undefined : action.time,
         },
       }
-    // base reducer, no special behavior
+    // base reducer
     case "set":
-      // console.log(action.prop, "=", action.val)
+      console.log(action.prop, "=", action.val)
 
-      return {
+      let newState = {
         ...state,
-        [action.prop]: action.val,
+      }
+      if (Array.isArray(action.prop) && Array.isArray(action.val)) {
+        for (let i = 0; i < action.prop.length; i++) {
+          console.log(action.prop[i], "=", action.val[i])
+          //maybe call ourselves? lol
+          newState = {
+            ...newState,
+            [action.prop[i]]: action.val[i],
+          }
+        }
+      } else {
+        console.log()
+        newState = {
+          ...newState,
+          [action.prop]: action.val,
+        }
+      }
+      return {
+        ...newState,
         undoStack: addUndo(state, action),
       }
     // base reducer for phases, spaghetti
     case "setInPhase":
-      // console.log(action.prop, "=", action.val, "in", state.phase)
+      console.log(action.prop, "=", action.val, "in", state.phase)
+
+      let newPhaseState = {
+        ...state[state.phase],
+      }
+
+      if (Array.isArray(action.prop) && Array.isArray(action.val)) {
+        for (let i = 0; i < action.prop.length; i++) {
+          console.log(action.prop[i], "=", action.val[i])
+          //maybe call ourselves? lol
+          newPhaseState = {
+            ...newPhaseState,
+            [action.prop[i]]: action.val[i],
+          }
+        }
+      } else {
+        newPhaseState = {
+          ...newPhaseState,
+          [action.prop]: action.val,
+        }
+      }
+
       return {
         ...state,
         [state.phase]: {
-          ...state[state.phase],
-          [action.prop]: action.val,
+          ...newPhaseState,
         },
         undoStack: addUndo(state, action),
       }
-      // I really bad at naming
-      // Basically sets a prop inside a phase 
-      // (Qualitative doesn't have tabs...)
+
+    // I really bad at naming
+    // Basically sets a prop inside a phase
+    // (Qualitative doesn't have tabs...)
     case "setPropInPhase":
       return {
         ...state,

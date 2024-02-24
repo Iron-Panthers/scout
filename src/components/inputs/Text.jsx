@@ -4,10 +4,10 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const Numbers = ({ label, prop, idealLength = 4, width, twoLines, height }) => {
+const Text = ({ label, prop, idealLength = 4, width, twoLines }) => {
   
   const [state, dispatch] = useContext(Context)
-  const id = `Numbers-${label}-${prop}`.replaceAll(" ", "_")
+  const id = `Text-${label}-${prop}`.replaceAll(" ", "_")
 
   const numberInputComponent = <>
     <label htmlFor={id} className={`${twoLines ? "default" : ""}`}>
@@ -36,13 +36,13 @@ const Numbers = ({ label, prop, idealLength = 4, width, twoLines, height }) => {
   </>
 
   return twoLines ? numberInputComponent : (
-    <div className={`Numbers ${ width ? width :"wide"} ${height}`}>
+    <div className={`Text ${ width ? width :"wide"}`}>
      {numberInputComponent}
     </div>
   )
 }
 
-Numbers.propTypes = {
+Text.propTypes = {
   label: PropTypes.string.isRequired,
   prop: PropTypes.string.isRequired,
   idealLength: PropTypes.number,
@@ -50,4 +50,4 @@ Numbers.propTypes = {
   twoLines: PropTypes.bool,
 }
 
-export default Numbers
+export default Text

@@ -6,7 +6,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: minmax(0, 1fr);
   & > *,
   & > div.PWA > *,
@@ -19,4 +19,72 @@
     display: flex;
     justify-content: space-around;
   }
+}
+
+
+.twelfth {
+  grid-column: span 1;
+}
+
+.twoTwelfths, .sixth{
+  grid-column: span 2;
+}
+
+.threeTwelfths, .quarter, .fourth {
+  grid-column: span 3;
+}
+
+.fourTwelfths, .twoSixths, .third {
+  grid-column: span 4;
+}
+
+.fiveTwelfths {
+  grid-column: span 5;
+}
+
+.halfWide, .half, .sixTwelfths, .twoQuarters, .twoFourths, .threeSixths {
+  grid-column: span 6;
+}
+
+.sevenTwelfths {
+  grid-column: span 7;
+}
+
+.eightTwelfths, .fourSixths, .twoThirds {
+  grid-column: span 8;
+}
+
+.nineTwelfths, .threeQuarters, .threeFourths {
+  grid-column: span 9;
+}
+
+.tenTwelfths, .fiveSixths {
+  grid-column: span 10;
+}
+
+.elevenTwelfths {
+  grid-column: span 11;
+}
+
+.wide {
+  grid-column: span 12;
+}
+
+
+.twoHigh {
+    grid-row: span 2;
+}
+
+.fiveHigh{
+    grid-row: span 5;
+}
+.tall {
+  grid-row: span 3;
+}
+.veryTall {
+  grid-row: span 6;
+}
+
+.default {
+  grid-row: span 4;
 }

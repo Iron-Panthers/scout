@@ -9,17 +9,23 @@ import Info from "./inputs/Info"
 import QualitativeTeam from "./inputs/QualitativeTeam"
 
 const Qualitative = () => {
+
+  const [state, dispatch] = useContext(Context)
+
+
   
   return (
     <>
-      <div className="scoutHead">
+      <div className="scoutHead wide">
         <Info></Info>
       </div>
-      <div className = "qualitativeTeamInputs">
+
+      <div className="third">{state["team2"].number}</div>
+      <div className="third">{state["team3"].number}</div>
+     
         <QualitativeTeam team = "team1"/>
-        <QualitativeTeam team = "team2"/>
-        <QualitativeTeam team = "team3"/>
-      </div>
+        
+
      {/* <Next width ="wide" tall qualitative = {true} isDisabled = {!allDifferentValues} disabledText="All teams must have different value"></Next> */}
      <Next width ="wide" tall qualitative = {true}/>
     </>

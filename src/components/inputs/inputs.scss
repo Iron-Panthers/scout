@@ -9,27 +9,6 @@ textarea:focus {
   outline: blue 1px solid;
 }
 
-.default {
-  grid-column: span 2;
-}
-
-.wide {
-  grid-column: span 6;
-}
-
-.twoThirds {
-  grid-column: span 4;
-}
-
-.halfWide {
-  grid-column: span 3;
-}
-
-.tall {
-  grid-row: span 3;
-}
-
-
 
 @mixin twoThirdsLeft {
   display: grid;
@@ -289,13 +268,11 @@ div.TripleTeamSelector {
     font-size: 1.75rem;
     font-weight: bold;
   }
-  button {
-    flex-basis: 25%;
-  }
-
-  .popupButton{
-    // flex-basis: 25%;
-  }
 
 }
 
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

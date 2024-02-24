@@ -18,19 +18,8 @@ const Review = () => {
         label="Scouting data accidents / problems"
         prop="scoutProblems"
       ></Checkbox>
-      <div className="TextLine Divider">Pickup</div>
-      <Checkbox
-        label="Ground pickup"
-        prop="groundPickup"
-      ></Checkbox>
-      <Checkbox
-        label="Single substation pickup"
-        prop="singleSubstation"
-      ></Checkbox>
-      <Checkbox
-        label="Double substation pickup"
-        prop="doubleSubstation"
-      ></Checkbox>
+      {/* <div className="TextLine Divider">Pickup</div> */}
+
       <Freetext label="Comments?" prop="comments"></Freetext>
       <SetPanel label="Edit Data" panelName="EditScoutData" width = "wide"></SetPanel>
       <Next width = "wide"></Next>
