@@ -28,15 +28,20 @@ const Scout = () => {
 
   const [currentTime, setCurrentTime] = useState(0)
 
-     
- useEffect(() => {
+    
+  const [overlayClicked, setOverlayClicked] = useState(false)
 
-     dispatch({
-         type: `set`,
-         prop: "startTime",
-         val: Date.now(),
-         track: false,
-       })
+
+
+  const setStartTime = () => {
+    dispatch({
+      type: `set`,
+      prop: "startTime",
+      val: Date.now(),
+      track: false,
+    })
+  }
+ useEffect(() => {
      
      const interval = setInterval(() => {
          setCurrentTime(Date.now())
@@ -157,6 +162,8 @@ const Scout = () => {
         
         return (
           <>
+
+            
            <FieldInput phase prop = "actions" popupInfo={popupInfo}></FieldInput>
             {/* <ImageClick full phase prop = "actions"></ImageClick> */}
             
@@ -214,7 +221,7 @@ const Scout = () => {
 
           const roundTime = Math.round((timeInSeconds + Number.EPSILON) * 100000) / 100000
 
-    if(roundTime < 0) return 0
+    if(roundTime < 0 || state.startTime == 0) return 0
     
     return Math.trunc(roundTime);
   })()
@@ -240,8 +247,14 @@ const Scout = () => {
           <Undo width = "quarter"></Undo>
 
       <Tabs></Tabs> 
+      
       {phaseTabContent}
-     
+      <div className="overlay transparent" style = {{display: overlayClicked? "none": "absolute"}}>
+              <button className="blue" onClick = {()=> {
+                setStartTime()
+                setOverlayClicked(true)
+              }}><h1>Ready?</h1></button>
+      </div>
     </>
   )
 }
