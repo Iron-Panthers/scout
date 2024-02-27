@@ -5,10 +5,10 @@ import PropTypes from "prop-types"
 import "./buttons.scss"
 import "./inputs.scss"
 
-const QualitativeCount = ({prop1, prop2, phase}) => {
+const QualitativeCount = ({team, prop, label}) => {
   const [state, dispatch] = useContext(Context)
 
- 
+  const current = state[team][prop]
 
   const [settings] = useSettings()
 
@@ -29,47 +29,36 @@ const QualitativeCount = ({prop1, prop2, phase}) => {
   const handleIncrement = (increment, prop) => {
     dispatch({
         type: `setPropInPhase`,
-        phase: phase,
+        phase: team,
         prop: prop,
-        val: state[phase][prop] + increment,
+        val: state[team][prop] + increment,
       })
-  }
-
-  const createIncrement = (prop) => {
-    const current = state[phase][prop]
-       
-   return <div className = "qualCounter">
-
-<label className="attribute">{prop === "FieldAwareness" ? "Field Awareness" : prop}</label>
-   <button
-    className={`green ` + fontSize}
-    disabled = {current >= 3}
-    onClick={() => handleIncrement(1, prop)}
-  >
-      +
-  </button>
-  
-  
-  <p>{current}</p>
-
-      <button
-        className={`red ` + fontSize}
-        disabled = {current <= 1}
-        onClick={() => handleIncrement(-1, prop)}
-      >-</button>
-
-   </div> 
-
   }
 
   return (
       <>
       
+      <div className = "button-container tall">
+        <button 
+          className = {`red ${fontSize}`} 
+          disabled = {current <= 1}
+          onClick={() => handleIncrement(-1, prop)}
+        >
+          
+          -</button>
+      </div>
+      <div className = "sixth twoHigh display-container">
+        <h2>{label}</h2>
+        <h1>{current}</h1>
+      </div>
+      <div className = "button-container tall">
+        <button 
+          className = {`green ${fontSize}`} 
+          disabled = {current >= 3}
+          onClick={() => handleIncrement(1, prop)}
+        >+</button>
+      </div>
         
-          {createIncrement(prop1)}
-
-      
-          {createIncrement(prop2)}
 
         
 

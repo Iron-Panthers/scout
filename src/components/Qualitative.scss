@@ -6,3 +6,49 @@
 
     //gap: 1em;
 }
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    button {
+        height: 8.333vw;
+        //width: 100%;
+        border-radius: 50%;
+    }
+}
+
+.display-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    * > {
+        flex-basis: 0;
+    }
+
+   
+}
+
+
+h1 {
+    display: flex;
+    justify-content: center;
+    flex-grow: 2;
+    align-items: center;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.notIOS {
+    font-size: 3rem;
+  }
+
+.IOS {
+    font-size: 1.7rem;
+}

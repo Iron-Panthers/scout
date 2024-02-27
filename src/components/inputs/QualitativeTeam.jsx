@@ -18,7 +18,7 @@ const QualitativeTeam = ({team}) => {
   }
 
 
-    const createIncrement = (prop) => {
+    const createIncrement = (label, prop) => {
       const current = state[team][prop]
 
      return (
@@ -28,7 +28,7 @@ const QualitativeTeam = ({team}) => {
             disabled = {current >= 3}
             onClick={() => handleIncrement(1, prop)}
           >+</button>
-
+          
 
         <div>{current}</div>
 
@@ -47,9 +47,9 @@ const QualitativeTeam = ({team}) => {
     <div className="third tall qualTeam">
       <h1>{state[team].number}</h1>
         <h2>Quickness</h2>
-          {createIncrement("quickness")}
+          {createIncrement("Quickness", "quickness")}
         <h2>Field Awareness</h2>
-          {createIncrement("fieldAwareness")}
+          {createIncrement("Field Awareness", "fieldAwareness")}
     </div>
   )
 } 
