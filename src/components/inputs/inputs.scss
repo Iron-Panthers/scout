@@ -276,3 +276,27 @@ div.TripleTeamSelector {
   justify-content: center;
   align-items: center;
 }
+
+.overlay {
+  margin: auto;
+
+  width: 90vw;
+  height: 90vh;
+  position: absolute;
+
+  //overflow: hidden;
+  left: 5%;
+  top: 5%;
+
+
+ 
+  button {
+    position: absolute;
+
+  //overflow: hidden;
+  left: 25%;
+  top: 25%;
+    width: 50vw;
+    height: 50vh;
+  }
+}
