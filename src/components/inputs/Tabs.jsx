@@ -7,7 +7,6 @@ import "./Tabs.scss"
 const Tabs = () => {
   const [state, dispatch] = useContext(Context)
 
-  // In general, should be auto, teleop, endgame, but in 2023, endgame wasn't necessary
   const TabArray = ["auto", "teleop", "endgame"].map((label) => (
     <button
       className="Tab"

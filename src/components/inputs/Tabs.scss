@@ -1,4 +1,5 @@
 .Tab {
+  flex-basis: 0%;
   flex-grow: 1;
 
   // Regular
@@ -34,6 +35,6 @@
 }
 
 .Tabs {
-  flex-basis: 100%;
-  flex-direction: column-reverse;
+  
+  flex-direction: column;
 }
