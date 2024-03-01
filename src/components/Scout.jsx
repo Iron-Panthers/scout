@@ -7,6 +7,7 @@ import Tabs from "./inputs/Tabs"
 import Undo from "./inputs/Undo"
 import Info from "./inputs/Info"
 import Bool from "./inputs/Bool"
+import Toggle from "./inputs/Toggle"
 import Numbers from "./inputs/Numbers"
 import Dropdown from "./inputs/Dropdown"
 
@@ -172,9 +173,9 @@ const Scout = () => {
       case "endgame":
         return (
           <>
-           <Bool prop="scoreTrap" phase label="Score Trap" trueLabel = "Scored Trap" color="green" width="fiveTwelfths" height="twoHigh"></Bool>
-           <Bool prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="yellow" width={"fiveTwelfths"} height="twoHigh"></Bool>
-              <Bool prop="park" phase label="Park" trueLabel = "Parked" color="purple" width={"fiveTwelfths"} height="twoHigh"></Bool>
+           <Toggle prop="scoreTrap" phase label="Score Trap" trueLabel = "Scored Trap" color="green" width="fiveTwelfths" height="twoHigh"></Toggle>
+           <Toggle prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="yellow" width={"fiveTwelfths"} height="twoHigh"></Toggle>
+              <Toggle prop="park" phase label="Park" trueLabel = "Parked" color="purple" width={"fiveTwelfths"} height="twoHigh"></Toggle>
            <Numbers label="Climb Time of start (secs)" idealLength = {2} prop="climbTimeOfStart" width = "fiveTwelfths" twoLines={false} height = "twoHigh"></Numbers>
            <Undo width = "fiveTwelfths" height = "twoHigh"></Undo>
 
