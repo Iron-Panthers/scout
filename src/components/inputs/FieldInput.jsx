@@ -106,7 +106,7 @@ const FieldInput = ({prop, phase, renderChildren, popupInfo}) => {
       const height = imgHeight / 14;
       const width = height;
 
-      const displayStyle = displayPopup ? "none" : ""
+      const displayStyle = displayPopup ? "none" : "flex"
 
       for(const actionString of currentActions) {
             const action = JSON.parse(actionString)
@@ -122,11 +122,24 @@ const FieldInput = ({prop, phase, renderChildren, popupInfo}) => {
                 display: displayStyle,
                 backgroundColor: "hsl(354, 100%, 85%, 0.75)",
                 textAlign: "center",
+                // wordBreak: "break-all",
+                fontSize: "0.72rem",
+                justifyContent: "center",
+                alignItems: "center",
               }
 
+          // Splits action at uppercase, so they're separate words
+          const formatted = action.action.split(/(?=[A-Z])/);
+
+          // Capitalizes the first letter in the action (not uppercase, cause camelcase)
+          formatted[0] = formatted[0].charAt(0).toUpperCase() + formatted[0].slice(1);
+
+          // Adds them together, with a space separator
+          const combinedString = formatted.reduce((prev, current) => prev + " " + current)
+          
           dots.push(<div 
                         style = {styles} 
-                        onClick = {e => handleClick(e)}>{action.action}</div>)
+                        onClick = {e => handleClick(e)}>{combinedString}</div>)
           
       }
 
