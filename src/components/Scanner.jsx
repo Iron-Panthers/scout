@@ -82,7 +82,7 @@ const handleScan = (val) => {
         // Checking if the quickness has been set
         // If it has, then the csv object must be from the qualitative scouting
         // Otherwise, it should be a normal match
-        if(objVal?.team1Quickness) {
+        if(objVal?.typeOfData === "Qualitative") {
           qualScans.current.add(val)
           localStorage.qualitativeScanSet = JSON.stringify(Array.from(qualScans.current))
         } else {
