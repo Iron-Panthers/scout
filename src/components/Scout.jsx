@@ -173,8 +173,8 @@ const Scout = () => {
         return (
           <>
            <Bool prop="scoreTrap" phase label="Score Trap" trueLabel = "Scored Trap" color="green" width="fiveTwelfths" height="twoHigh"></Bool>
-           <Bool prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="green" width={"fiveTwelfths"} height="twoHigh"></Bool>
-              <Bool prop="park" phase label="Park" trueLabel = "Parked" color="green" width={"fiveTwelfths"} height="twoHigh"></Bool>
+           <Bool prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="yellow" width={"fiveTwelfths"} height="twoHigh"></Bool>
+              <Bool prop="park" phase label="Park" trueLabel = "Parked" color="purple" width={"fiveTwelfths"} height="twoHigh"></Bool>
            <Numbers label="Climb Time of start (secs)" idealLength = {2} prop="climbTimeOfStart" width = "fiveTwelfths" twoLines={false} height = "twoHigh"></Numbers>
            <Undo width = "fiveTwelfths" height = "twoHigh"></Undo>
 
