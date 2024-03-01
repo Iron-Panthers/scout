@@ -95,7 +95,7 @@ const ConfigureQualitative = () => {
       <Next
         width="halfWide"
         qualitative
-        isDisabled={false && !ready}
+        isDisabled={!ready}
         disabledText={disabledMessage}
       ></Next>
     </>
