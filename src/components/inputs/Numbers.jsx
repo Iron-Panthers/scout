@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 
 import "./inputs.scss"
 
-const Numbers = ({ label, prop, idealLength = 4, width, twoLines, height }) => {
+const Numbers = ({ label, prop, phase, idealLength = 4, width, twoLines, height }) => {
   
   const [state, dispatch] = useContext(Context)
   const id = `Numbers-${label}-${prop}`.replaceAll(" ", "_")
@@ -22,7 +22,7 @@ const Numbers = ({ label, prop, idealLength = 4, width, twoLines, height }) => {
         className={`${width ? width : "wide"}`}
         onChange={(event) => {
           dispatch({
-            type: "set",
+            type: `set${phase ? "InPhase" : ""}`,
             prop,
             val: !(
               event.target.value === undefined || event.target.value === ""

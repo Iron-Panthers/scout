@@ -175,8 +175,8 @@ const Scout = () => {
           <>
            <Toggle prop="scoreTrap" phase label="Score Trap" trueLabel = "Scored Trap" color="green" width="fiveTwelfths" height="twoHigh"></Toggle>
            <Toggle prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="yellow" width={"fiveTwelfths"} height="twoHigh"></Toggle>
-              <Toggle prop="park" phase label="Park" trueLabel = "Parked" color="purple" width={"fiveTwelfths"} height="twoHigh"></Toggle>
-           <Numbers label="Climb Time of start (secs)" idealLength = {2} prop="climbTimeOfStart" width = "fiveTwelfths" twoLines={false} height = "twoHigh"></Numbers>
+           <Toggle prop="park" phase label="Park" trueLabel = "Parked" color="purple" width={"fiveTwelfths"} height="twoHigh"></Toggle>
+           <Numbers label="Climb Time of start (secs)" phase idealLength = {2} prop="climbTimeOfStart" width = "fiveTwelfths" twoLines={false} height = "twoHigh"></Numbers>
            <Undo width = "fiveTwelfths" height = "twoHigh"></Undo>
 
               <Next width ="fiveTwelfths" height = "twoHigh"></Next>
