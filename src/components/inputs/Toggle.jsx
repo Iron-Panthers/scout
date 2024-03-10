@@ -13,9 +13,6 @@ const Bool = ({ label, trueLabel, prop, onFlip, phase, color, width, height}) =>
   const falseColor = color ? color : "green" 
   const trueColor = "less-" + falseColor
 
-  console.log(current)
-  console.log(current ? trueColor : falseColor)
-
   return (
     <button
       className={`${current ? trueColor : falseColor} ${width} ${height}`}
