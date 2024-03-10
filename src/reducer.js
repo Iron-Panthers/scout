@@ -50,7 +50,7 @@ export const initialState = {
   },
   endgame: {
     harmonize: false,
-    climb: false,
+    scoreTrap: false,
     park: false,
     climbTimeOfStart: undefined,
   },
