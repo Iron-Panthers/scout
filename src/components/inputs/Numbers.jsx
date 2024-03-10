@@ -26,6 +26,7 @@ const Numbers = ({ label, prop, phase, idealLength = 4, width, twoLines, height 
           dispatch({
             type: `set${phase ? "InPhase" : ""}`,
             prop,
+            track: false,
             val: !(
               event.target.value === undefined || event.target.value === ""
             )
