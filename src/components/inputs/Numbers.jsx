@@ -9,6 +9,8 @@ const Numbers = ({ label, prop, phase, idealLength = 4, width, twoLines, height 
   const [state, dispatch] = useContext(Context)
   const id = `Numbers-${label}-${prop}`.replaceAll(" ", "_")
 
+  const current = phase ? (state[state.phase] ?? {})[prop] : state[prop]
+
   const numberInputComponent = <>
     <label htmlFor={id} className={`${twoLines ? "default" : ""}`}>
         {label}
@@ -24,6 +26,7 @@ const Numbers = ({ label, prop, phase, idealLength = 4, width, twoLines, height 
           dispatch({
             type: `set${phase ? "InPhase" : ""}`,
             prop,
+            track: false,
             val: !(
               event.target.value === undefined || event.target.value === ""
             )
@@ -31,7 +34,7 @@ const Numbers = ({ label, prop, phase, idealLength = 4, width, twoLines, height 
               : undefined,
           })
         }}
-        value={state[prop] ?? ""}
+        value={current ?? ""}
       />
   </>
 
