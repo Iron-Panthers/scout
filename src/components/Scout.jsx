@@ -26,13 +26,9 @@ import FieldInputLocations from "./inputs/FieldInputLocations"
 const Scout = () => {
   const [state, dispatch] = useContext(Context)
 
-
   const [currentTime, setCurrentTime] = useState(0)
 
-    
   const [overlayClicked, setOverlayClicked] = useState(false)
-
-
 
   const setStartTime = () => {
     dispatch({
@@ -42,144 +38,170 @@ const Scout = () => {
       track: false,
     })
   }
- useEffect(() => {
-     
-     const interval = setInterval(() => {
-         setCurrentTime(Date.now())
-     }, 500)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(Date.now())
+    }, 500)
 
-     return () => clearInterval(interval);
- }, [])
-    
+    return () => clearInterval(interval)
+  }, [])
+
   const phaseTabContent = (() => {
-    let popupInfo;
+    let popupInfo
     switch (state.phase) {
       case "auto":
-
         popupInfo = {
           defaultDimensions: {
             width: 3,
             height: 3,
           },
           info: [
-                {
-                  label: "Score Speaker",
-                  actionType: "scoreSpeaker",
-                  color: "green",
-                },
-                {
-                  label: "Score Amp",
-                  actionType: "scoreAmp",
-                  color: "purple"
-                },
-                {
-                  label: "Mobility",
-                  actionType: "mobility",
-                  color: "blue",
-                },
-                {
-                  label: "Close",
-                  dimensions: {
-                    width: 1, 
-                    height: 6,
-                  }
-                },
-                {
-                  label: "Miss Speaker",
-                  actionType: "missSpeaker",
-                  color: "less-green",
-                },
-                {
-                  label: "Miss Amp",
-                  actionType: "missAmp",
-                  color: "less-purple"
-                },
-                {
-                  label: "Dropoff",
-                  actionType: "dropoff",
-                  color: "yellow"
-                },
-               ]
+            {
+              label: "Score Speaker",
+              actionType: "scoreSpeaker",
+              color: "green",
+            },
+            {
+              label: "Score Amp",
+              actionType: "scoreAmp",
+              color: "purple",
+            },
+            {
+              label: "Mobility",
+              actionType: "mobility",
+              color: "blue",
+            },
+            {
+              label: "Close",
+              dimensions: {
+                width: 1,
+                height: 6,
+              },
+            },
+            {
+              label: "Miss Speaker",
+              actionType: "missSpeaker",
+              color: "less-green",
+            },
+            {
+              label: "Miss Amp",
+              actionType: "missAmp",
+              color: "less-purple",
+            },
+            {
+              label: "Dropoff",
+              actionType: "dropoff",
+              color: "yellow",
+            },
+          ],
         }
 
-       
-    
         return (
-            
           <>
             {/* <ImageClick full locations phase locationProp = "path" prop = "actions"></ImageClick> */}
-              <FieldInputLocations phase prop = "actions" locationProp = "path" popupInfo = {popupInfo}/>
+            <FieldInputLocations
+              phase
+              prop="actions"
+              locationProp="path"
+              popupInfo={popupInfo}
+            />
           </>
         )
       case "teleop":
-
-
         popupInfo = {
           defaultDimensions: {
             width: 3,
             height: 3,
           },
           info: [
-                {
-                  label: "Score Speaker",
-                  actionType: "scoreSpeaker",
-                  color: "green"                  
-                },
-                {
-                  label: "Score Amp",
-                  actionType: "scoreAmp",
-                  color: "purple"
-                },
-                {
-                  label: "Score Trap",
-                  actionType: "scoreTrap",
-                  color: "blue"
-                },
-                {
-                  label: "Close",
-                  dimensions: {
-                    width: 1, 
-                    height: 6,
-                  }
-                },
-                {
-                  label: "Miss Speaker",
-                  actionType: "missSpeaker",
-                  color: "less-green"
-                },
-                {
-                  label: "Miss Amp",
-                  actionType: "missAmp",
-                  color: "less-purple"
-                },
-                {
-                  label: "Shuttle",
-                  actionType: "shuttle",
-                  color: "less-blue"
-                },
-               ]
+            {
+              label: "Score Speaker",
+              actionType: "scoreSpeaker",
+              color: "green",
+            },
+            {
+              label: "Score Amp",
+              actionType: "scoreAmp",
+              color: "purple",
+            },
+            {
+              label: "Score Trap",
+              actionType: "scoreTrap",
+              color: "blue",
+            },
+            {
+              label: "Close",
+              dimensions: {
+                width: 1,
+                height: 6,
+              },
+            },
+            {
+              label: "Miss Speaker",
+              actionType: "missSpeaker",
+              color: "less-green",
+            },
+            {
+              label: "Miss Amp",
+              actionType: "missAmp",
+              color: "less-purple",
+            },
+            {
+              label: "Shuttle",
+              actionType: "shuttle",
+              color: "less-blue",
+            },
+          ],
         }
 
-        
         return (
           <>
-
-            
-           <FieldInput phase prop = "actions" popupInfo={popupInfo}></FieldInput>
+            <FieldInput phase prop="actions" popupInfo={popupInfo}></FieldInput>
             {/* <ImageClick full phase prop = "actions"></ImageClick> */}
-            
           </>
         )
       case "endgame":
         return (
           <>
-           <Toggle prop="scoreTrap" phase label="Score Trap" trueLabel = "Scored Trap" color="green" width="fiveTwelfths" height="twoHigh"></Toggle>
-           <Toggle prop="harmonize" phase label="Harmonize" trueLabel = "Harmonized" color="yellow" width={"fiveTwelfths"} height="twoHigh"></Toggle>
-           <Toggle prop="park" phase label="Park" trueLabel = "Parked" color="purple" width={"fiveTwelfths"} height="twoHigh"></Toggle>
-           <Numbers label="Climb Time of start (secs)" phase idealLength = {2} prop="climbTimeOfStart" width = "fiveTwelfths" twoLines={false} height = "twoHigh"></Numbers>
-           <Undo width = "fiveTwelfths" height = "twoHigh"></Undo>
+            <Toggle
+              prop="scoreTrap"
+              phase
+              label="Score Trap"
+              trueLabel="Scored Trap"
+              color="green"
+              width="fiveTwelfths"
+              height="twoHigh"
+            ></Toggle>
+            <Toggle
+              prop="harmonize"
+              phase
+              label="Harmonize"
+              trueLabel="Harmonized"
+              color="yellow"
+              width={"fiveTwelfths"}
+              height="twoHigh"
+            ></Toggle>
+            <Toggle
+              prop="park"
+              phase
+              label="Park"
+              trueLabel="Parked"
+              color="purple"
+              width={"fiveTwelfths"}
+              height="twoHigh"
+            ></Toggle>
+            <Numbers
+              label="Climb Time of start (secs)"
+              phase
+              idealLength={2}
+              prop="climbTimeOfStart"
+              width="fiveTwelfths"
+              twoLines={false}
+              height="twoHigh"
+            ></Numbers>
+            <Undo width="fiveTwelfths" height="twoHigh"></Undo>
 
-              <Next width ="fiveTwelfths" height = "twoHigh"></Next>
+            <Next width="fiveTwelfths" height="twoHigh"></Next>
           </>
         )
       default:
@@ -188,51 +210,46 @@ const Scout = () => {
   })()
 
   const totalNotes = (() => {
-    let total = 0;
+    let total = 0
 
     total += state.auto.scoreSpeaker
     total += state.auto.scoreAmp
 
-      
     total += state.teleop.scoreSpeaker
     total += state.teleop.scoreAmp
     total += state.teleop.scoreTrap
-      
-    return total;
+
+    return total
   })()
 
-    // Kinda bad, but I don't want to put it in the image click component
-    if (state[state.phase]?.prevCycleTimeStamp === 0) {
-      dispatch({
-        type: `set${state.phase ? "InPhase" : ""}`,
-        prop: "prevCycleTimeStamp",
-        val: Date.now(),
-      })
-    }
+  // Kinda bad, but I don't want to put it in the image click component
+  if (state[state.phase]?.prevCycleTimeStamp === 0) {
+    dispatch({
+      type: `set${state.phase ? "InPhase" : ""}`,
+      prop: "prevCycleTimeStamp",
+      val: Date.now(),
+    })
+  }
 
   //alert(state.teleop.scoreTrap.length)
-
-
 
   // This is also kinda bad
 
   const roundedTime = (() => {
-
     const timeInSeconds = (currentTime - state.startTime) / 1000
 
-          const roundTime = Math.round((timeInSeconds + Number.EPSILON) * 100000) / 100000
+    const roundTime =
+      Math.round((timeInSeconds + Number.EPSILON) * 100000) / 100000
 
-    if(roundTime < 0 || state.startTime == 0) return 0
-    
-    return Math.trunc(roundTime);
+    if (roundTime < 0 || state.startTime == 0) return 0
+
+    return Math.trunc(roundTime)
   })()
-  
 
   const displayColor = (() => {
-    if(roundedTime <= 15 || state.phase !== "auto") return "";
+    if (roundedTime <= 15 || state.phase !== "auto") return ""
 
     return roundedTime % 2 === 0 ? "red" : "yellow"
-    
   })()
   return (
     <>
@@ -240,21 +257,31 @@ const Scout = () => {
         <Info></Info>
         {/* <Tabs></Tabs> */}
       </div>
-      
 
-      <div className={`quarter ${displayColor} display`}
-        >{`Current Match Time: ${roundedTime}`}</div>
-        <div className="quarter display">{`Total Notes: ${totalNotes}`}</div>
-          <Undo width = "quarter"></Undo>
+      <div
+        className={`quarter ${displayColor} display`}
+      >{`Current Match Time: ${roundedTime}`}</div>
+      <div className="quarter display">{`Total Notes: ${totalNotes}`}</div>
+      <Undo width="quarter"></Undo>
 
-      <Tabs></Tabs> 
-      
+      <Tabs></Tabs>
+
       {phaseTabContent}
-      <div className="overlay transparent" style = {{display: overlayClicked? "none": "absolute"}}>
-              <button className="blue" onClick = {()=> {
-                setStartTime()
-                setOverlayClicked(true)
-              }}><h1>Ready?</h1></button>
+      <div
+        className="overlay transparent"
+        onClick={() => {
+          setStartTime()
+          setOverlayClicked(true)
+        }}
+        style={{
+          display: overlayClicked ? "none" : "absolute",
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <button className="blue">
+          <h1>Ready?</h1>
+        </button>
       </div>
     </>
   )
