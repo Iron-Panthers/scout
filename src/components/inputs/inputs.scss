@@ -9,7 +9,6 @@ textarea:focus {
   outline: blue 1px solid;
 }
 
-
 @mixin twoThirdsLeft {
   display: grid;
   grid-row: span 3;
@@ -31,11 +30,9 @@ textarea:focus {
 }
 
 // Must be odd, because one slot is taken up by an empty tag for spacing
-$qualCounterSlots : 7;
+$qualCounterSlots: 7;
 
 .qualitativeTeam {
-
-  
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0px;
@@ -44,26 +41,22 @@ $qualCounterSlots : 7;
   border-top: 0.175em solid silver;
 
   display: flex;
-  
+
   flex-direction: column;
 
   gap: 10%;
 
   .qualCounter {
-
     flex-basis: 0;
     flex-grow: 1;
     flex-shrink: 1;
     min-height: 25%;
-    
 
     display: flex;
     flex-direction: column;
-    
+
     flex-wrap: wrap;
 
-
-   
     & > * {
       flex-grow: 1;
       flex-basis: 0;
@@ -78,7 +71,6 @@ $qualCounterSlots : 7;
     }
   }
 
-
   #teamNumber {
     font-weight: bold;
     font-size: 2.4rem;
@@ -87,38 +79,31 @@ $qualCounterSlots : 7;
     margin: 0;
     min-height: 25%;
   }
-  
 
+  button {
+    text-align: center;
+    //font-weight: bold;
 
+    grid-column: span 1;
+    border-radius: 25vh;
+    margin-bottom: 0.4vh;
+    margin: 0;
+  }
 
-    button {
-      text-align: center;
-      //font-weight: bold;
-  
-      grid-column: span 1;
-      border-radius: 25vh;
-      margin-bottom: 0.4vh;   
-      margin: 0;
-     
-    }
+  .notIOS {
+    font-size: 3rem;
+  }
 
-    .notIOS {
-      font-size: 3rem;
-    }
+  .IOS {
+    font-size: 1.7rem;
+  }
 
-    .IOS {
-      font-size: 1.7rem;
-    }
-
-    p {
-      font-size: 1.6rem;
-      text-align: center;
-    }
-
+  p {
+    font-size: 1.6rem;
+    text-align: center;
+  }
 }
 
-  
-  
 .evenFlex {
   display: flex;
   flex-direction: row;
@@ -126,7 +111,7 @@ $qualCounterSlots : 7;
   justify-content: space-between;
 }
 
-.evenFlex>* {
+.evenFlex > * {
   flex-grow: 1;
   width: 0;
 }
@@ -138,13 +123,11 @@ textarea {
   padding: 2px 2vw;
 }
 
-
-@mixin center{
+@mixin center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 p,
 label,
@@ -153,10 +136,10 @@ div.Center {
 }
 
 div.Divider {
- @include center();
- text-decoration: underline;
- font-weight: bold;
- font-size: 1.4rem;
+  @include center();
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 
 label.AlignRight {
@@ -167,7 +150,7 @@ label.Checkbox {
   justify-content: flex-start;
   user-select: none;
 
-  &>input {
+  & > input {
     margin-right: 10vw;
     margin-left: 5vw;
   }
@@ -204,21 +187,20 @@ div.TextLine {
   gap: 1vw;
   padding-left: 3vw;
 
-  &>input {
+  & > input {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 60%;
     width: 0px;
   }
 
-  &>label {
+  & > label {
     // No wrap previously, but I think wrap looks better?
     // Makes it so that the input can grow horizontally
     white-space: wrap;
     // scss thinks we want pre-compile min so we need to bypass it
     flex-basis: unquote("min(25vw, 100px)");
   }
-
 }
 
 div.TripleTeamSelector {
@@ -234,13 +216,13 @@ div.TripleTeamSelector {
     flex-basis: 0px;
     width: 0px;
 
-    &>input {
+    & > input {
       flex-grow: 1;
       flex-shrink: 1;
     }
   }
 
-  &>label {
+  & > label {
     white-space: nowrap;
     // scss thinks we want pre-compile min so we need to bypass it
     flex-basis: unquote("min(25vw, 100px)");
@@ -253,22 +235,21 @@ div.TripleTeamSelector {
 
 .imageClick {
   position: relative;
-  display:flex;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
   img {
-    max-width:100%;
-    max-height:100%;
+    max-width: 100%;
+    max-height: 100%;
     margin: auto;
   }
 
-  .imageLocation{
+  .imageLocation {
     position: absolute;
     color: white;
     font-size: 1.75rem;
     font-weight: bold;
   }
-
 }
 
 .display {
@@ -280,23 +261,20 @@ div.TripleTeamSelector {
 .overlay {
   margin: auto;
 
-  width: 90vw;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
 
   //overflow: hidden;
-  left: 5%;
-  top: 5%;
 
-
- 
   button {
     position: absolute;
 
-  //overflow: hidden;
-  left: 25%;
-  top: 25%;
-    width: 50vw;
-    height: 50vh;
+    //overflow: hidden;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem;
+    border-radius: 2rem;
   }
 }
