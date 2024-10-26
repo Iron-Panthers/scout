@@ -12,13 +12,15 @@ export const initialSettings = {
   IOSCheck: true,
   scannerBeep: true,
   exportWithHeaders: true,
+  switchScoutingSide: false, // switches the scouting side
 }
 
 export const settingsLabels = {
   autoIncMatch: "automatically increase match number by one when reset",
   IOSCheck: "userAgent parsing to detect iOS",
   scannerBeep: "beep feedback on successful scan",
-  exportWithHeaders : "export the csv data with the headers"
+  exportWithHeaders: "export the csv data with the headers",
+  switchScoutingSide: "rotate the field view 180 degrees",
 }
 
 // this is a function so that it remains reflective of localStorage if its reset

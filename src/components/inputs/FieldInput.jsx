@@ -1,12 +1,11 @@
 import React, { useContext, useRef, useEffect, useState } from "react"
-import { Context } from "../../state"
+import { Context, useSettings } from "../../state"
 import PropTypes from "prop-types"
 
 import "./buttons.scss"
 import "./inputs.scss"
- 
-import fullField from "../fullFieldImage2024.png"
 
+import fullField from "../fullFieldImage2024.png"
 
 /**
  * renderChildren will be passed img data with the following named parameters:
@@ -14,8 +13,9 @@ import fullField from "../fullFieldImage2024.png"
     offsets {x, y}
  * Will add more in future if necessary (i'm lazy)
  */
-const FieldInput = ({prop, phase, renderChildren, popupInfo}) => {
+const FieldInput = ({ prop, phase, renderChildren, popupInfo }) => {
   const [state, dispatch] = useContext(Context)
+  const [settings, dispatchSettings] = useSettings()
 
   const [imgLoaded, setImgLoaded] = useState(false)
   const [imgHeight, setImgHeight] = useState(0)
@@ -30,17 +30,15 @@ const FieldInput = ({prop, phase, renderChildren, popupInfo}) => {
   // Basically, if we check in useeffect that any of these vals are -1, we know user has not actually clicked on it
   // Therefore, don't run the dispatch shot stuff
   const [shotLocation, setShotLocation] = useState({ x: -1, y: -1 })
-    
+
   const [displayPopup, setDisplayPopup] = useState(false)
 
   const divRef = useRef()
   const imgRef = useRef()
 
-      
   // When any of these changes, offsets should be recalculated
   useEffect(() => {
-
-    if(!imgLoaded) return
+    if (!imgLoaded) return
     // Bounding rects of div and img
     const divBounds = divRef.current?.getBoundingClientRect()
     const imgBounds = imgRef.current?.getBoundingClientRect()
@@ -51,13 +49,13 @@ const FieldInput = ({prop, phase, renderChildren, popupInfo}) => {
 
     setImgHeight(imgRef.current?.offsetHeight)
     setImgWidth(imgRef.current?.offsetWidth)
-
-  }, [divRef.current?.getBoundingClientRect(), imgRef.current?.getBoundingClientRect(), imgLoaded])
-
+  }, [
+    divRef.current?.getBoundingClientRect(),
+    imgRef.current?.getBoundingClientRect(),
+    imgLoaded,
+  ])
 
   useEffect(() => {
-
-
     if (shotLocation.x == -1) return
 
     console.log("x: " + shotLocation.x)
@@ -67,273 +65,272 @@ const FieldInput = ({prop, phase, renderChildren, popupInfo}) => {
     // Saving the action's timestamp
     setActionTimeStamp(currentTime - state.startTime)
 
-      
     setDisplayPopup(true)
   }, [shotLocation.x, shotLocation.y])
 
-
-
   const handleClick = (event) => {
+    let imgBounds
 
-    let imgBounds;
-      
     if (event.target.alt !== "field") {
-        imgBounds = imgRef.current?.getBoundingClientRect()
+      imgBounds = imgRef.current?.getBoundingClientRect()
     } else {
-        imgBounds = event.target.getBoundingClientRect()
+      imgBounds = event.target.getBoundingClientRect()
     }
-      
-    
-    const x = event.clientX - imgBounds.left
-    const y = event.clientY - imgBounds.top
+
+    let x = event.clientX - imgBounds.left
+    let y = event.clientY - imgBounds.top
+
+    //invert the coordinates
+    if (settings.switchScoutingSide) {
+      console.log("Side should be switched")
+      x = imgWidth - x
+      y = imgHeight - y
+    }
     console.log("x: " + x)
     console.log("y: " + y)
 
     console.log(event.target.alt)
     const percentageX = x / imgWidth
     const percentageY = y / imgHeight
+    console.log(percentageX, percentageY)
     console.log(imgWidth)
 
     setShotLocation({ x: percentageX, y: percentageY })
   }
 
   const spawnDots = () => {
+    const currentActions = phase
+      ? (state[state.phase] ?? {})[prop]
+      : state[prop]
 
-      const currentActions = phase ? (state[state.phase] ?? {})[prop] : state[prop]
+    const dots = []
 
-      const dots = []
+    const height = imgHeight / 14
+    const width = height
 
-      const height = imgHeight / 14;
-      const width = height;
+    const displayStyle = displayPopup ? "none" : "flex"
 
-      const displayStyle = displayPopup ? "none" : "flex"
+    for (const actionString of currentActions) {
+      const action = JSON.parse(actionString)
 
-      for(const actionString of currentActions) {
-            const action = JSON.parse(actionString)
-         
-            const styles = {
-                // Subtracting the height and width, so that the centerpoint is at the specified coords
-                position: "absolute",
-                left: xOffset + action.x * imgWidth - width / 2,
-                top: yOffset + action.y * imgHeight - height / 2,
-                height: height,
-                width: width,
-                borderRadius: "50%",
-                display: displayStyle,
-                backgroundColor: "hsl(354, 100%, 85%, 0.75)",
-                textAlign: "center",
-                // wordBreak: "break-all",
-                fontSize: "0.72rem",
-                justifyContent: "center",
-                alignItems: "center",
-              }
+      const x = settings.switchScoutingSide ? 1 - action.x : action.x
+      const y = settings.switchScoutingSide ? 1 - action.y : action.y
 
-          // Splits action at uppercase, so they're separate words
-          const formatted = action.action.split(/(?=[A-Z])/);
-
-          // Capitalizes the first letter in the action (not uppercase, cause camelcase)
-          formatted[0] = formatted[0].charAt(0).toUpperCase() + formatted[0].slice(1);
-
-          // Adds them together, with a space separator
-          const combinedString = formatted.reduce((prev, current) => prev + " " + current)
-          
-          dots.push(<div 
-                        style = {styles} 
-                        onClick = {e => handleClick(e)}>{combinedString}</div>)
-          
+      const styles = {
+        // Subtracting the height and width, so that the centerpoint is at the specified coords
+        position: "absolute",
+        left: xOffset + x * imgWidth - width / 2,
+        top: yOffset + y * imgHeight - height / 2,
+        height: height,
+        width: width,
+        borderRadius: "50%",
+        display: displayStyle,
+        backgroundColor: "hsl(354, 100%, 85%, 0.75)",
+        textAlign: "center",
+        // wordBreak: "break-all",
+        fontSize: "0.72rem",
+        justifyContent: "center",
+        alignItems: "center",
       }
 
-      return dots
+      // Splits action at uppercase, so they're separate words
+      const formatted = action.action.split(/(?=[A-Z])/)
 
+      // Capitalizes the first letter in the action (not uppercase, cause camelcase)
+      formatted[0] =
+        formatted[0].charAt(0).toUpperCase() + formatted[0].slice(1)
 
-      
+      // Adds them together, with a space separator
+      const combinedString = formatted.reduce(
+        (prev, current) => prev + " " + current
+      )
+
+      dots.push(
+        <div style={styles} onClick={(e) => handleClick(e)}>
+          {combinedString}
+        </div>
+      )
+    }
+
+    return dots
   }
 
-
   const dispatchShot = (actionType) => {
-
     setDisplayPopup(false)
 
-    const currentActions = phase ? (state[state.phase] ?? {})[prop] : state[prop]
+    const currentActions = phase
+      ? (state[state.phase] ?? {})[prop]
+      : state[prop]
 
-      const roundedX = Math.round((shotLocation.x + Number.EPSILON) * 10000) / 10000
+    const roundedX =
+      Math.round((shotLocation.x + Number.EPSILON) * 10000) / 10000
 
-      const roundedY = Math.round((shotLocation.y + Number.EPSILON) * 10000) / 10000
+    const roundedY =
+      Math.round((shotLocation.y + Number.EPSILON) * 10000) / 10000
 
-      const timeInSeconds = actionTimeStamp / 1000
-    
-      const roundedTime = Math.round((timeInSeconds + Number.EPSILON) * 1000) / 1000
-      
+    const timeInSeconds = actionTimeStamp / 1000
+
+    const roundedTime =
+      Math.round((timeInSeconds + Number.EPSILON) * 1000) / 1000
+
     const currentJSON = [
       ...currentActions,
       JSON.stringify({
         x: roundedX,
         y: roundedY,
-        action: actionType, 
+        action: actionType,
         time: roundedTime,
-      })
+      }),
     ]
-      
+
     console.log(currentJSON)
 
-    const currentVal = phase ? (state[state.phase] ?? {})[actionType] : state[actionType]
+    const currentVal = phase
+      ? (state[state.phase] ?? {})[actionType]
+      : state[actionType]
 
-
-    if(typeof currentVal === "number"){
+    if (typeof currentVal === "number") {
       dispatch({
         type: `set${phase ? "InPhase" : ""}`,
         prop: [prop, actionType],
         val: [currentJSON, currentVal + 1],
       })
-      return;
+      return
     }
 
-    if(typeof currentVal === "boolean"){
+    if (typeof currentVal === "boolean") {
       dispatch({
         type: `set${phase ? "InPhase" : ""}`,
         prop: [prop, actionType],
         val: [currentJSON, true],
       })
-      return;
+      return
     }
 
-      
     dispatch({
       type: `set${phase ? "InPhase" : ""}`,
       prop: prop,
       val: currentJSON,
     })
-    
   }
 
   const createPopupButton = (label, actionType, color, styles) => {
+    // ik you can do named vars, but like renderpopups is weird
+    if (!actionType) {
+      actionType = label
+    }
 
+    if (!color) {
+      color = "green"
+    }
 
-      // ik you can do named vars, but like renderpopups is weird
-      if(!actionType) {
-          actionType = label
-      }
-
-      if(!color){
-          color = "green"
-      }
-
-      const current = phase ? (state[state.phase] ?? {})[actionType] : state[actionType]
+    const current = phase
+      ? (state[state.phase] ?? {})[actionType]
+      : state[actionType]
     // cursed, basically saying if it's a boolean, then check if it's true in order to see if we should be disabled
     return (
-      <button 
-        disabled = {current === true}
-        onClick={() => dispatchShot(actionType)} className={`${color} popupButton`}
-      
-      style = {styles}
+      <button
+        disabled={current === true}
+        onClick={() => dispatchShot(actionType)}
+        className={`${color} popupButton`}
+        style={styles}
       >
         {label}
       </button>
     )
   }
 
-const handleClosePopup = () => {
+  const handleClosePopup = () => {
     setDisplayPopup(false)
-}
+  }
 
-const handleChildren = () => {
+  const handleChildren = () => {
+    if (!renderChildren) return
 
-    if(!renderChildren) return
-  
-    return (
-        renderChildren({
-                dimensions: {
-                    width: imgWidth,
-                    height: imgHeight,
-                },
-                offsets: {
-                    x: xOffset,
-                    y: yOffset,
-                },
-            })
-    )
-}
+    return renderChildren({
+      dimensions: {
+        width: imgWidth,
+        height: imgHeight,
+      },
+      offsets: {
+        x: xOffset,
+        y: yOffset,
+      },
+    })
+  }
 
-const renderPopups = () => {
-
+  const renderPopups = () => {
     const popups = []
 
+    // Basically, this is kinda cursed
+    // But if we detect red
+    // We shove teh following popups into different div
+    // Then we flexbox the two divs
+    // That way we can get better control over the popup widths
+    // or we could just have empty....
 
-  // Basically, this is kinda cursed
-  // But if we detect red
-  // We shove teh following popups into different div
-  // Then we flexbox the two divs
-  // That way we can get better control over the popup widths
-  // or we could just have empty....
-
-  
-    for(const popup of popupInfo.info){
-
-      if(!popup.dimensions){
-        if(popup.defaultDimensions){
+    for (const popup of popupInfo.info) {
+      if (!popup.dimensions) {
+        if (popup.defaultDimensions) {
           popup.dimensions = {
-              width: popup.defaultDimensions.width ,
-              height: popup.defaultDimensions.height,
+            width: popup.defaultDimensions.width,
+            height: popup.defaultDimensions.height,
           }
-        } else{
+        } else {
           popup.dimensions = {
-              width: 3,
-              height: 3,
-            }
-          } 
+            width: 3,
+            height: 3,
+          }
+        }
       }
-        
-      
-      
+
       const styles = {
         gridColumn: `span ${popup.dimensions.width}`,
         gridRow: `span ${popup.dimensions.height}`,
       }
-      
 
-        if(popup.label === "Close"){
-            popups.push(
-              <button 
-                className = "red test "
-                onClick ={handleClosePopup}
-                style = {styles}
-                >Close</button>) 
-            continue
-        }
-        
-        popups.push(createPopupButton(popup.label, popup.actionType, popup.color, styles))
+      if (popup.label === "Close") {
+        popups.push(
+          <button
+            className="red test "
+            onClick={handleClosePopup}
+            style={styles}
+          >
+            Close
+          </button>
+        )
+        continue
+      }
+
+      popups.push(
+        createPopupButton(popup.label, popup.actionType, popup.color, styles)
+      )
     }
 
-  return popups
-}
+    return popups
+  }
 
   return (
     <>
-    <div 
-      className="fiveSixths imageClick veryTall"
-      ref={divRef}
-      style={displayPopup ? {display: 'none'} : {}}
+      <div
+        className="fiveSixths imageClick veryTall"
+        ref={divRef}
+        style={displayPopup ? { display: "none" } : {}}
       >
-     
         <img
           src={fullField}
-          
           alt="field"
           onClick={(e) => handleClick(e)}
           ref={imgRef}
-          onLoad={() => setImgLoaded(true)}          
+          onLoad={() => setImgLoaded(true)}
+          className={settings.switchScoutingSide ? "flipped" : ""}
         />
 
         {imgLoaded && !displayPopup && spawnDots()}
 
-
         {imgLoaded && !displayPopup && handleChildren()}
-  
-
-       
-        
-    </div>
-       {displayPopup && renderPopups()}
+      </div>
+      {displayPopup && renderPopups()}
     </>
   )
 }
